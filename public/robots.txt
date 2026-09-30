@@ -1,0 +1,21 @@
+# Linkly LLC — https://www.linklyllc.com
+#
+# The whole site is public and indexable. The one exception is the contact
+# API endpoint, which returns JSON and has no page to rank, so it is
+# disallowed rather than redirected to the 404 page.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Ad crawlers are not useful here and only add load.
+User-agent: Mediapartners-Google
+Disallow: /
+
+User-agent: AdsBot-Google
+Disallow: /
+
+User-agent: AdsBot-Google-Mobile
+Disallow: /
+
+Sitemap: https://www.linklyllc.com/sitemap.xml
