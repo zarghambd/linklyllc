@@ -1,0 +1,397 @@
+---
+/* DRAFT - must be reviewed by a licensed US attorney before publishing. */
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site, addressLines } from '../config/site';
+
+const { legal } = site;
+
+const toc = [
+	{ id: 'who-we-are', title: 'Who we are and scope of this policy' },
+	{ id: 'information-we-collect', title: 'Information we collect' },
+	{ id: 'how-we-use-information', title: 'How we use information' },
+	{ id: 'analytics-and-cookies', title: 'Analytics and cookies' },
+	{ id: 'third-party-processors', title: 'Third-party processors' },
+	{ id: 'retention', title: 'Data retention' },
+	{ id: 'security', title: 'Data security' },
+	{ id: 'childrens-privacy', title: "Children's privacy (COPPA)" },
+	{ id: 'california-rights', title: 'California rights (CCPA/CPRA)' },
+	{ id: 'other-state-laws', title: 'Other US state privacy laws' },
+	{ id: 'email-communications', title: 'Email communications (CAN-SPAM)' },
+	{ id: 'policy-changes', title: 'Policy changes' },
+	{ id: 'contact', title: 'How to contact us' },
+];
+---
+
+<LegalLayout
+	title="Privacy Policy"
+	intro="This policy explains what information Linkly LLC collects through this website, why we collect it, and the choices you have. We have written it in plain language rather than boilerplate."
+	lastUpdated={legal.effectiveDate}
+	toc={toc}
+	seo={{
+		title: 'Privacy Policy',
+		description:
+			'How Linkly LLC collects, uses, retains and protects personal information from this website, including CCPA/CPRA, COPPA and other US state privacy rights.',
+	}}
+>
+	<h2 id="who-we-are">Who we are and scope of this policy</h2>
+	<p>
+		{legal.entityName} ("{site.name}", "we", "us") is a business organised in
+		the state of
+		{legal.stateOfFormation}. This Privacy Policy applies to this website and to
+		the project inquiry form on it. It does not apply to any other website we
+		link to, and it does not cover personal information we handle solely on
+		behalf of a client under a signed agreement — that is governed by the
+		client's own policy and our agreement with them.
+	</p>
+
+	<h2 id="information-we-collect">Information we collect</h2>
+	<p>
+		We collect four kinds of information. You can read this section as the short
+		version: we collect what you type into our form, what your browser sends
+		automatically, and nothing else.
+	</p>
+
+	<h3>Information you give us</h3>
+	<p>
+		When you submit the project inquiry form, we collect the name, email
+		address, project type, budget range and message you enter. We use this only
+		to respond to your inquiry. The form also records a timestamp of when the
+		page was rendered so we can reject automated submissions.
+	</p>
+
+	<h3>Information from your use of the site</h3>
+	<p>
+		Like every web server, ours records standard request logs. These include
+		your IP address, the URL and page you requested, the date and time, the
+		referring page, your browser's user-agent string, and the HTTP status
+		returned. We use these to keep the site running, to investigate errors, and
+		to detect abuse.
+	</p>
+
+	<h3>Cookies set by us</h3>
+	<p>
+		We set one piece of browser storage that is not a cookie and never leaves
+		your browser: your light or dark theme preference. It cannot be used to
+		identify you and is not transmitted to us. It is stored under the key <code
+			>theme</code
+		> in your browser's local storage.
+	</p>
+
+	<h3>Analytics</h3>
+	<p>
+		If, and only if, privacy-friendly analytics is enabled on this site, the
+		provider below receives a record of page views. The provider is cookie-free:
+		it does not set cookies, does not build a persistent profile of you across
+		websites, and does not collect your IP address for storage. You can review
+		and change your choices at any time on our <a href="/cookie-preferences"
+			>cookie preferences</a
+		> page.
+	</p>
+
+	<h2 id="how-we-use-information">How we use information</h2>
+	<ul>
+		<li>
+			<strong>To respond to you.</strong> We use your form submission to answer your
+			inquiry and, if we work together, to prepare and deliver a project.
+		</li>
+		<li>
+			<strong>To run and secure the site.</strong> Server logs are used for troubleshooting,
+			capacity planning, rate limiting and abuse prevention.
+		</li>
+		<li>
+			<strong>To comply with law.</strong> We retain and disclose information when
+			we are legally required to.
+		</li>
+		<li>
+			<strong>To understand aggregate usage.</strong> Where analytics is enabled,
+			we look at aggregate page-view counts. We do not use it to profile individual
+			visitors.
+		</li>
+	</ul>
+	<p>
+		We do not sell your personal information. We do not share it for
+		cross-context behavioural advertising. We do not use it for automated
+		decision-making that has a legal or similarly significant effect on you.
+	</p>
+
+	<h2 id="analytics-and-cookies">Analytics and cookies</h2>
+	<p>
+		This site does not use advertising cookies, tracking pixels, session
+		recorders, or fingerprinting. If analytics is enabled it is provided by
+		Plausible Analytics, which is designed around the GDPR and CCPA's opt-out
+		model: no cookies, no cross-site tracking, and no personal data is
+		collected. Because no personal data is collected, a consent banner is not
+		required before analytics loads.
+	</p>
+	<p>
+		If that changes in future — for example if a third-party tool is added that
+		does set cookies — we will update this policy first, add a consent banner,
+		and make sure nothing loads before you consent. Your
+		<a href="/cookie-preferences">cookie preferences</a> page is the single place
+		to check what is currently active and to turn it off.
+	</p>
+	<p>
+		Your browser also sends a <code>Do Not Track</code> header if you have enabled
+		Do Not Track. Because we do not track you across websites, we honour that signal
+		by loading nothing beyond what the page needs to display. We do not respond to
+		Global Privacy Control differently, because we do not sell or share personal information
+		and there is nothing to opt out of.
+	</p>
+
+	<h2 id="third-party-processors">Third-party processors</h2>
+	<p>
+		We use a small number of vendors to operate the site. They act as processors
+		on our instructions and are not permitted to use your information for their
+		own purposes.
+	</p>
+	<ul>
+		<li>
+			<strong>Email delivery — Resend.</strong> When you submit the contact form,
+			the details you entered are sent through Resend to deliver the notification
+			email to us. Message content and your email address are processed for delivery
+			and then discarded on Resend's infrastructure.
+		</li>
+		<li>
+			<strong>Analytics — Plausible Analytics,</strong> only if enabled. Receives
+			aggregate page-view data with no cookies, as described above.
+		</li>
+		<li>
+			<strong>Hosting and CDN — Vercel.</strong> Serves the site, processes request
+			data, and runs the form submission endpoint. Request logs include your IP address.
+		</li>
+		<li>
+			<strong
+				>Domain and email hosting — [PLACEHOLDER: email/domain provider].</strong
+			> [PLACEHOLDER: state who registers and hosts the domain and mailboxes for Linkly
+			LLC]
+		</li>
+		<li>
+			<strong>Typefaces and icons — Google Fonts and Iconify.</strong> Our stylesheet
+			requests font files from Google Fonts, which receives your IP address in the
+			ordinary course of serving them. Icon artwork is bundled at build time and is
+			not fetched at runtime.
+		</li>
+	</ul>
+	<p>
+		We do not add advertising or social tracking pixels to this site. If that
+		changes, this list and the <a href="/cookie-preferences"
+			>cookie preferences</a
+		> page will change with it.
+	</p>
+
+	<h2 id="retention">Data retention</h2>
+	<p>We keep information only as long as we have a reason to.</p>
+	<ul>
+		<li>
+			<strong>Contact form submissions.</strong> Kept for as long as needed to manage
+			the resulting business relationship, and afterwards only as needed to satisfy
+			legal, tax or accounting record-keeping obligations.
+		</li>
+		<li>
+			<strong>Server logs.</strong> Retained for a short operational period and then
+			deleted or aggregated. [PLACEHOLDER: state the actual log retention period,
+			e.g. "30 days"]
+		</li>
+		<li>
+			<strong>Analytics data.</strong> Held in aggregate by the analytics provider
+			and not tied to an individual.
+		</li>
+		<li>
+			<strong>Theme preference.</strong> Stays in your browser's local storage until
+			you clear it. We never receive it.
+		</li>
+		<li>
+			<strong>Client project data.</strong> Handled under the terms of the governing
+			agreement, which sets its own retention schedule.
+		</li>
+	</ul>
+
+	<h2 id="security">Data security</h2>
+	<p>
+		We use encryption in transit (HTTPS/TLS) for all pages and for form
+		submissions. The contact endpoint validates and sanitises every field
+		server-side, applies rate limiting and spam filtering, and never logs full
+		message contents. Administrative access to production is limited to the
+		people who need it.
+	</p>
+	<p>
+		No system is perfectly secure. If a breach affects your personal information
+		and is likely to cause you harm, we will notify you and the relevant
+		regulator as required by applicable law.
+	</p>
+
+	<h2 id="childrens-privacy">Children's privacy (COPPA)</h2>
+	<p>
+		This site is a business-to-business website. It is not directed to children
+		under 13, and we do not knowingly collect personal information from children
+		under 13. We do not knowingly collect information from anyone under 16 for
+		the purpose of marketing. If you believe a child has submitted information
+		through our form, contact us at the address below and we will delete it.
+	</p>
+
+	<h2 id="california-rights">California rights (CCPA/CPRA)</h2>
+	<p>
+		If you are a California resident, the California Consumer Privacy Act as
+		amended by the California Privacy Rights Act gives you rights over your
+		personal information. This section describes those rights and how to
+		exercise them.
+	</p>
+
+	<h3>Categories of personal information we collect</h3>
+	<p>
+		In the twelve months preceding this policy's effective date we have
+		collected the following categories: <strong>(A) Identifiers</strong> — name and
+		email address, from the contact form; <strong
+			>(B) Internet or other electronic network activity</strong
+		> — server log data such as IP address, browser type, referring page and pages
+		viewed; and <strong>(C) Geolocation data</strong> — derived from an IP address
+		at a coarse precision and used only to determine the appropriate time zone for
+		a response.
+	</p>
+
+	<h3>Sources of that information</h3>
+	<p>
+		Directly from you when you use the contact form, and automatically from your
+		browser when you visit any page.
+	</p>
+
+	<h3>Purposes of use and categories of sources</h3>
+	<p>
+		Business and commercial purposes listed in the "How we use information"
+		section above, and for security and legal compliance.
+	</p>
+
+	<h3>Rights you have</h3>
+	<ul>
+		<li>
+			<strong>Right to know.</strong> You may ask us to disclose the categories and
+			specific pieces of personal information we have collected about you, the sources,
+			the purposes, and the categories of third parties we disclosed it to.
+		</li>
+		<li>
+			<strong>Right to delete.</strong> You may ask us to delete personal information
+			we have collected from you, subject to certain exceptions.
+		</li>
+		<li>
+			<strong>Right to correct.</strong> You may ask us to correct inaccurate personal
+			information.
+		</li>
+		<li>
+			<strong>Right to opt out of sale or sharing.</strong> We do not sell personal
+			information and do not share it for cross-context behavioural advertising, so
+			there is nothing to opt out of. We do not sell or share the personal information
+			of anyone under 16.
+		</li>
+		<li>
+			<strong>Right to limit use of sensitive personal information.</strong> We do
+			not collect sensitive personal information as defined by the CPRA, so we do
+			not use or disclose it for the purpose of inferring characteristics about you.
+		</li>
+		<li>
+			<strong>Right to non-discrimination.</strong> We will not deny you services,
+			charge a different price, or provide a different level or quality of service
+			because you exercised a right under the CCPA/CPRA.
+		</li>
+	</ul>
+
+	<h3>How to submit a request</h3>
+	<p>
+		Send an email to {legal.contactEmail} with the subject line "California privacy
+		request", or write to us at the postal address in the contact section. Please
+		describe what you want and include enough detail for us to locate the relevant
+		information. We will confirm receipt within 10 business days and respond substantively
+		within 45 calendar days. If we need more time, we will tell you and why. We may
+		verify your identity before fulfilling the request by asking for information we
+		already hold about you. We do not charge a fee unless the request is manifestly
+		unfounded, excessive or repetitive.
+	</p>
+
+	<h3>Shine the Light (CalOPPA) disclosures</h3>
+	<p>
+		California residents may request disclosure of the categories of personal
+		information we disclose to third parties for their own direct marketing
+		purposes. We do not disclose personal information to third parties for their
+		own direct marketing purposes, so there is nothing to disclose. California
+		residents may also opt out of the "sale of personal information" under the
+		California Delete Act, which extends "sale" to include any exchange for
+		valuable consideration. We do not make such an exchange. [PLACEHOLDER:
+		attorney to confirm the current CalOPPA and Delete Act position once
+		analytics and any pixel providers are finalised]
+	</p>
+
+	<h2 id="other-state-laws">Other US state privacy laws</h2>
+	<p>
+		Other states have enacted privacy laws that give residents similar rights.
+		These include the Virginia Consumer Data Protection Act, the Colorado
+		Privacy Act, the Connecticut Data Privacy Act, the Texas Data Privacy and
+		Security Act, the Utah Consumer Privacy Act, the Oregon Consumer Privacy
+		Act, the Montana Consumer Data Privacy Act, the Delaware Personal Data
+		Privacy Act, the Iowa Consumer Data Protection Act, the Indiana Consumer
+		Data Protection Act, the Tennessee Information Protection Act, and the New
+		Jersey Data Privacy Act.
+	</p>
+	<p>
+		Where those laws apply to you, you have the right to confirm whether we
+		process your personal information, to access it, to correct it, to delete
+		it, to obtain a portable copy, to opt out of targeted advertising, to opt
+		out of the sale of personal information, to limit certain processing, and to
+		be free of discrimination for exercising these rights. These rights largely
+		mirror the California rights described above.
+	</p>
+	<p>To exercise any of these rights, contact us as described below.</p>
+
+	<h3>Right to appeal</h3>
+	<p>
+		If you are a resident of a state whose law provides a right to appeal, and
+		we deny your request, you may appeal by replying to our response or writing
+		to
+		{legal.contactEmail} with the subject line "Privacy appeal". We will acknowledge
+		the appeal and respond within the period the applicable law requires — typically
+		60 calendar days, extendable by 45 days where the law allows it. If the appeal
+		is denied, you may contact your state attorney general to pursue the matter further.
+	</p>
+
+	<h2 id="email-communications">Email communications (CAN-SPAM)</h2>
+	<p>
+		We send commercial email only to people who have asked us to contact them
+		about a project. We do not purchase mailing lists, and we do not send
+		unsolicited commercial mail. Every commercial email we send complies with
+		the CAN-SPAM Act: it identifies us as the sender, provides a valid physical
+		postal address, and includes a working unsubscribe mechanism.
+	</p>
+	<p>
+		To stop receiving email from us, use the unsubscribe link in any message, or
+		contact us at the address below. Opting out does not affect transactional
+		messages about an active project.
+	</p>
+
+	<h2 id="policy-changes">Policy changes</h2>
+	<p>
+		We will update this policy when our practices change. The "Last updated"
+		date at the top of this page always reflects the current version. For
+		material changes — new processors, new data collected, or a change in how we
+		use data — we will post a notice on this site and, for material changes
+		affecting people who have contacted us, we will email those people before
+		the change takes effect. [PLACEHOLDER: confirm how far in advance notice
+		will be given, e.g. "at least 14 days"]
+	</p>
+
+	<h2 id="contact">How to contact us</h2>
+	<p>
+		{legal.entityName}<br />
+		{
+			addressLines.map(line => (
+				<>
+					{line}
+					<br />
+				</>
+			))
+		}
+		Email: <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>
+	</p>
+	<p>
+		For privacy requests, use the subject line "Privacy request" (or "California
+		privacy request" or "Privacy appeal" as appropriate) so it reaches the right
+		person without being redirected.
+	</p>
+</LegalLayout>

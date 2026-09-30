@@ -1,0 +1,530 @@
+---
+/* DRAFT - must be reviewed by a licensed US attorney before publishing. */
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site, addressLines } from '../config/site';
+
+const { legal } = site;
+
+const toc = [
+	{ id: 'agreement', title: 'Acceptance of these terms' },
+	{ id: 'eligibility', title: 'Eligibility' },
+	{ id: 'services', title: 'Our services and project agreements' },
+	{ id: 'payments', title: 'Payments, invoices and deposits' },
+	{
+		id: 'client-responsibilities',
+		title: 'Client responsibilities and content',
+	},
+	{ id: 'intellectual-property', title: 'Intellectual property' },
+	{ id: 'confidentiality', title: 'Confidentiality' },
+	{ id: 'acceptable-use', title: 'Acceptable use' },
+	{
+		id: 'third-party-services',
+		title: 'Third-party services and open-source licences',
+	},
+	{ id: 'warranties', title: 'Disclaimer of warranties' },
+	{ id: 'liability', title: 'Limitation of liability' },
+	{ id: 'indemnification', title: 'Indemnification' },
+	{ id: 'termination', title: 'Termination' },
+	{ id: 'governing-law', title: 'Governing law and venue' },
+	{ id: 'dispute-resolution', title: 'Dispute resolution' },
+	{
+		id: 'electronic-communications',
+		title: 'Electronic communications consent',
+	},
+	{ id: 'general', title: 'Severability, entire agreement and changes' },
+	{ id: 'contact', title: 'Contact details' },
+];
+---
+
+<LegalLayout
+	title="Terms of Service"
+	intro="These terms govern your use of this website and any work we do for you. Where a project has its own signed agreement, that agreement controls and these terms are a backstop."
+	lastUpdated={legal.effectiveDate}
+	toc={toc}
+	seo={{
+		title: 'Terms of Service',
+		description:
+			'Terms governing use of the Linkly LLC website and provision of services, covering payments, intellectual property, confidentiality, liability and dispute resolution.',
+	}}
+>
+	<h2 id="agreement">Acceptance of these terms</h2>
+	<p>
+		By using this website or by engaging {site.name} to provide services, you agree
+		to these Terms of Service. If you do not agree, do not use the site. If you are
+		accepting on behalf of a company, you represent that you have authority to bind
+		that company, and "you" and "your" refer to it.
+	</p>
+
+	<h2 id="eligibility">Eligibility</h2>
+	<p>
+		You must be at least 18 years old and legally able to enter into a binding
+		contract to engage our services. Our services are not directed at children.
+		We do not provide services to anyone seeking to use them in violation of
+		law.
+	</p>
+
+	<h2 id="services">Our services and project agreements</h2>
+	<p>
+		{site.name} provides custom web development, AI automation and mobile application
+		engineering. We also publish general information on this site. Website content
+		is provided for general information only. It is not legal, financial, tax or professional
+		advice, and you should not rely on it as a substitute for advice from a qualified
+		professional who knows your circumstances.
+	</p>
+	<p>
+		<strong>Project work is governed by a separate written agreement.</strong> Before
+		any paid work begins, we will provide you with a written agreement or statement
+		of work ("SOW") setting out the deliverables, milestones, fees, payment schedule,
+		timeline and any assumptions. That document, not this page, is what governs the
+		work itself.
+	</p>
+	<p>
+		<strong>Where this document and an SOW conflict, the SOW controls</strong> for
+		that project. This page continues to apply to anything the SOW does not expressly
+		override, including our general conduct, confidentiality and liability framework.
+		One common example: if an SOW sets its own refund terms, those replace the general
+		refund terms on our <a href="/refund-policy">Refund Policy</a> for that project.
+	</p>
+
+	<h2 id="payments">Payments, invoices and deposits</h2>
+	<ul>
+		<li>
+			<strong>Currency and method.</strong> All fees are in US dollars and are payable
+			by the method stated on your invoice. [PLACEHOLDER: accepted payment methods,
+			e.g. "ACH transfer, card, or invoice through a third-party processor"]
+		</li>
+		<li>
+			<strong>Due dates.</strong> Invoices state a due date. Payment is due within
+			[PLACEHOLDER: e.g. "15 days"] of the invoice date.
+		</li>
+		<li>
+			<strong>Deposits.</strong> Most projects begin with a deposit to reserve scheduling
+			capacity and to cover discovery work. The amount is set out in the SOW. [PLACEHOLDER:
+			standard deposit percentage, e.g. "30-50%"]
+		</li>
+		<li>
+			<strong>Milestone billing.</strong> Where a project is broken into milestones,
+			each milestone is invoiced on delivery or on the schedule in the SOW.
+		</li>
+		<li>
+			<strong>Work in progress.</strong> You may request progress against a fixed-scope
+			project at any time, less any unearned amount agreed in the SOW. [PLACEHOLDER:
+			confirm the pro-rata basis, e.g. "pro rata by milestone completion"]
+		</li>
+		<li>
+			<strong>Estimates.</strong> Estimates are estimates, not quotes, until issued
+			in an SOW. If we discover work outside the agreed scope, we will stop and ask
+			before continuing.
+		</li>
+		<li>
+			<strong>Late payment.</strong> Invoices unpaid after the due date accrue interest
+			at [PLACEHOLDER: e.g. "1.5% per month or the maximum rate permitted by law,
+			whichever is lower"]. We may pause work on unpaid invoices after written notice,
+			and may terminate the engagement in accordance with the termination section.
+		</li>
+		<li>
+			<strong>Taxes.</strong> Fees are exclusive of any sales, use, VAT or similar
+			taxes. Where we must collect such a tax, we add it to the invoice. [PLACEHOLDER:
+			confirm the entity's tax treatment and nexus]
+		</li>
+		<li>
+			<strong>Third-party costs.</strong> Pass-through costs such as domain registrations,
+			licences, hosting, app store fees and third-party API usage are billed at cost
+			and are non-refundable once incurred. See the <a href="/refund-policy"
+				>Refund Policy</a
+			>.
+		</li>
+		<li>
+			<strong>No obligation to pay bad debt.</strong> We are not obliged to continue
+			work on an account whose invoices are more than [PLACEHOLDER: e.g. "30 days"]
+			overdue after written notice.
+		</li>
+	</ul>
+
+	<h2 id="client-responsibilities">Client responsibilities and content</h2>
+	<p>You agree to:</p>
+	<ul>
+		<li>
+			provide the materials, access, approvals and decisions we reasonably need,
+			on the schedule in the SOW;
+		</li>
+		<li>
+			designate one person authorised to give final approvals, so we are not
+			blocked waiting for competing feedback;
+		</li>
+		<li>
+			provide accurate information, including any third-party licences, brand
+			guidelines, copy and legal requirements that apply to your content; and
+		</li>
+		<li>
+			obtain any rights or permissions required for the material you supply or
+			ask us to publish.
+		</li>
+	</ul>
+	<p>
+		You warrant that you have the right to supply all material you send us, and
+		that supplying it does not infringe anyone else's rights. You keep all
+		rights in your content. We may use your content to do the work, and we may
+		show it publicly as part of our portfolio only with your written permission.
+	</p>
+	<p>
+		We are not responsible for the accuracy of content you supply, or for legal,
+		regulatory or tax compliance of your business. We do not provide legal
+		review of your copy, privacy notices or claims. Those need your own counsel.
+	</p>
+
+	<h2 id="intellectual-property">Intellectual property</h2>
+	<h3>What you own, and when it transfers</h3>
+	<p>
+		As between us, you own your pre-existing materials and content. We own the
+		deliverables we create for you as works made for hire where that applies,
+		and otherwise we assign to you all right, title and interest in the
+		deliverables upon
+		<strong>receipt of payment in full</strong> for the work that produced them. Before
+		full payment you have the right to use deliverables in a limited, non-production
+		environment to evaluate the work.
+	</p>
+	<p>
+		Each party keeps ownership of its own pre-existing tools, libraries,
+		templates, boilerplate, frameworks and know-how ("Background Materials"). We
+		do not transfer our Background Materials, but you receive a perpetual,
+		worldwide, non-exclusive, royalty-free licence to use the parts of our
+		Background Materials that are incorporated into the deliverables, for any
+		lawful purpose. This lets you maintain and modify the project without our
+		involvement.
+	</p>
+
+	<h3>Third-party and open-source components</h3>
+	<p>
+		Deliverables may include third-party libraries and open-source software
+		under its own licence. Those licences continue to apply and are unaffected
+		by this section. Where a component carries a copyleft or source-available
+		licence that would impose conditions on your use, we will identify it before
+		you accept the deliverable rather than after. Nothing in these terms grants
+		you any licence to our own proprietary code beyond the licence above.
+	</p>
+
+	<h2 id="confidentiality">Confidentiality</h2>
+	<p>
+		Each of us may receive non-public information from the other in the course
+		of the engagement ("Confidential Information"). The receiving party will use
+		it only for the engagement, will protect it with at least the care it
+		applies to its own confidential information, and will not disclose it to
+		third parties without written consent. These obligations survive termination
+		by three years.
+	</p>
+	<p>
+		Confidential Information does not include information that is or becomes
+		public through no fault of the receiving party, was already known without
+		restriction, is independently developed without reference to the disclosed
+		information, or is rightfully received from a third party without a duty of
+		confidentiality.
+	</p>
+	<p>
+		If you ask us to sign a mutual non-disclosure agreement, that agreement
+		governs where it conflicts with this section. We may disclose information
+		where required by law, and will give you notice where the law allows.
+	</p>
+
+	<h2 id="acceptable-use">Acceptable use</h2>
+	<p>You agree not to:</p>
+	<ul>
+		<li>
+			use the site or our services in violation of any law, regulation or
+			third-party right;
+		</li>
+		<li>
+			submit material that is unlawful, infringing, defamatory, or that you do
+			not have the right to use;
+		</li>
+		<li>
+			attempt to gain unauthorised access to the site, our systems, or any
+			third-party system connected to the work;
+		</li>
+		<li>
+			interfere with the site's operation, including through denial-of-service,
+			scraping at a rate that degrades service, or bypassing rate limits;
+		</li>
+		<li>
+			probe, scan or test the vulnerability of any system without our written
+			authorisation, except where a separate, signed penetration test engagement
+			says otherwise;
+		</li>
+		<li>use automated means to extract content from the site at scale; or</li>
+		<li>
+			resell, relicense or republish our deliverables to a third party as a
+			standalone product.
+		</li>
+	</ul>
+	<p>
+		Where a project involves building a system for you, you agree to apply
+		equivalent restrictions to your own end users, in a separate written
+		agreement. We may suspend use of the site or the engagement immediately
+		where necessary to prevent ongoing harm, and will tell you why as soon as
+		practical.
+	</p>
+
+	<h2 id="third-party-services">
+		Third-party services and open-source licences
+	</h2>
+	<p>
+		Our deliverables and this site rely on third-party services and open-source
+		software, including hosting and CDN infrastructure, managed databases, font
+		and icon assets, and the language models and SDKs used in AI work. Those
+		providers operate under their own terms and availability, which we do not
+		control.
+	</p>
+	<p>
+		We are not responsible for a third-party service's availability, changes to
+		its pricing, or its performance. Where a dependency becomes materially
+		unsuitable — a framework that is abandoned, a provider that changes its data
+		terms, a model that is withdrawn — we will tell you and propose a migration.
+		Migration work is scoped separately unless it arises from our own error,
+		which we will fix at our cost.
+	</p>
+
+	<h2 id="warranties">Disclaimer of warranties</h2>
+	<p>
+		Except as expressly stated in an SOW, and to the maximum extent permitted by
+		law, the site and our services are provided "as is" and "as available",
+		without warranties of any kind, express or implied, including
+		merchantability, fitness for a particular purpose, non-infringement,
+		accuracy, and uninterrupted availability.
+	</p>
+	<p>
+		Nothing in these terms excludes a warranty that cannot lawfully be excluded,
+		including any implied warranty under a consumer protection statute.
+		[PLACEHOLDER: attorney to confirm whether the B2B warranty disclaimer above
+		is enforceable against a client in a consumer transaction]
+	</p>
+
+	<h2 id="liability">Limitation of liability</h2>
+	<p>
+		To the maximum extent permitted by law, neither party is liable for
+		indirect, incidental, special, consequential or punitive damages, or for
+		lost profits, lost revenue, lost data or business interruption, however
+		caused and regardless of the theory of liability. Where those damages arise
+		from your content, from a third-party service, or from your own systems, the
+		exclusion applies even if we were warned of the possibility.
+	</p>
+	<p>
+		Each party's total aggregate liability arising out of or relating to the
+		engagement is limited to <strong
+			>[PLACEHOLDER: e.g. "the total fees you paid us under the applicable SOW
+			in the 12 months before the event giving rise to the claim"]</strong
+		>. This applies to liability of any kind, including breach of
+		confidentiality, data loss, and intellectual property infringement, but not
+		to liability that cannot lawfully be limited, such as gross negligence,
+		wilful misconduct, or your obligation to pay fees.
+	</p>
+	<p>
+		Both parties agree that neither will be liable for indirect damages arising
+		from a claim brought by either party's other clients or business partners.
+	</p>
+
+	<h2 id="indemnification">Indemnification</h2>
+	<ul>
+		<li>
+			<strong>You indemnify us.</strong> You will defend and hold us harmless against
+			claims, damages, losses and reasonable costs arising from: your content or instructions;
+			your breach of these terms or of a law; your claim that your material infringes
+			a third party's rights; or your use of the deliverables in breach of a licence
+			or of applicable law.
+		</li>
+		<li>
+			<strong>We indemnify you.</strong> We will defend and hold you harmless against
+			a third-party claim that a deliverable, used as permitted and unmodified, infringes
+			that party's US patent, copyright, trademark or trade secret rights.
+		</li>
+	</ul>
+	<p>
+		Each indemnity is conditional on the indemnified party giving prompt written
+		notice of the claim, giving the indemnifying party sole control of the
+		defence and settlement, and providing reasonable cooperation. The
+		indemnifying party may not settle in a way that admits fault or imposes a
+		non-monetary obligation on the indemnified party without that party's
+		consent. Our obligation to indemnify excludes claims arising from your
+		modification of a deliverable, your combination of it with other materials,
+		or your use after we have provided a non-infringing alternative.
+	</p>
+
+	<h2 id="termination">Termination</h2>
+	<h3>By you</h3>
+	<p>
+		You may terminate an engagement for convenience by giving written notice and
+		paying for all work completed and committed to as of the termination date.
+		Where the SOW provides a cancellation window before work starts, that window
+		applies. See the
+		<a href="/refund-policy">Refund Policy</a> for how deposits and paid milestones
+		are treated.
+	</p>
+
+	<h3>By us</h3>
+	<p>
+		We may terminate or suspend an engagement immediately, on written notice
+		where practical, if:
+	</p>
+	<ul>
+		<li>
+			invoices remain unpaid beyond the period in the payment section after
+			written notice;
+		</li>
+		<li>
+			you breach a material obligation and do not fix it within [PLACEHOLDER:
+			e.g. "10 business days"] of written notice;
+		</li>
+		<li>
+			you ask us to do something that is unlawful or that we reasonably consider
+			harmful to us or a third party; or
+		</li>
+		<li>
+			a dependency of the project disappears and no workable alternative exists.
+		</li>
+	</ul>
+
+	<h3>Effect of termination</h3>
+	<p>
+		On termination you pay for all work performed and committed to. We will hand
+		over deliverables produced and paid for up to that point. Licence transfers
+		under the intellectual property section apply only to paid-for work.
+		Confidentiality survives, as does anything in these terms that by its nature
+		should survive.
+	</p>
+
+	<h2 id="governing-law">Governing law and venue</h2>
+	<p>
+		These terms, and any dispute arising out of them or out of the use of the
+		site, are governed by the laws of the state of
+		<strong>[PLACEHOLDER: STATE OF GOVERNING LAW]</strong>, without regard to
+		its conflict-of-laws rules. If the governing law is the state where {
+			site.name
+		} is formed, this does not limit any mandatory consumer protection law that applies
+		to you where you live.
+	</p>
+	<p>
+		You and {site.name} consent to the exclusive jurisdiction and venue of the state
+		and federal courts located in
+		<strong>[PLACEHOLDER: COUNTY AND STATE OF COURTS]</strong>, except where the
+		dispute resolution section below requires arbitration or where a mandatory
+		consumer statute gives you the right to bring proceedings where you live.
+		[PLACEHOLDER: attorney to confirm venue is a proper forum]
+	</p>
+
+	<h2 id="dispute-resolution">Dispute resolution</h2>
+	<p>
+		We would rather fix a problem than argue about one. The process below is
+		mandatory before either party may start formal proceedings, and it does not
+		limit your right to raise a matter with a regulator, to file a charge, or to
+		seek urgent injunctive relief to stop misuse of your data or intellectual
+		property.
+	</p>
+
+	<h3>Step 1: Informal resolution</h3>
+	<p>
+		Before starting any formal proceeding, send a written notice describing the
+		dispute and a person with authority to settle it. {site.name} will respond within
+		30 days. You and we will then attempt to resolve the dispute by good-faith negotiation,
+		and for 30 days after that you and we will each attempt to resolve it by mediation
+		through a mutually agreed mediator. The cost of the mediator is shared equally
+		unless we agree otherwise in writing.
+	</p>
+
+	<h3>Step 2: Binding arbitration</h3>
+	<p>
+		If the dispute is not resolved by Step 1, the parties must arbitrate the
+		remaining issue. The arbitral rules, the seat of arbitration, the allocation
+		of fees, the availability of injunctive relief, and the effect of any award
+		in court are set out in the governing SOW. Where no SOW says otherwise, the
+		following applies:
+		<strong
+			>[PLACEHOLDER: attorney to decide — choose between (a) binding arbitration
+			under the rules of the American Arbitration Association in [PLACEHOLDER:
+			seat], with the arbitrator's award being final and enforceable in any
+			court of competent jurisdiction; or (b) exclusive jurisdiction in
+			[PLACEHOLDER: county and state], permitting either party to seek a jury
+			trial.]</strong
+		>
+	</p>
+	<p>
+		<strong>Class action waiver.</strong> To the maximum extent permitted by law,
+		neither party may bring a dispute as a representative or member of a class or
+		in a private attorney general capacity. Each party retains the right to bring
+		a claim on their own behalf and, where the applicable law does not permit a waiver,
+		the right to bring a claim in a court of competent jurisdiction.
+	</p>
+
+	<h2 id="electronic-communications">Electronic communications consent</h2>
+	<p>
+		You agree that we may communicate with you electronically for any purpose
+		relating to the engagement, including sending proposals, SOWs, invoices,
+		project updates and notices. You agree that an electronic record and an
+		electronic signature have the same legal effect as a paper record and a
+		handwritten signature under the Electronic Signatures in Global and National
+		Commerce Act (15 U.S.C. § 7001 et seq.) and comparable state laws. You may
+		withdraw this consent at any time by contacting us in writing, but
+		withdrawing it does not affect the validity of communications already
+		provided, and we may need to use email to deliver the project deliverable
+		itself.
+	</p>
+
+	<h2 id="general">Severability, entire agreement and changes</h2>
+	<ul>
+		<li>
+			<strong>Severability.</strong> If any provision of these terms is held unenforceable,
+			it will be modified to the minimum extent necessary to make it enforceable,
+			or severed if it cannot be modified. The remaining provisions stay in full force.
+		</li>
+		<li>
+			<strong>No waiver.</strong> A failure or delay in enforcing a right is not a
+			waiver of it. A waiver applies only if given in writing.
+		</li>
+		<li>
+			<strong>Entire agreement.</strong> These terms, together with the SOWs and any
+			signed agreements, are the entire agreement between us and supersede all prior
+			discussions, proposals and representations. [PLACEHOLDER: attorney to confirm
+			whether to preserve representations made in a proposal]
+		</li>
+		<li>
+			<strong>Assignment.</strong> Neither party may assign these terms without the
+			other's written consent, except that we may assign them with an entity that
+			assumes our obligations in writing, and on a merger or sale of substantially
+			all of our assets.
+		</li>
+		<li>
+			<strong>Third-party beneficiaries.</strong> No person other than the parties
+			has any right to enforce these terms.
+		</li>
+		<li>
+			<strong>Force majeure.</strong> Neither party is liable for a failure to perform
+			caused by an event beyond its reasonable control, provided it gives notice and
+			uses reasonable efforts to resume performance.
+		</li>
+		<li>
+			<strong>Changes.</strong> We may revise these terms by posting an updated version
+			here with a new "Last updated" date. For material changes we will provide notice
+			as described in the <a href="/privacy-policy">Privacy Policy</a>. Changes
+			apply from the date posted, and to your use of the site and any engagement
+			that begins after that date. Existing SOWs continue to be governed by the
+			terms in force when they were signed unless we agree otherwise in writing.
+		</li>
+		<li>
+			<strong>Survival.</strong> Provisions that by their nature should survive termination
+			survive, including confidentiality, intellectual property, indemnification,
+			liability, payment obligations accrued, and dispute resolution.
+		</li>
+	</ul>
+
+	<h2 id="contact">Contact details</h2>
+	<p>
+		{legal.entityName}<br />
+		{
+			addressLines.map(line => (
+				<>
+					{line}
+					<br />
+				</>
+			))
+		}
+		Email: <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>
+	</p>
+</LegalLayout>

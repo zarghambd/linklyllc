@@ -1,0 +1,377 @@
+---
+import Section from '../components/Section.astro';
+import { site } from '../config/site';
+import { plausibleEnabled, plausibleDomain } from '../config/analytics';
+
+const analyticsRows = plausibleEnabled
+	? [
+			{
+				name: 'Aggregate page-view analytics',
+				provider: 'Plausible Analytics',
+				what: 'Counts which pages are viewed and from where. It is cookie-free: no cookies are set, no cross-site profile is built, and your IP address is not stored.',
+				control:
+					'You can turn this off below. Turning it off applies to every page.',
+			},
+		]
+	: [
+			{
+				name: 'Aggregate page-view analytics',
+				provider: 'Not enabled on this site',
+				what: 'Analytics is currently switched off at the server level, so nothing is loaded and no measurement request is made when you view a page.',
+				control:
+					'Nothing to turn off. If analytics is ever enabled, this page will say so.',
+			},
+		];
+---
+
+<Section
+	eyebrow="Privacy controls"
+	title="Cookie preferences"
+	id="cookie-preferences"
+	level={1}
+	lead="You decide what runs on this site. There are no advertising cookies and no cross-site tracking here, so the only real choice is whether aggregate analytics runs at all."
+>
+	<div class="prefs">
+		<h2 id="what-we-use">What this site actually stores</h2>
+		<p>
+			We keep the list short on purpose. Here is everything this site places in
+			your browser or sends off the site, in plain terms.
+		</p>
+
+		<div class="prefs__table-wrap">
+			<table class="prefs__table">
+				<caption class="sr-only">
+					Browser storage and third-party requests made by this site
+				</caption>
+				<thead>
+					<tr>
+						<th scope="col">What</th>
+						<th scope="col">Where it goes</th>
+						<th scope="col">Why</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="prefs__strong">Light or dark theme choice</td>
+						<td>Stays in your browser (local storage)</td>
+						<td>
+							So the site does not flash the wrong theme when you return. It is
+							never sent to us.
+						</td>
+					</tr>
+					<tr>
+						<td class="prefs__strong">Server request logs</td>
+						<td>Our hosting provider, then deleted</td>
+						<td>
+							Security, troubleshooting and abuse prevention. Includes your IP
+							address, the page, and the time of the request.
+						</td>
+					</tr>
+					<tr>
+						<td class="prefs__strong">Font files</td>
+						<td>Google Fonts</td>
+						<td>
+							To load the site typefaces. Google receives your IP address as
+							part of serving them.
+						</td>
+					</tr>
+					<tr>
+						<td class="prefs__strong">Analytics</td>
+						<td>{analyticsRows[0].provider}</td>
+						<td>{analyticsRows[0].what}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h2 id="analytics-choice">Your analytics choice</h2>
+		<div class="prefs__control" data-analytics-control>
+			<fieldset class="prefs__fieldset">
+				<legend>Aggregate page-view analytics</legend>
+				<p class="prefs__note">{analyticsRows[0].what}</p>
+
+				<div class="prefs__options">
+					<label class="prefs__option">
+						<input
+							type="radio"
+							name="analytics-consent"
+							value="granted"
+							data-consent-allow
+						/>
+						<span>
+							<strong>Allow</strong>
+							<span class="prefs__option-hint"
+								>Help us see which pages are useful.</span
+							>
+						</span>
+					</label>
+					<label class="prefs__option">
+						<input
+							type="radio"
+							name="analytics-consent"
+							value="denied"
+							data-consent-deny
+						/>
+						<span>
+							<strong>Do not allow</strong>
+							<span class="prefs__option-hint">
+								No analytics requests will be made on any page.
+							</span>
+						</span>
+					</label>
+				</div>
+
+				<div class="prefs__actions">
+					<button
+						class="button button--primary"
+						type="button"
+						data-consent-save
+					>
+						Save my choice
+					</button>
+					<button
+						class="button button--secondary"
+						type="button"
+						data-consent-clear
+					>
+						Reset to default
+					</button>
+				</div>
+
+				<p class="prefs__status" role="status" data-consent-status>
+					Loading your saved choice&hellip;
+				</p>
+			</fieldset>
+		</div>
+
+		<p class="prefs__note">
+			{
+				plausibleEnabled
+					? `Analytics is currently enabled for ${plausibleDomain}. Your choice is stored only in this browser, applies immediately, and you can change it at any time by returning to this page.`
+					: 'Analytics is not currently enabled on this site. If it is switched on in future, this control will let you turn it off from the moment it is available.'
+			}
+		</p>
+
+		<h2 id="other-controls">Other browser controls</h2>
+		<p>
+			Your browser can also block or delete site data directly. That is a
+			legitimate option and we do not try to work around it. Be aware that
+			clearing site data resets this page to the default choice, and that
+			blocking third-party requests outright will block analytics even if you
+			have allowed it here.
+		</p>
+
+		<h2 id="questions">Questions</h2>
+		<p>
+			If anything here is unclear, or you want to know exactly what we hold
+			about a specific page view, email <a href={`mailto:${site.email}`}
+				>{site.email}</a
+			>. Our full <a href="/privacy-policy">Privacy Policy</a> covers retention, security,
+			your rights under the CCPA/CPRA and other state privacy laws, and how to file
+			a request or an appeal.
+		</p>
+	</div>
+</Section>
+
+<script>
+	import { analyticsConsentKey } from '../config/analytics';
+
+	const status = document.querySelector<HTMLElement>('[data-consent-status]');
+	const allow = document.querySelector<HTMLInputElement>(
+		'[data-consent-allow]',
+	);
+	const deny = document.querySelector<HTMLInputElement>('[data-consent-deny]');
+	const save = document.querySelector<HTMLButtonElement>('[data-consent-save]');
+	const reset = document.querySelector<HTMLButtonElement>(
+		'[data-consent-clear]',
+	);
+
+	function readStored(): 'granted' | 'denied' | null {
+		try {
+			const value = localStorage.getItem(analyticsConsentKey);
+			return value === 'granted' || value === 'denied' ? value : null;
+		} catch {
+			return null;
+		}
+	}
+
+	function writeStored(value: 'granted' | 'denied' | null) {
+		try {
+			if (value === null) localStorage.removeItem(analyticsConsentKey);
+			else localStorage.setItem(analyticsConsentKey, value);
+		} catch {
+			// Storage unavailable: the choice cannot persist, so say so rather than
+			// implying it was saved.
+		}
+	}
+
+	function describe(value: 'granted' | 'denied' | null): string {
+		if (value === 'granted') {
+			return 'Saved: analytics is allowed. It will load on the next page you view.';
+		}
+		if (value === 'denied') {
+			return 'Saved: analytics is blocked. No analytics requests will be made.';
+		}
+		return 'No saved choice, so the default applies. Choose an option above to override it at any time.';
+	}
+
+	function reflect(value: 'granted' | 'denied' | null) {
+		if (allow) allow.checked = value === 'granted';
+		if (deny) deny.checked = value === 'denied';
+		if (status) status.textContent = describe(value);
+	}
+
+	reflect(readStored());
+
+	save?.addEventListener('click', () => {
+		const value: 'granted' | 'denied' | null = deny?.checked
+			? 'denied'
+			: allow?.checked
+				? 'granted'
+				: null;
+		if (value === null) {
+			if (status)
+				status.textContent = 'Select allow or do not allow, then save.';
+			return;
+		}
+		writeStored(value);
+		reflect(value);
+	});
+
+	reset?.addEventListener('click', () => {
+		writeStored(null);
+		reflect(null);
+	});
+</script>
+
+<style>
+	.prefs {
+		max-width: 68ch;
+	}
+
+	.prefs__table-wrap {
+		overflow-x: auto;
+		margin-block: 1.5rem;
+	}
+
+	.prefs__table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.95rem;
+	}
+
+	.prefs__table th,
+	.prefs__table td {
+		padding: 0.85rem 1rem;
+		text-align: left;
+		vertical-align: top;
+		border-bottom: 1px solid var(--theme-border);
+	}
+
+	.prefs__table thead th {
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--theme-muted);
+		border-bottom-width: 2px;
+	}
+
+	.prefs__table tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	.prefs__strong {
+		font-weight: 600;
+		color: var(--theme-on-bg);
+	}
+
+	.prefs__control {
+		margin-block: 1.75rem;
+	}
+
+	.prefs__fieldset {
+		margin: 0;
+		padding: 1.5rem;
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius);
+		background: var(--theme-surface-1);
+	}
+
+	.prefs__fieldset legend {
+		padding-inline: 0.4rem;
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--theme-muted);
+	}
+
+	.prefs__note {
+		font-size: 0.95rem;
+		color: var(--theme-muted);
+	}
+
+	.prefs__options {
+		display: grid;
+		gap: 0.85rem;
+		margin-block: 1.25rem;
+	}
+
+	.prefs__option {
+		display: flex;
+		gap: 0.85rem;
+		align-items: flex-start;
+		padding: 1rem 1.1rem;
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius-sm);
+		background: var(--theme-surface-2);
+		cursor: pointer;
+		transition: border-color 150ms ease;
+	}
+
+	.prefs__option:hover {
+		border-color: var(--color-brand-ink);
+	}
+
+	.prefs__option:has(input:checked) {
+		border-color: var(--color-brand-ink);
+		border-width: 2px;
+		padding: calc(1rem - 1px) calc(1.1rem - 1px);
+	}
+
+	.prefs__option input {
+		margin-top: 0.25rem;
+		accent-color: var(--color-brand-ink);
+		flex-shrink: 0;
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+
+	.prefs__option-hint {
+		display: block;
+		font-size: 0.88rem;
+		color: var(--theme-muted);
+	}
+
+	.prefs__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.prefs__status {
+		margin-top: 1rem;
+		min-height: 1.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--color-brand-ink);
+	}
+
+	@media print {
+		.prefs__actions,
+		.prefs__control {
+			display: none !important;
+		}
+	}
+</style>
