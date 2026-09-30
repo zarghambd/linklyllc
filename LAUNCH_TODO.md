@@ -69,19 +69,40 @@ Inline `[PLACEHOLDER: …]` tokens left in the page bodies, by file:
 - attorney confirmation of the CalOPPA / California Delete Act position
 - how much notice is given before a material policy change
 
-**`src/pages/refund-policy.astro`**
+**`src/pages/refund-policy.astro`** — supplied by the client and adopted verbatim
 
-- deposit percentage (must agree with the Terms number)
-- pro-rata basis for partial milestones
-- full-refund cancellation window
-- payment due days and acknowledgement/decision/payment deadlines
-- attorney confirmation of the California Automatic Renewal Law notice period
-- data-retrieval window after a plan is cancelled
-- handover-assistance period and notice period when Linkly cancels
-- attorney confirmation of which state-specific refund rights apply
+This page now carries the client's own "Refund & Client Satisfaction Policy"
+text. Structure and wording are theirs; the only changes made were reading the
+identity values from `src/config/site.ts` and defining "the Company" once in the
+introduction. **Do not rewrite it without their instruction.** It still needs
+attorney review like the other two.
 
-> These are deliberately open choices, not oversights. A refund policy that
-> invents a cancellation window is worse than one that flags it.
+It contains no commercial placeholders, because the client's text deliberately
+states no figures. That is a business decision, not an oversight, and it has
+consequences worth being deliberate about:
+
+- **No deposit is protected.** The policy never says a deposit is
+  non-refundable, and §5 says work already completed counts against any refund.
+  If you intend to hold a non-refundable deposit, say so here — the current text
+  reads against you on that point.
+- **No turnaround commitment.** No acknowledgement, decision or payment
+  deadline. Client-friendly, but it is also an open-ended obligation.
+- **No cancellation window.** There is no "full refund if you cancel before
+  work starts" rule, because the text promises only that a refund "may" be
+  considered.
+- **No coverage for recurring plans.** The text does not mention subscriptions
+  or auto-renewing maintenance plans at all. That is consistent with the site
+  today — neither the Terms nor `src/data/services.ts` offers one — but the
+  contact form does ask for a "Maintenance or ongoing support" project type. If
+  that gets sold as a recurring plan, §4 and §5 need to say how cancelling it
+  works, including any state auto-renewal notice statute the attorney flags.
+- **§12 handles statutory rights generally** ("rights that cannot legally be
+  waived"), which is adequate but no longer names the FTC Magnets-Moxie Rule or
+  specific state rights. Confirm that generic wording is enough for the states
+  you sell into.
+
+> These are open choices for the client and the attorney, not gaps to fill in
+> with invented numbers.
 
 ---
 
@@ -284,9 +305,10 @@ flipping the old flag.
    all assume the United States.
 2. **B2B, not B2C.** Services are sold to businesses; consumer-protection
    carve-outs are kept in the Terms in case that is wrong.
-3. **Fixed-scope projects, not a subscription.** The refund policy covers
-   fixed-scope, hourly/retainer and auto-renewing plans, but the Terms assume
-   each engagement is governed by a signed SOW.
+3. **Fixed-scope projects, not a subscription.** Neither the Terms nor
+   `src/data/services.ts` offers a recurring plan, and the refund policy does
+   not cover one either. The Terms assume each engagement is governed by a
+   signed SOW. Revisit all three together if that changes.
 4. **No cookie banner is required**, because the only analytics is cookie-free
    Plausible and the theme preference is `localStorage`, not a cookie. If a
    cookie-setting tool is ever added, this assumption breaks and a consent

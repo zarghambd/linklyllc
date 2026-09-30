@@ -42,7 +42,7 @@ export const footerNav = {
 	legal: [
 		{ title: 'Privacy Policy', slug: '/privacy-policy' },
 		{ title: 'Terms of Service', slug: '/terms-of-service' },
-		{ title: 'Refund Policy', slug: '/refund-policy' },
+		{ title: 'Refund & Satisfaction Policy', slug: '/refund-policy' },
 		{ title: 'Cookie preferences', slug: '/cookie-preferences' },
 	],
 };

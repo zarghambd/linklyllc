@@ -4,6 +4,12 @@ import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import { site } from '../config/site';
 
+// The state of formation is only named once it is a real value. Until then the
+// sentence reads "Linkly LLC is a company" rather than showing a token to a
+// visitor.
+const hasStateOfFormation =
+	!site.legal.stateOfFormation.startsWith('[PLACEHOLDER');
+
 const principles = [
 	{
 		title: 'Written scope before any invoice',
@@ -56,10 +62,14 @@ const principles = [
 				manual work around it.
 			</p>
 			<p>
-				{site.name} is a <span class="about-prose__entity"
-					>[PLACEHOLDER: STATE OF FORMATION]</span
-				>
-				company. We work with clients across the United States remotely, and every
+				{site.name} is a
+				{
+					hasStateOfFormation ? (
+						<span class="about-prose__entity">
+							{site.legal.stateOfFormation}
+						</span>
+					) : null
+				} company. We work with clients across the United States remotely, and every
 				engagement is covered by a written agreement rather than a verbal arrangement.
 			</p>
 			<h2>How we work</h2>

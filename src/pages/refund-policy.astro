@@ -5,348 +5,260 @@ import { site, addressLines } from '../config/site';
 
 const { legal } = site;
 
+const company = legal.entityName;
+
+// Client-supplied policy text. Structure and wording are the client's; the only
+// editorial changes are that the identity placeholders are read from
+// src/config/site.ts, and "the Company" is defined once rather than left to
+// the reader to infer.
 const toc = [
-	{ id: 'summary', title: 'The short version' },
-	{ id: 'fixed-scope', title: 'Fixed-scope projects' },
-	{ id: 'cancellation-window', title: 'Cancelling before work starts' },
-	{ id: 'non-refundable', title: 'What is never refundable' },
-	{ id: 'hourly-retainer', title: 'Hourly and retainer work' },
-	{ id: 'recurring-plans', title: 'Recurring maintenance and hosting plans' },
-	{ id: 'our-cancellation', title: 'If we cancel' },
-	{ id: 'requesting-a-refund', title: 'How to request a refund' },
+	{ id: 'commitment', title: 'Our commitment to client satisfaction' },
+	{ id: 'requesting-a-refund', title: 'Requesting a refund' },
+	{ id: 'opportunity-to-resolve', title: 'Opportunity to resolve the issue' },
+	{
+		id: 'when-a-refund-may-be-provided',
+		title: 'When a refund may be provided',
+	},
+	{ id: 'work-already-completed', title: 'Refund for work already completed' },
+	{ id: 'client-requested-changes', title: 'Client-requested changes' },
+	{ id: 'client-related-delays', title: 'Client-related delays' },
+	{ id: 'third-party-services', title: 'Third-party services' },
+	{ id: 'final-determination', title: 'Final refund determination' },
+	{ id: 'no-retaliation', title: 'No retaliation for good-faith requests' },
 	{ id: 'chargebacks', title: 'Chargebacks' },
-	{ id: 'your-rights', title: 'Your statutory rights' },
-	{ id: 'contact', title: 'How to reach us' },
+	{ id: 'applicable-agreement', title: 'Applicable agreement and law' },
+	{ id: 'our-promise', title: 'Our promise' },
 ];
 ---
 
 <LegalLayout
-	title="Refund Policy"
-	intro="This page says plainly what happens to your money if a project changes, is cancelled, or goes wrong. Where an SOW states different terms, the SOW controls for that project."
+	title="Refund & Client Satisfaction Policy"
+	intro="Our goal is to deliver software solutions that meet the requirements and expectations agreed upon with our clients. We value long-term client relationships and believe clients should feel confident when working with us."
 	lastUpdated={legal.effectiveDate}
 	toc={toc}
 	seo={{
-		title: 'Refund Policy',
+		title: 'Refund & Client Satisfaction Policy',
 		description:
-			'How Linkly LLC handles deposits, milestone refunds, cancellations, retainer billing and auto-renewing maintenance plans, and how to request a refund.',
+			'How Linkly LLC handles a client who is not satisfied with delivered work: when a refund may be considered, how to request one, and how third-party costs are treated.',
 	}}
 >
-	<h2 id="summary">The short version</h2>
+	<p>
+		For this reason, we offer a <strong
+			>Client Satisfaction Refund Policy</strong
+		>
+		subject to the terms below.
+	</p>
+	<p>
+		In this Policy, <strong>“the Company”, “we”, “us” and “our”</strong> mean
+		{company}, and <strong>“Client”, “you” and “your”</strong> mean the person or
+		business engaging us under an Agreement.
+	</p>
+
+	<h2 id="commitment">1. Our commitment to client satisfaction</h2>
+	<p>
+		If a client is genuinely dissatisfied with the services provided, we
+		encourage them to contact us as soon as possible.
+	</p>
+	<p>
+		We will first work with the client to understand the concern and, where
+		reasonably possible, correct, revise, or improve the delivered work in
+		accordance with the agreed project scope.
+	</p>
+	<p>
+		If the issue cannot reasonably be resolved and the client remains
+		dissatisfied, we may provide a <strong>partial or full refund</strong>,
+		depending on the circumstances and the amount of work completed.
+	</p>
+
+	<h2 id="requesting-a-refund">2. Requesting a refund</h2>
+	<p>Clients must submit a refund request in writing through:</p>
+	<p>
+		<strong>Email:</strong>
+		<a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>
+	</p>
+	<p>
+		The request should explain the reason for dissatisfaction and identify the
+		specific services, deliverables, or functionality that are not meeting the
+		agreed requirements.
+	</p>
+	<p>
+		We may request additional information or arrange a meeting with the client
+		to understand and resolve the concern.
+	</p>
+
+	<h2 id="opportunity-to-resolve">3. Opportunity to resolve the issue</h2>
+	<p>
+		Before processing a refund, we will generally provide {company} with a reasonable
+		opportunity to address legitimate concerns.
+	</p>
+	<p>Depending on the circumstances, we may:</p>
 	<ul>
-		<li>
-			A project deposit is <strong>non-refundable</strong>. It pays for
-			discovery work and reserves your slot in our schedule.
-		</li>
-		<li>
-			You can cancel for a <strong>full refund before any work begins</strong>,
-			within the cancellation window below.
-		</li>
-		<li>
-			For a fixed-scope project you are refunded for <strong
-				>milestones that have not been started</strong
-			>. Milestones already delivered are not refunded.
-		</li>
-		<li>
-			For hourly or retainer work there is <strong
-				>no refund for hours already worked</strong
-			>, but you can stop with the notice period below.
-		</li>
-		<li>
-			Recurring plans can be cancelled <strong
-				>in the same way you signed up</strong
-			>, and we will remind you before each renewal.
-		</li>
-		<li>
-			Third-party costs we have already paid — domains, licences, hosting — are <strong
-				>never refunded</strong
-			>, because we cannot get them back.
-		</li>
-		<li>
-			We do everything ourselves, quickly, and we do not charge a fee for a
-			refund we agree is warranted.
-		</li>
+		<li>Correct bugs or defects;</li>
+		<li>Make reasonable revisions;</li>
+		<li>Adjust functionality to match the agreed requirements;</li>
+		<li>Provide additional clarification or support; or</li>
+		<li>Propose another reasonable solution.</li>
 	</ul>
-
-	<h2 id="fixed-scope">Fixed-scope projects</h2>
-	<h3>Deposits</h3>
 	<p>
-		Most projects start with a deposit of
-		<strong>[PLACEHOLDER: 30-50% of the project fee]</strong>. That deposit is
-		non-refundable. It exists because it pays for two real costs: the discovery
-		and planning work that happens before you see anything, and the reservation
-		of delivery capacity. Once we have turned that capacity down for another
-		client, we cannot simply hand it back.
+		Our objective is to resolve the issue rather than simply terminate the
+		project.
 	</p>
 
-	<h3>Milestone billing</h3>
-	<p>
-		Fixed-scope projects are broken into milestones. Each milestone has a
-		written definition of done in the SOW. We invoice a milestone when it is
-		delivered, not when it is started, unless the SOW says otherwise.
-	</p>
-	<p>The rules that follow are the default position:</p>
+	<h2 id="when-a-refund-may-be-provided">4. When a refund may be provided</h2>
+	<p>A refund may be considered where:</p>
 	<ul>
 		<li>
-			<strong>Not started</strong> — a milestone you cancel before we begin is <strong
-				>refunded in full</strong
-			>, or credited against a replacement scope at your choice.
+			The delivered work materially differs from the agreed project
+			requirements;
 		</li>
+		<li>A significant portion of the agreed service has not been delivered;</li>
+		<li>{company} is unable to complete the agreed scope;</li>
+		<li>A legitimate project issue cannot reasonably be resolved;</li>
+		<li>{company} and Client mutually agree to terminate the project; or</li>
 		<li>
-			<strong>In progress</strong> — a partially delivered milestone is settled at
-			<strong
-				>[PLACEHOLDER: e.g. "the percentage of the milestone value that reflects
-				completed work"]</strong
-			>. Anything above that is refunded.
-		</li>
-		<li>
-			<strong>Delivered and accepted</strong> — <strong>not refundable</strong>.
-			The work has been done and you have the benefit of it.
-		</li>
-		<li>
-			<strong>Delivered, not yet accepted</strong> — where a milestone includes a
-			review period stated in the SOW, work is treated as accepted when you approve
-			it or when the review period ends without objection.
-		</li>
-	</ul>
-
-	<h2 id="cancellation-window">Cancelling before work starts</h2>
-	<p>
-		If you cancel a project <strong>before any work has begun</strong> — meaning no
-		discovery, planning or build work has been started — we issue a
-		<strong>full refund within [PLACEHOLDER: e.g. "7 days"]</strong> of receiving
-		your cancellation notice, and we release your scheduled slot.
-	</p>
-	<p>
-		This window exists so that the question is answered clearly and early. Once
-		discovery has started, the deposit has been earned and the project has
-		consumed capacity, so the terms above for milestone settlement apply
-		instead.
-	</p>
-	<p>
-		To cancel within the window, reply to your proposal or SOW email with the
-		words "cancel project" and the project name. No justification is required
-		and no negotiation is needed to receive the refund.
-	</p>
-
-	<h2 id="non-refundable">What is never refundable</h2>
-	<p>
-		The following are not refundable, because the work is done or the cost is
-		already spent:
-	</p>
-	<ul>
-		<li>
-			<strong>Work that has been completed and delivered</strong>, including
-			completed milestones, completed hours, and delivered documentation.
-		</li>
-		<li>
-			<strong>Work delivered but not yet accepted</strong>, once the review
-			period in the SOW has passed without objection.
-		</li>
-		<li>
-			<strong>Third-party costs already incurred</strong>, including domain
-			registrations, SSL certificates, hosting and infrastructure set-up,
-			software and plugin licences, API and model usage, app store fees, and
-			third-party services. We can usually show you the invoice.
-		</li>
-		<li>
-			<strong>Custom work created specifically for you</strong> that cannot be reused,
-			where a licence is issued to you — the licence stays with you, so the value
-			is delivered even on a cancellation.
-		</li>
-		<li>
-			<strong>Discovery and planning work</strong> already performed, including audits,
-			technical research, wireframes, and the written scope itself.
-		</li>
-		<li>
-			<strong>Time spent on a cancelled or paused project</strong> before an agreed
-			notice period expires, where we have turned down other work to hold your capacity.
+			Other circumstances justify a refund under the applicable Agreement or
+			law.
 		</li>
 	</ul>
 	<p>
-		We are not required to refund work that was never requested or that falls
-		outside the agreed scope. If you would like work outside the scope started,
-		ask first.
+		The refund amount may be <strong>partial or full</strong>, depending on the
+		circumstances.
 	</p>
 
-	<h2 id="hourly-retainer">Hourly and retainer work</h2>
+	<h2 id="work-already-completed">5. Refund for work already completed</h2>
 	<p>
-		Hourly and retainer work is billed for time actually worked at the agreed
-		rate. We do not refund hours already worked. Time is recorded against your
-		project and is available to you on request.
+		Where development work has already been completed and delivered, {company} may
+		consider the value of the completed work when determining the appropriate refund.
 	</p>
-	<ul>
-		<li>
-			<strong>Retainer plans</strong> renew for the term stated in your agreement.
-			To stop, give <strong
-				>[PLACEHOLDER: e.g. "30 days' written notice"]</strong
-			> before the renewal date. Work continues during the notice period, and you
-			keep access to everything delivered to that date.
-		</li>
-		<li>
-			<strong>Unused hours</strong> in a monthly retainer do not roll over unless
-			the agreement says so, and do not carry a cash value.
-		</li>
-		<li>
-			<strong>Overage hours</strong> are only worked if you approve them in advance
-			or the agreement authorises them up to a stated cap.
-		</li>
-	</ul>
 	<p>
-		Where retainer work is paused or ended, we provide a handover: source code,
-		documentation, credentials and access under your accounts, so you are not
-		dependent on us.
+		A full refund is not automatically guaranteed solely because the Client is
+		dissatisfied.
 	</p>
-
-	<h2 id="recurring-plans">Recurring maintenance and hosting plans</h2>
-	<div class="legal-callout">
-		<p>
-			<strong
-				>These plans renew automatically. If you want to stop, you must cancel —
-				not simply stop paying.</strong
-			> Cancelling is done in the same way you signed up, using the cancellation link
-			in your welcome or renewal email, or by replying to any plan email. There is
-			no account manager to call and no retention process to get through.
-		</p>
-	</div>
+	<p>{company} will consider factors including:</p>
 	<ul>
-		<li>
-			<strong>Auto-renewal.</strong> A maintenance or hosting plan continues at the
-			same price and term until cancelled. We will send a reminder <strong
-				>at least [PLACEHOLDER: e.g. "7 days"] before each renewal</strong
-			>, and at least <strong
-				>[PLACEHOLDER: e.g. "30 days"] before renewal where state law requires
-				longer</strong
-			>. [PLACEHOLDER: attorney to confirm the notice period required by
-			California's Automatic Renewal Law and by state auto-renewal statutes
-			generally]
-		</li>
-		<li>
-			<strong>How to cancel.</strong> Use the cancellation link in the email, or reply
-			to any email from the plan address. You will receive a cancellation confirmation.
-			Cancelling is as easy as signing up.
-		</li>
-		<li>
-			<strong>Effect of cancellation.</strong> The plan stays active until the end
-			of the period you have already paid for. After that, hosting and maintenance
-			stop. We will tell you what happens to your data and give you at least <strong
-				>[PLACEHOLDER: e.g. "30 days"]</strong
-			> to retrieve it, after which we may delete it.
-		</li>
-		<li>
-			<strong>No refund for a used period.</strong> A plan is not refunded for the
-			remainder of a period you have already used. If you cancel immediately after
-			a renewal, the renewed amount is refundable on a pro-rata basis for the unused
-			portion, less any pass-through costs already incurred.
-		</li>
+		<li>Work completed;</li>
+		<li>Deliverables provided;</li>
+		<li>Milestones completed;</li>
+		<li>Project requirements;</li>
+		<li>Client feedback and approvals;</li>
+		<li>Outstanding issues;</li>
+		<li>Third-party costs; and</li>
+		<li>The reason for cancellation or dissatisfaction.</li>
 	</ul>
 
-	<h2 id="our-cancellation">If we cancel</h2>
+	<h2 id="client-requested-changes">6. Client-requested changes</h2>
 	<p>
-		If <strong>we</strong> cancel a project or discontinue a plan without cause, the
-		position is the mirror image of yours:
+		A refund will not ordinarily be required where dissatisfaction results
+		solely from requirements or preferences that were not included in the
+		original scope.
 	</p>
+	<p>
+		If the Client requests new functionality, substantial changes, or additional
+		features outside the agreed scope, those requests may be treated as
+		additional work and may require a separate estimate or change order.
+	</p>
+
+	<h2 id="client-related-delays">7. Client-related delays</h2>
+	<p>
+		The Client is responsible for providing timely feedback, approvals, content,
+		credentials, access, and other information required for the project.
+	</p>
+	<p>
+		Where dissatisfaction or project delays result primarily from Client-caused
+		delays, changes, lack of cooperation, or failure to provide required
+		information, the refund amount may be adjusted accordingly.
+	</p>
+
+	<h2 id="third-party-services">8. Third-party services</h2>
+	<p>
+		Payments made to third-party providers on behalf of the Client may be
+		excluded from a refund where those amounts have already been paid and are
+		non-refundable.
+	</p>
+	<p>Examples include:</p>
 	<ul>
-		<li>
-			You receive a <strong
-				>pro-rata refund of all fees paid for work not yet delivered</strong
-			>, calculated on the same pro-rata basis set out above.
-		</li>
-		<li>
-			You receive <strong>everything produced to date</strong> — source code, designs,
-			documentation, infrastructure configuration — whether or not you have paid in
-			full for it, so you are not left with nothing.
-		</li>
-		<li>
-			We complete a handover of accounts, credentials and documentation, and
-			cooperate for <strong>[PLACEHOLDER: e.g. "30 days"]</strong> in reasonable transition
-			assistance, charged at our standard rate and only if you ask for it.
-		</li>
-		<li>
-			We will give you <strong>[PLACEHOLDER: e.g. "14 days"]</strong> written notice
-			where we can.
-		</li>
+		<li>Cloud hosting;</li>
+		<li>Domain registration;</li>
+		<li>API services;</li>
+		<li>Software licenses;</li>
+		<li>Plugins;</li>
+		<li>SaaS subscriptions;</li>
+		<li>App-store fees; and</li>
+		<li>Other third-party services.</li>
 	</ul>
 	<p>
-		If we cancel because of an unpaid invoice, after the notice and cure period
-		in our
-		<a href="/terms-of-service">Terms of Service</a>, the pro-rata refund above
-		does not apply and the deposit is non-refundable.
+		Where a third party provides a refund, {company} may pass the applicable refund
+		to the Client.
 	</p>
 
-	<h2 id="requesting-a-refund">How to request a refund</h2>
+	<h2 id="final-determination">9. Final refund determination</h2>
+	<p>Each refund request will be reviewed individually.</p>
 	<p>
-		Email <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a> with the
-		subject line <strong>"Refund request"</strong> and include your name, the project
-		or plan name, and the invoice or transaction reference. You do not need to explain
-		or justify the request for us to review it.
+		Where a refund is approved, {company} will confirm the approved amount and refund
+		method in writing.
 	</p>
-	<p>We commit to the following:</p>
-	<ul>
-		<li>
-			<strong
-				>Acknowledgement within [PLACEHOLDER: e.g. "3 business days"].</strong
-			>
-		</li>
-		<li>
-			<strong>A decision within [PLACEHOLDER: e.g. "10 business days"]</strong> of
-			receiving the request.
-		</li>
-		<li>
-			<strong>Payment within [PLACEHOLDER: e.g. "10 business days"]</strong> of approval.
-		</li>
-		<li>
-			Refunds are issued <strong>to the original payment method</strong>. We
-			cannot refund to a different account or method. Refund processing times
-			are set by your bank or card issuer and are typically 5 to 10 business
-			days after we send the refund.
-		</li>
-		<li>
-			If we decline a request, we tell you why and give you a real route to
-			challenge it — reply to the same email, or use the dispute process below.
-		</li>
-	</ul>
 	<p>
-		This process is in addition to any right you have under the
-		<a href="/terms-of-service">Terms of Service</a> or under applicable law. Nothing
-		here limits those rights.
+		Unless otherwise required by applicable law or agreed in writing, approved
+		refunds will be processed through the original payment method.
 	</p>
 
-	<h2 id="chargebacks">Chargebacks</h2>
-	<div class="legal-callout">
-		<p>
-			<strong
-				>Please contact us before you dispute a payment with your bank or card
-				issuer.</strong
-			> A chargeback costs both of us real money and adds days to resolving something
-			we can usually settle in a week. Email us with the transaction reference and
-			we will prioritise it.
-		</p>
-	</div>
+	<h2 id="no-retaliation">10. No retaliation for good-faith refund requests</h2>
 	<p>
-		If you do open a chargeback, we will still apply the refund process in full
-		and in addition. Where you dispute a charge and we are ultimately found not
-		liable for it, we may pass on the chargeback fee to you.
+		Clients will not be penalized for submitting a legitimate refund request in
+		good faith.
+	</p>
+	<p>
+		We encourage clients to communicate concerns directly with us so that we
+		have an opportunity to resolve them professionally.
 	</p>
 
-	<h2 id="your-rights">Your statutory rights</h2>
+	<h2 id="chargebacks">11. Chargebacks</h2>
 	<p>
-		Nothing in this policy, and nothing in our
-		<a href="/terms-of-service">Terms of Service</a>, limits your rights under
-		applicable state or federal law. This includes, without limitation, the
-		right to a refund required by state law, the protections of the FTC's
-		Magnets-Moxie Rule, any California consumer protection rights, and any right
-		of return or cancellation you have as a consumer.
+		Clients are requested to contact <strong>{company}</strong> before initiating
+		a payment dispute or chargeback.
 	</p>
 	<p>
-		Where a state law gives you a right that is more favourable to you than this
-		policy, that law controls, and this policy does not waive it. [PLACEHOLDER:
-		attorney to confirm which state-specific refund rights apply to Linkly LLC's
-		clients]
+		We will make reasonable efforts to resolve legitimate disputes directly with
+		the Client.
+	</p>
+	<p>
+		Nothing in this section limits any rights available to the Client under
+		applicable law or the applicable payment provider's rules.
 	</p>
 
-	<h2 id="contact">How to reach us</h2>
+	<h2 id="applicable-agreement">12. Applicable agreement and law</h2>
+	<p>This Policy forms part of the Company's applicable service terms.</p>
 	<p>
-		{legal.entityName}<br />
+		If a signed Agreement, Statement of Work, or Master Services Agreement
+		contains specific refund or termination provisions, those provisions will
+		apply.
+	</p>
+	<p>
+		Nothing in this Policy is intended to waive or restrict any rights that
+		cannot legally be waived under applicable federal or state law.
+	</p>
+
+	<h2 id="our-promise">13. Our promise</h2>
+	<p>
+		We believe that successful software development is based on <strong
+			>trust, transparency, and long-term relationships</strong
+		>.
+	</p>
+	<p>
+		If we have not delivered what we agreed to deliver and the issue cannot
+		reasonably be resolved, we are prepared to work with the Client toward a
+		fair refund or other appropriate resolution.
+	</p>
+</LegalLayout>
+
+<footer class="legal-signature">
+	<p>
+		<strong>{company}</strong><br />
+		<strong>Email:</strong>
+		<a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a><br />
+		<strong>Website:</strong>
+		<a href={site.url}>{site.url.replace(/^https?:\/\//, '')}</a><br />
+		<strong>Address:</strong>
 		{
 			addressLines.map(line => (
 				<>
@@ -355,20 +267,27 @@ const toc = [
 				</>
 			))
 		}
-		Email: <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>
 	</p>
-</LegalLayout>
+</footer>
 
 <style>
-	.legal-callout {
-		margin: 1.5rem 0;
-		padding: 1.15rem 1.35rem;
-		border-left: 4px solid var(--color-brand-ink);
-		border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+	.legal-signature {
+		container-type: inline-size;
+		width: min(100% - 2 * var(--gutter, 1.25rem), 72rem);
+		margin-inline: auto;
+		margin-block: 2rem 3rem;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius-sm);
 		background: var(--theme-surface-1);
 	}
 
-	.legal-callout p {
+	.legal-signature p {
 		margin: 0;
+		line-height: 1.7;
+	}
+
+	.legal-signature a {
+		color: var(--color-brand-ink);
 	}
 </style>

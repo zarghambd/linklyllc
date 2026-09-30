@@ -4,23 +4,45 @@ import type { CaseStudy } from '../data/case-studies';
 export type Props = { study: CaseStudy };
 
 const { study } = Astro.props;
+
+// An unpublished study is scaffolding, not a case study. Rendering its
+// `[PLACEHOLDER: ...]` tokens would put template tokens in front of a visitor,
+// so the card shows a neutral summary instead and names nothing.
+const isPublished = study.published;
+
+const sector = isPublished ? study.sector : null;
+const client = isPublished ? study.client : 'Project details coming soon';
+const summary = isPublished
+	? study.summary
+	: 'This engagement is still being prepared for publication. In the meantime, ask us directly about work of this kind and we will walk you through what we delivered.';
+const scope = isPublished ? study.scope : [];
+const stack = isPublished ? study.stack : [];
 ---
+
+{
+	!isPublished && (
+		<p class="case-study__notice">
+			No verified case studies are published yet. Nothing below is a real client
+			engagement, so we have not dressed it up as one.
+		</p>
+	)
+}
 
 <article class="card card-content case-study">
 	<header class="case-study__header">
-		<p class="case-study__sector">{study.sector}</p>
-		<h3 class="card-content__title">{study.client}</h3>
+		{sector && <p class="case-study__sector">{sector}</p>}
+		<h3 class="card-content__title">{client}</h3>
 		{
-			!study.published && (
+			!isPublished && (
 				<p class="case-study__badge">
 					<span class="sr-only">Status: </span>
-					Placeholder — awaiting a verified engagement
+					Awaiting a verified engagement
 				</p>
 			)
 		}
 	</header>
 
-	<p class="card-content__text">{study.summary}</p>
+	<p class="card-content__text">{summary}</p>
 
 	{
 		study.results && study.results.length > 0 && (
@@ -35,21 +57,46 @@ const { study } = Astro.props;
 		)
 	}
 
-	<h4 class="case-study__subhead">Scope</h4>
-	<ul class="case-study__scope">
-		{study.scope.map(item => <li>{item}</li>)}
-	</ul>
+	{
+		scope.length > 0 && (
+			<>
+				<h4 class="case-study__subhead">Scope</h4>
+				<ul class="case-study__scope">
+					{scope.map(item => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</>
+		)
+	}
 
-	<div class="card-content__footer">
-		<ul class="case-study__stack" aria-label="Technology used">
-			{study.stack.map(tech => <li class="case-study__tech">{tech}</li>)}
-		</ul>
-	</div>
+	{
+		stack.length > 0 && (
+			<div class="card-content__footer">
+				<ul class="case-study__stack" aria-label="Technology used">
+					{stack.map(tech => (
+						<li class="case-study__tech">{tech}</li>
+					))}
+				</ul>
+			</div>
+		)
+	}
 </article>
 
 <style>
 	.case-study {
 		gap: 1rem;
+	}
+
+	.case-study__notice {
+		margin: 0 0 1.5rem;
+		padding: 1rem 1.15rem;
+		border: 1px solid var(--theme-border);
+		border-left: 3px solid var(--color-brand-ink);
+		border-radius: var(--border-radius-sm);
+		background: var(--theme-surface-1);
+		color: var(--theme-muted);
+		max-width: 62ch;
 	}
 
 	.case-study__header {
