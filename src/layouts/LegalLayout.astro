@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
 				<span
 					>Last updated: <time datetime={lastUpdated}>{lastUpdated}</time></span
 				>
-				<button class="legal-header__print" type="button" data-print>
+				<button class="legal-header__print" type="button" data-print hidden>
 					Print this page
 				</button>
 			</p>
@@ -76,10 +76,12 @@ const year = new Date().getFullYear();
 </Layout>
 
 <script>
-	// Progressive enhancement: the control only appears once JS is running.
+	// Progressive enhancement: the print control ships hidden, so without JS it
+	// is never a visible button that does nothing.
 	const printButton = document.querySelector<HTMLButtonElement>('[data-print]');
 	if (printButton) {
 		printButton.addEventListener('click', () => window.print());
+		printButton.hidden = false;
 	}
 
 	// Highlight the table-of-contents entry for the section currently in view.
@@ -263,8 +265,11 @@ const year = new Date().getFullYear();
 		}
 	}
 
+	/* Above 900px the control sits beside the date. Below it, it is dropped:
+	   mobile browsers expose printing from the share sheet instead. The
+	   [hidden] guard keeps it invisible until the script binds the handler. */
 	@media (min-width: 901px) {
-		.legal-header__print {
+		.legal-header__print:not([hidden]) {
 			display: inline-block;
 		}
 	}
