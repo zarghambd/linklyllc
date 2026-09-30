@@ -1,0 +1,15 @@
+---
+const { eyebrow, title, class: className = '' } = Astro.props;
+---
+
+<section class:list={['section-shell', className]}>
+  <div class="container">
+    {(eyebrow || title) && (
+      <header class="section-header">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {title && <h2>{title}</h2>}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,434 @@
+---
+import Layout from '../layouts/Page.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Section from '../components/Section.astro';
+
+const services = [
+	{
+		title: 'Enterprise Web Applications',
+		description:
+			'Custom web platforms tailored to your business operations. We build scalable SaaS solutions, internal management dashboards, customer portals, and workflow automation systems built for high throughput and long-term reliability.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm3.5 2h9M7.5 12h5m-5 3h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+	},
+	{
+		title: 'Dynamic Frontend Interfaces',
+		description:
+			'Fast, accessible, and interactive user interfaces designed with modern UX/UI principles. We convert visual designs into pixel-perfect web apps that load instantly across all desktop, tablet, and mobile browsers.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Zm3 4h10M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 7.5V5m4 2.5V5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+	},
+	{
+		title: 'Scalable Backend Architecture & APIs',
+		description:
+			'Robust server-side architecture designed to manage complex business logic and handle high volumes of traffic without latency. We design, build, and document secure RESTful and GraphQL APIs for third-party integrations and internal ecosystem communication.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8.5V7a5 5 0 0 1 10 0v1.5M6 12h12M8 12v5.5h8V12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+	},
+	{
+		title: 'Headless CMS & E-Commerce Platforms',
+		description:
+			'Modern web storefronts and content management systems decoupled for maximum performance, security, and flexibility. Manage your digital assets seamlessly while delivering lightning-fast pages to your customers.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5 12 4l8 5.5v5L12 20l-8-5.5v-5Zm8 5.5V8.5M4 9.5l8 5.5 8-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+	},
+];
+
+const stack = ['Astro', 'React', 'TypeScript', 'Node.js', 'Next.js', 'PostgreSQL', 'AWS', 'GraphQL'];
+
+const reasons = [
+	{
+		title: 'Performance-first delivery',
+		description: 'We build for speed, clarity, and measurable business impact from day one.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`,
+	},
+	{
+		title: 'Clean engineering',
+		description: 'Structured frontends and backend systems that are maintainable, scalable, and easy to evolve.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7.5 4 12l4 4.5M16 7.5 20 12l-4 4.5M13.5 4.5l-3 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+	},
+	{
+		title: 'Security and trust',
+		description: 'We harden apps for reliability, data protection, and customer confidence.',
+		icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 18 6v5.5c0 4.2-2.7 7.8-6 9-3.3-1.2-6-4.8-6-9V6l6-2.5Zm0 6.3v4.2m0-9.1V9.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+	},
+];
+
+const stats = [
+	{ value: '20+', label: 'Projects delivered' },
+	{ value: '5+', label: 'Years of experience' },
+	{ value: '100%', label: 'Client satisfaction' },
+];
+---
+
+<Layout seo={{
+	title: 'Linkly LLC | Custom Web Development Agency',
+	description: 'Linkly LLC builds custom web applications, SaaS platforms, and digital experiences for growing businesses.',
+}}>
+	<main class="page-main">
+		<section class="hero container">
+			<div class="hero__content">
+				<p class="eyebrow">Web development agency</p>
+				<h1>
+					Custom <span class="gradient-text">Web Development</span> Services
+				</h1>
+				<p class="hero__lede">
+					At <strong>Linkly LLC</strong>, we build modern, fast, and scalable web
+					applications engineered to solve complex business challenges and drive
+					measurable growth. We combine architecture, user experience, and delivery
+					excellence to create digital products that feel premium and work reliably.
+				</p>
+				<div class="button-row">
+					<Button href="/contact" variant="primary">Start a project</Button>
+					<Button href="#services" variant="secondary">See our work</Button>
+				</div>
+				<div class="hero-metrics" aria-label="Key business metrics">
+					<div>
+						<strong>20+</strong>
+						<span>projects shipped</span>
+					</div>
+					<div>
+						<strong>5+</strong>
+						<span>years building</span>
+					</div>
+					<div>
+						<strong>24/7</strong>
+						<span>delivery mindset</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="hero__visual">
+				<img
+					src="/Landing%20page.png"
+					alt="Linkly LLC branding for web and mobile development and AI agents"
+					width="1280"
+					height="720"
+					fetchpriority="high"
+				/>
+			</div>
+		</section>
+
+		<Section id="services" class="services" eyebrow="What we build" title="Custom solutions that scale">
+			<div class="services-grid">
+				{services.map((service) => (
+					<Card class="service-card">
+						<div class="card-icon" set:html={service.icon} />
+						<h3>{service.title}</h3>
+						<p>{service.description}</p>
+					</Card>
+				))}
+			</div>
+		</Section>
+
+		<Section class="stack" eyebrow="Technology" title="Built with the modern web stack">
+			<div class="tech-pills">
+				{stack.map((item) => (
+					<span class="tech-pill">{item}</span>
+				))}
+		</div>
+		</Section>
+
+		<Section class="reasons" eyebrow="Why Linkly LLC" title="Why partner with Linkly LLC?">
+			<div class="reasons-grid">
+				{reasons.map((reason) => (
+					<Card class="reason-card">
+						<div class="card-icon" set:html={reason.icon} />
+						<h3>{reason.title}</h3>
+						<p>{reason.description}</p>
+					</Card>
+				))}
+			</div>
+		</Section>
+
+		<section class="container trust-band">
+			<div class="trust-band__inner">
+				{stats.map((stat) => (
+					<div class="stat-item">
+						<strong>{stat.value}</strong>
+						<span>{stat.label}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="container testimonial-wrap">
+			<div class="testimonial-card">
+				<p class="eyebrow">Client feedback</p>
+				<blockquote>
+					“TODO: Add a client testimonial excerpt here. This section is ready to be replaced with a real quote from your most recent project.”
+				</blockquote>
+				<p class="testimonial-meta">— TODO: Client name / role</p>
+			</div>
+		</section>
+
+		<section class="container cta-wrap">
+			<div class="cta-band">
+				<div>
+					<p class="eyebrow eyebrow--light">Ready when you are</p>
+					<h2>Have a project in mind?</h2>
+				</div>
+				<Button href="/contact" variant="light">Start a conversation</Button>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page-main {
+		padding-bottom: 2rem;
+	}
+
+	.hero {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		align-items: center;
+		gap: 2.5rem;
+		padding-top: 72px;
+		padding-bottom: 32px;
+	}
+
+	.hero__content {
+		max-width: 660px;
+	}
+
+	.hero__lede {
+		max-width: 62ch;
+		font-size: 1.08rem;
+		color: var(--theme-muted);
+	}
+
+	.button-row {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.hero-metrics {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+
+	.hero-metrics div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.hero-metrics strong {
+		font-family: var(--heading-font);
+		font-size: clamp(1.3rem, 2vw, 2rem);
+		color: var(--theme-on-bg);
+	}
+
+	.hero-metrics span {
+		font-size: 0.82rem;
+		color: var(--theme-muted);
+	}
+
+	.hero__visual {
+		display: grid;
+		place-items: center;
+	}
+
+	.hero__visual img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border: 1px solid var(--theme-border);
+		border-radius: 20px;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.section-header {
+		margin-bottom: 2rem;
+	}
+
+	.services-grid,
+	.reasons-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+		gap: 1.5rem;
+	}
+
+	.service-card,
+	.reason-card {
+		display: flex;
+		flex-direction: column;
+		padding: 28px;
+		transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+		min-height: 100%;
+		min-width: 0;
+	}
+
+	.service-card:hover,
+	.reason-card:hover {
+		transform: translateY(-4px);
+		border-color: rgba(109, 40, 217, 0.35);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.card-icon {
+		width: 3rem;
+		height: 3rem;
+		display: grid;
+		place-items: center;
+		border-radius: 12px;
+		background: linear-gradient(135deg, var(--color-brand), var(--color-brand-2));
+		color: #fff;
+		margin-bottom: 1rem;
+	}
+
+	.card-icon svg {
+		width: 1.4rem;
+		height: 1.4rem;
+	}
+
+	.service-card h3,
+	.reason-card h3 {
+		margin-bottom: 0.8rem;
+		font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+	}
+
+	.service-card p,
+	.reason-card p {
+		font-size: 0.98rem;
+		line-height: 1.65;
+		color: var(--theme-muted);
+	}
+
+	.tech-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.tech-pill {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.8rem 1rem;
+		border-radius: 999px;
+		background: var(--theme-surface-1);
+		border: 1px solid var(--theme-border);
+		font-weight: 600;
+		color: var(--theme-on-bg);
+	}
+
+	.trust-band {
+		padding: 32px 0 0;
+	}
+
+	.trust-band__inner {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+		background: var(--theme-surface-1);
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius);
+		padding: 1.5rem;
+		box-shadow: var(--shadow-card);
+	}
+
+	.stat-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 1rem;
+	}
+
+	.stat-item strong {
+		font-family: var(--heading-font);
+		font-size: clamp(1.7rem, 3vw, 2.6rem);
+		line-height: 1.1;
+		margin-bottom: 0.35rem;
+	}
+
+	.stat-item span {
+		color: var(--theme-muted);
+	}
+
+	.testimonial-wrap {
+		padding-top: 32px;
+	}
+
+	.testimonial-card {
+		background: var(--theme-surface-1);
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius);
+		padding: clamp(1.5rem, 2vw, 2.5rem);
+		box-shadow: var(--shadow-card);
+	}
+
+	.testimonial-card blockquote {
+		margin: 0;
+		font-size: clamp(1.2rem, 2vw, 1.75rem);
+		line-height: 1.5;
+		font-weight: 600;
+		color: var(--theme-on-bg);
+	}
+
+	.testimonial-meta {
+		margin-top: 1rem;
+		color: var(--theme-muted);
+		font-weight: 600;
+	}
+
+	.cta-wrap {
+		padding-top: 32px;
+		padding-bottom: 32px;
+	}
+
+	.cta-band {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		border-radius: 24px;
+		background: linear-gradient(135deg, var(--color-brand), var(--color-brand-2));
+		color: #fff;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.eyebrow--light {
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.cta-band h2 {
+		margin-bottom: 0;
+		color: #fff;
+	}
+
+	@media (max-width: 960px) {
+		.hero {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			padding-top: 48px;
+		}
+
+		.button-row {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.button-row .btn {
+			width: 100%;
+		}
+
+		.trust-band__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.cta-band {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

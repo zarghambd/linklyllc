@@ -1,0 +1,59 @@
+---
+import settings from '../../config/settings.js';
+
+import '../../styles/index.css';
+
+export interface Props {
+	title?: string;
+	description?: string;
+	canonicalURL?: URL | string;
+	image?: string;
+}
+
+const title = Astro.props.title || settings.title;
+const description = Astro.props.description || settings.description;
+const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
+const image = new URL(Astro.props.image || './social.png', Astro.site);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0B0F1A" />
+<link rel="icon" type="image/x-icon" href="/linkly.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta name="generator" content={Astro.generator} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+
+<script is:inline>
+  (function () {
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = stored || (prefersDark ? 'dark' : 'default');
+  })();
+</script>
+
+<script>
+  var host = window.location.hostname;
+  if (host !== 'localhost') {
+    // Place Google Analytics code here.
+  }
+</script>

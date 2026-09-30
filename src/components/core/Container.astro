@@ -1,0 +1,17 @@
+---
+const {narrow} = Astro.props;
+---
+
+<div class:list={['container', 'content__container', { 'content__container--narrow': narrow }]}>
+  <slot></slot>
+</div>
+
+<style>
+  .content__container {
+    max-width: 1200px;
+    min-width: 0;
+  }
+  .content__container--narrow {
+    max-width: 960px;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">Our stack</p>
+        <h1>Modern Web Stack</h1>
+      </div>
+
+      <div class="tech-grid">
+        <article class="tech-card">
+          <h3>React</h3>
+          <p>
+            Frontend Interface — Component-driven architecture, reactive UI states,
+            rich ecosystem, and high performance.
+          </p>
+        </article>
+
+        <article class="tech-card">
+          <h3>Next.js</h3>
+          <p>
+            Full-Stack Framework — Server-Side Rendering (SSR), Static Site
+            Generation (SSG), built-in SEO optimizations, and minimal load times.
+          </p>
+        </article>
+
+        <article class="tech-card">
+          <h3>Node.js</h3>
+          <p>
+            Backend Runtime — Non-blocking, event-driven architecture designed for
+            high-concurrency API services and fast execution.
+          </p>
+        </article>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 1100px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 28px;
+    min-width: 0;
+  }
+
+  .tech-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  }
+
+  .tech-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

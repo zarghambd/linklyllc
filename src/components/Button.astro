@@ -1,0 +1,13 @@
+---
+const { href, variant = 'primary', class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class:list={['btn', `btn--${variant}`, className]}
+  href={href}
+  rel={href && !href.startsWith('/') && !href.startsWith('#') ? 'noopener noreferrer' : undefined}
+  target={href && !href.startsWith('/') && !href.startsWith('#') ? '_blank' : undefined}
+>
+  <slot />
+</Tag>

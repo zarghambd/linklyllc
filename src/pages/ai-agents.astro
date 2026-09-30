@@ -1,0 +1,221 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">AI Agent Development Services</p>
+        <h1>AI Agent Development Services</h1>
+      </div>
+
+      <p class="lead">
+        At <strong>Linkly LLC</strong>, we build intelligent, autonomous AI agents
+        and workflow automation systems designed to streamline operations,
+        enhance decision-making, and boost organizational productivity. By
+        combining state-of-the-art Large Language Models (LLMs) with custom
+        backend integration, we turn cutting-edge artificial intelligence into
+        actionable business tools.
+      </p>
+
+      <div class="section-block">
+        <h2>What We Build</h2>
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>1. Autonomous Workflow &amp; Task Agents</h3>
+            <p>
+              AI systems designed to execute multi-step business processes
+              independently. From processing documents and triaging customer
+              support tickets to managing internal workflows, our agents reduce
+              manual effort and eliminate operational bottlenecks.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>2. Retrieval-Augmented Generation (RAG) &amp; Knowledge Assistants</h3>
+            <p>
+              Custom enterprise AI assistants trained on your internal
+              documentation, knowledge bases, and databases. We allow teams and
+              customers to instantly query proprietary data with pinpoint accuracy,
+              strict context controls, and zero data leakage.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>3. Multi-Agent Orchestration Systems</h3>
+            <p>
+              Complex AI environments where specialized autonomous agents
+              collaborate—passing data, executing tools, and verifying outputs—to
+              handle intricate business tasks like research, automated coding, lead
+              scoring, and financial analysis.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>4. Custom AI Integration &amp; Model Fine-Tuning</h3>
+            <p>
+              Seamlessly integrate modern AI capabilities into your existing
+              software ecosystem. We connect foundation models directly to your
+              APIs, CRMs, ERPs, and databases, customizing model behavior to match
+              your exact domain needs.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>Core Technologies</h2>
+        <div class="tech-grid">
+          <article class="tech-card">
+            <h3>OpenAI</h3>
+            <p>
+              Foundation Models — Powered by GPT-4o and advanced reasoning models
+              for high-level comprehension, structured output generation, and task
+              execution.
+            </p>
+          </article>
+
+          <article class="tech-card">
+            <h3>LangChain</h3>
+            <p>
+              Agentic Framework — Context management, agent chaining, tool-use
+              integration, vector database connectors, and complex prompt pipelines.
+            </p>
+          </article>
+
+          <article class="tech-card">
+            <h3>Custom AI</h3>
+            <p>
+              Proprietary Logic — Tailored vector embeddings, custom model
+              fine-tuning, open-source LLM hosting (Llama, Mistral), and
+              specialized safety guardrails.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>How We Deliver: Our AI Implementation Process</h2>
+        <ol class="process-list">
+          <li>
+            <strong>AI Readiness &amp; Use-Case Mapping</strong>
+            <p>
+              We evaluate your workflows and data infrastructure to pinpoint
+              high-ROI opportunities for automation and autonomous agent
+              integration.
+            </p>
+          </li>
+          <li>
+            <strong>System Architecture &amp; Guardrail Design</strong>
+            <p>
+              We establish clear system prompts, vector retrieval mechanisms,
+              tool access permissions, and strict safety guardrails to ensure
+              output accuracy and compliance.
+            </p>
+          </li>
+          <li>
+            <strong>Agent Engineering &amp; Integration</strong>
+            <p>
+              Our engineers build and train the agents using LangChain and modern
+              vector databases, integrating them directly with your web or mobile
+              applications.
+            </p>
+          </li>
+          <li>
+            <strong>Evaluation, Red-Teaming &amp; Testing</strong>
+            <p>
+              We rigorously test AI performance against edge cases, benchmarking
+              output quality, latency, token usage costs, and response
+              reliability.
+            </p>
+          </li>
+          <li>
+            <strong>Deployment &amp; Continuous Monitoring</strong>
+            <p>
+              We deploy agents into production environments with active telemetry,
+              cost-tracking controls, and feedback loops for continuous model
+              optimization.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 1100px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .lead {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .section-block {
+    margin-top: 2.5rem;
+  }
+
+  .service-grid,
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card,
+  .tech-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 28px;
+    min-width: 0;
+  }
+
+  .service-card h3,
+  .tech-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  }
+
+  .service-card p,
+  .tech-card p,
+  .process-list p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .process-list {
+    padding-left: 1.25rem;
+    margin: 1rem 0 0;
+  }
+
+  .process-list li + li {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .service-grid,
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

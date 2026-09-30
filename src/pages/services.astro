@@ -1,0 +1,128 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">What we do</p>
+        <h1>Custom Web Development Services</h1>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <h3>AI Agent Development Services</h3>
+          <p>
+            At Linkly LLC, we build intelligent, autonomous AI agents and workflow
+            automation systems designed to streamline operations, enhance
+            decision-making, and boost organizational productivity. We combine
+            state-of-the-art Large Language Models with custom backend integration
+            to turn AI into actionable business tools.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Mobile App Development Services</h3>
+          <p>
+            We craft high-performing, cross-platform mobile applications for iOS
+            and Android that deliver native-grade experiences. By leveraging modern
+            cross-platform frameworks, we help launch feature-rich mobile products
+            faster while preserving performance and design quality.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Enterprise Web Applications</h3>
+          <p>
+            Custom web platforms tailored to your business operations. We build
+            scalable SaaS solutions, internal management dashboards, customer
+            portals, and workflow automation systems built for high throughput and
+            long-term reliability.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Dynamic Frontend Interfaces</h3>
+          <p>
+            Fast, accessible, and interactive user interfaces designed with modern
+            UX/UI principles. We convert visual designs into pixel-perfect web apps
+            that load instantly across all desktop, tablet, and mobile browsers.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Scalable Backend Architecture &amp; APIs</h3>
+          <p>
+            Robust server-side architecture designed to manage complex business
+            logic and handle high volumes of traffic without latency. We design,
+            build, and document secure RESTful and GraphQL APIs for third-party
+            integrations and internal ecosystem communication.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Headless CMS &amp; E-Commerce Platforms</h3>
+          <p>
+            Modern web storefronts and content management systems decoupled for
+            maximum performance, security, and flexibility. Manage your digital
+            assets seamlessly while delivering lightning-fast pages to your
+            customers.
+          </p>
+        </article>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 1100px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 28px;
+    min-width: 0;
+  }
+
+  .service-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  }
+
+  .service-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

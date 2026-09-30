@@ -1,0 +1,208 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">Mobile App Development Services</p>
+        <h1>Mobile App Development Services</h1>
+      </div>
+
+      <p class="lead">
+        At <strong>Linkly LLC</strong>, we craft high-performing, cross-platform
+        mobile applications for iOS and Android that deliver native-grade
+        experiences. By leveraging modern cross-platform frameworks, we help you
+        launch feature-rich mobile products faster, reducing time-to-market and
+        development costs without sacrificing performance or design.
+      </p>
+
+      <div class="section-block">
+        <h2>What We Build</h2>
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>1. Cross-Platform Mobile Applications</h3>
+            <p>
+              Single-codebase mobile apps engineered to run seamlessly across both
+              iOS and Android platforms. Enjoy full native device functionality,
+              identical performance, and streamlined long-term codebase
+              maintenance.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>2. Consumer Apps &amp; Digital Products</h3>
+            <p>
+              Engaging, intuitive mobile experiences designed with consumer
+              retention in mind. We build feature-packed mobile solutions
+              incorporating real-time messaging, push notifications, offline
+              storage, biometrics, and secure payment integrations.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>3. Enterprise Mobile Solutions</h3>
+            <p>
+              Secure mobile tools built for field staff, remote teams, and
+              enterprise operational management. We build custom dashboards, field
+              data collection applications, and employee productivity suites linked
+              directly to your core backend.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>4. App Modernization &amp; Refactoring</h3>
+            <p>
+              Update outdated legacy mobile applications to contemporary cross-platform
+              architectures. We improve UI responsiveness, fix underlying memory leaks,
+              and upgrade third-party API dependencies for seamless app store compliance.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>Core Technologies</h2>
+        <div class="tech-grid">
+          <article class="tech-card">
+            <h3>React Native</h3>
+            <p>
+              JavaScript Mobile Framework — Native UI components, fast feature
+              iteration, massive community ecosystem, and shared web/mobile logic.
+            </p>
+          </article>
+
+          <article class="tech-card">
+            <h3>Flutter</h3>
+            <p>
+              Dart Multi-Platform Engine — High-performance graphics rendering,
+              flexible custom UI widgets, consistent visual fidelity across all
+              screen sizes, and native execution speed.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>How We Deliver: Our Mobile Engineering Process</h2>
+        <ol class="process-list">
+          <li>
+            <strong>UX/UI Mobile Prototyping</strong>
+            <p>
+              We design touch-first wireframes and interactive prototypes aligned
+              with Apple Human Interface Guidelines and Google Material Design
+              standardizations.
+            </p>
+          </li>
+          <li>
+            <strong>Cross-Platform Engineering</strong>
+            <p>
+              We write clean, modular React Native or Flutter codebases backed by
+              offline-first data synchronization and robust state management.
+            </p>
+          </li>
+          <li>
+            <strong>Device Feature Integration</strong>
+            <p>
+              We tap into native hardware APIs including camera modules, GPS,
+              Bluetooth, biometric authentication, push notification engines, and
+              local storage.
+            </p>
+          </li>
+          <li>
+            <strong>Quality Assurance &amp; Device Testing</strong>
+            <p>
+              Comprehensive testing across physical smartphones, tablets, screen
+              resolutions, OS versions, and varying network speeds.
+            </p>
+          </li>
+          <li>
+            <strong>App Store Deployment &amp; Support</strong>
+            <p>
+              We manage the entire submission process for the Apple App Store and
+              Google Play Store, handling compliance reviews, signing
+              certificates, and post-launch updates.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 1100px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .lead {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .section-block {
+    margin-top: 2.5rem;
+  }
+
+  .service-grid,
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card,
+  .tech-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 28px;
+    min-width: 0;
+  }
+
+  .service-card h3,
+  .tech-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  }
+
+  .service-card p,
+  .tech-card p,
+  .process-list p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .process-list {
+    padding-left: 1.25rem;
+    margin: 1rem 0 0;
+  }
+
+  .process-list li + li {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .service-grid,
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">About us</p>
+        <h1>Linkly LLC</h1>
+      </div>
+
+      <div class="content-card">
+        <p>
+          At Linkly LLC, we build modern, fast, and scalable web applications
+          engineered to solve complex business challenges and drive measurable
+          growth. From system design to full-stack implementation, we combine
+          cutting-edge tech stacks with clear architecture and clean execution.
+        </p>
+        <p>
+          We help businesses turn ideas into secure, responsive, high-performing
+          digital experiences that are built to scale and designed for long-term
+          reliability.
+        </p>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 900px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .content-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 2rem;
+  }
+
+  .content-card p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .content-card p:last-child {
+    margin-bottom: 0;
+  }
+</style>

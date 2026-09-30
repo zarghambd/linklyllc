@@ -1,0 +1,195 @@
+:root {
+	/* Theme Colors */
+	--theme-primary: #1f9bf5;
+	--theme-primary-hover: #8b5cf6;
+	--theme-on-primary: #ffffff;
+
+	--theme-bg: #f5f7fb;
+	--theme-on-bg: #0f172a;
+
+	--theme-surface-1: #ffffff;
+	--theme-on-surface-1: #0f172a;
+
+	--theme-surface-2: #eaf1ff;
+	--theme-on-surface-2: #0f172a;
+
+	/* Theme Shapes */
+	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
+	--theme-shape-radius: clamp(1rem, 2rem, 3rem);
+	--theme-button-border-radius: 3rem;
+
+	/* Theme Transition */
+	--theme-transition: 0.2s ease-in-out;
+
+	/* Theme Layout */
+	--section-margin: 5rem;
+	--theme-grid-gap: 1.5rem;
+	--container-max-width: 1440px;
+	--container-max-width-narrow: 960px;
+	--container-padding: 0 1rem;
+
+	--theme-blog-post-header-width: 1200px;
+
+	/* Theme Fonts */
+	--theme-font-family-serif: 'Roboto Serif', Georgia, Cambria, 'Times New Roman',
+		Times, serif;
+	--theme-font-family-sans: 'Lato', -apple-system, BlinkMacSystemFont,
+		sans-serif;
+
+	--expo-out: linear(
+		0 0%,
+		0.1684 2.66%,
+		0.3165 5.49%,
+		0.446 8.52%,
+		0.5581 11.78%,
+		0.6535 15.29%,
+		0.7341 19.11%,
+		0.8011 23.3%,
+		0.8557 27.93%,
+		0.8962 32.68%,
+		0.9283 38.01%,
+		0.9529 44.08%,
+		0.9711 51.14%,
+		0.9833 59.06%,
+		0.9915 68.74%,
+		1 100%
+	);
+}
+
+::view-transition-group(root) {
+	animation-timing-function: var(--expo-out);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.9s;
+}
+
+::view-transition-old(root),
+[data-theme='dark'] ::view-transition-old(root) {
+	animation: none;
+	animation-fill-mode: both;
+	z-index: -1;
+}
+
+::view-transition-new(root),
+[data-theme='dark'] ::view-transition-new(root) {
+	mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="white"/></svg>') center / 0 no-repeat;
+	animation: scale 1s;
+	animation-fill-mode: both;
+}
+
+@keyframes scale {
+	to {
+		mask-size: 200vmax;
+	}
+}
+
+[data-theme='default'] {
+	color-scheme: light;
+	/* Theme Colors */
+	--theme-primary: #1f9bf5;
+	--theme-primary-hover: #8b5cf6;
+	--theme-on-primary: #ffffff;
+
+	--theme-bg: #f5f7fb;
+	--theme-on-bg: #0f172a;
+
+	--theme-surface-1: #ffffff;
+	--theme-on-surface-1: #0f172a;
+
+	--theme-surface-2: #eaf1ff;
+	--theme-on-surface-2: #0f172a;
+
+	/* Theme Shape */
+	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
+	--theme-shape-radius: clamp(1rem, 2rem, 3rem);
+	--theme-button-border-radius: 3rem;
+
+	/* Theme Transition */
+	--theme-transition: 0.2s ease-in-out;
+
+	/* Theme Layout */
+	--section-margin: 5rem;
+	--theme-grid-gap: 1.5rem;
+	--container-max-width: 1440px;
+	--container-max-width-narrow: 960px;
+	--container-padding: 0 1rem;
+
+	--theme-blog-post-header-width: 1200px;
+}
+
+[data-theme='dark'] {
+	color-scheme: dark;
+	/* Theme Colors */
+	--theme-primary: hsl(0, 0%, 100%);
+	--theme-primary-hover: hsl(0, 0%, 90%);
+	--theme-on-primary: hsl(0, 0%, 0%);
+
+	--theme-bg: hsl(0, 0%, 2%);
+	--theme-on-bg: hsl(0, 0%, 100%);
+
+	--theme-surface-1: hsl(0, 0%, 20%);
+	--theme-on-surface-1: hsl(0, 0%, 100%);
+
+	--theme-surface-2: #171d26;
+	--theme-on-surface-2: #ffffff;
+
+	--theme-shape-radius: 0;
+
+	--form-field-input-color: var(--theme-on-bg);
+}
+
+[data-theme='earth'] {
+	/* Theme Colors */
+	--theme-primary: #2c3e2d;
+	--theme-primary-hover: #395a3b;
+	--theme-on-primary: hsl(0, 0%, 100%);
+
+	--theme-bg: #eeeff1;
+	--theme-on-bg: #272f27;
+
+	--theme-surface-1: #e6e4e0;
+	--theme-on-surface-1: #272f27;
+
+	--theme-surface-2: #c3d9c4;
+	--theme-on-surface-2: #000;
+
+	--theme-button-border-radius: 0.5rem;
+}
+
+[data-theme='ocean'] {
+	/* Theme Colors */
+	/* Theme Colors */
+	--theme-primary: #1556ac;
+	--theme-primary-hover: #2569c3;
+	--theme-on-primary: hsl(0, 0%, 100%);
+
+	--theme-bg: #fafafa;
+	--theme-on-bg: #0c0d0d;
+
+	--theme-surface-1: #eef1f3;
+	--theme-on-surface-1: #0c0d0d;
+
+	--theme-surface-2: #072650;
+	--theme-on-surface-2: #ffffff;
+}
+
+[data-theme='sand'] {
+	/* Theme Colors */
+	/* Theme Colors */
+	--theme-primary: #e38a20;
+	--theme-primary-hover: #eb870f;
+	--theme-on-primary: hsl(0, 0%, 100%);
+
+	--theme-bg: #fffffe;
+	--theme-on-bg: #5e4536;
+
+	--theme-surface-1: #ffecd9;
+	--theme-on-surface-1: #5e4536;
+
+	--theme-surface-2: #6a4d34;
+	--theme-on-surface-2: #ffffff;
+
+	--theme-button-border-radius: 0.5rem;
+}

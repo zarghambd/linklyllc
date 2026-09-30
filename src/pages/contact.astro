@@ -1,0 +1,62 @@
+---
+import { Container } from '@components/odyssey-theme';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout>
+  <Container>
+    <section class="page-shell">
+      <div class="title-block">
+        <p class="eyebrow">Contact</p>
+        <h1>Contact Us</h1>
+      </div>
+
+      <div class="contact-card">
+        <p>
+          Looking for a custom web solution? We’d love to hear about your project.
+        </p>
+        <ul>
+          <li>Email: hello@linklyllc.com</li>
+          <li>Phone: (800) 555-0199</li>
+        </ul>
+      </div>
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  .page-shell {
+    margin: var(--section-margin) auto;
+    max-width: 900px;
+  }
+
+  .title-block {
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--theme-accent);
+  }
+
+  .contact-card {
+    background: var(--theme-surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--theme-shape-radius);
+    padding: 2rem;
+  }
+
+  .contact-card p,
+  .contact-card li {
+    line-height: 1.8;
+  }
+
+  .contact-card ul {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+  }
+</style>
