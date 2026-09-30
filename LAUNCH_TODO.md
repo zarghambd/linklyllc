@@ -223,9 +223,45 @@ Use `src/components/ContactForm.astro` for the real contact form — it posts to
 `/api/contact` and handles validation, errors and spam defenses.
 
 The template's demo screenshots still in `public/assets/images/` and
-`public/assets/screenshots/` are unused. They can be deleted to cut deploy
-size; `public/assets/fonts/` must stay, because `src/styles/theme.css` declares
-`@font-face` rules pointing at it.
+`public/assets/screenshots/` are unused and can be deleted to cut deploy size.
+
+### Fonts: the site loads them from Google's CDN, not from disk
+
+This is worth a decision before launch, because it has a privacy angle.
+
+- The live typography is `Inter` for body copy and `Plus Jakarta Sans` for
+  headings, set in `src/styles/global.css` as `--body-font` and `--heading-font`.
+- Both are fetched at runtime from `fonts.googleapis.com`, with preconnects, in
+  `src/components/head/BaseHead.astro`.
+- `vercel.json` permits this explicitly: `style-src` allows
+  `https://fonts.googleapis.com` and `font-src` allows `https://fonts.gstatic.com`.
+  Without those two entries the fonts would be blocked in production.
+- The privacy policy already lists Google Fonts as a subprocessor, so the pages
+  are consistent with what the code does. Keep that pairing: if you drop Google
+  Fonts, delete the subprocessor entry; if you keep them, keep the entry.
+- Open with the attorney whether serving fonts from Google's CDN counts as a
+  transfer of visitor IP addresses to Google in your users' jurisdictions. It is
+  a recognised concern under GDPR and is the usual reason teams self-host.
+
+**The local font files are dead weight.** `public/assets/fonts/` holds Lato and
+Roboto Serif, declared with `@font-face` in `src/styles/typography.css` and
+referenced only by the legacy `--theme-font-family-*` tokens in
+`src/styles/theme.css`, which no live page uses. Roughly 12 files ship to every
+visitor for nothing.
+
+Two clean options:
+
+1. Keep Google Fonts and delete `public/assets/fonts/` plus the `@font-face`
+   blocks in `typography.css`.
+2. Self-host Inter and Plus Jakarta Sans — download the WOFF2 files into
+   `public/assets/fonts/`, point `@font-face` at them, and drop the
+   `fonts.googleapis.com` links from `BaseHead.astro` and the two font origins
+   from the CSP. Faster first paint and no third-party font request, at the cost
+   of maintaining the font files yourself.
+
+Do not do neither: shipping the unused Lato/Roboto files while still calling
+Google is the current state, and it is the one option that is strictly worse than
+either.
 
 - Real submission test against Resend, including the 503 path.
 
