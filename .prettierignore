@@ -1,3 +1,5 @@
 dist
+.output
+.vercel
 node_modules
 package-lock.json
