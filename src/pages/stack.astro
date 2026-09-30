@@ -1,92 +1,123 @@
 ---
-import { Container } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
+
+type Layer = {
+	name: string;
+	role: string;
+	description: string;
+};
+
+const layers: Layer[] = [
+	{
+		name: 'Astro',
+		role: 'Content sites and hybrid rendering',
+		description:
+			'Ships zero JavaScript by default and only the interactive islands a page actually needs. We use it for this site and for marketing and documentation sites that need to load fast on a bad connection.',
+	},
+	{
+		name: 'React',
+		role: 'Interactive interfaces',
+		description:
+			'Component-driven architecture with a large ecosystem and mature state management. Used where an interface genuinely needs client-side state rather than static markup.',
+	},
+	{
+		name: 'TypeScript',
+		role: 'Type safety across the stack',
+		description:
+			'Contracts between the frontend, the API and the database are checked at build time, which is the cheapest defect prevention available to us and to you.',
+	},
+	{
+		name: 'Node.js',
+		role: 'Backend runtime',
+		description:
+			'Non-blocking, event-driven architecture suited to high-concurrency API services. Chosen for fast execution and because the same language runs on both sides of the wire.',
+	},
+	{
+		name: 'Next.js',
+		role: 'Server-rendered React applications',
+		description:
+			'Where an application needs server-side rendering, streaming or route handlers, we use Next.js rather than bolting a framework of our own onto a static build.',
+	},
+	{
+		name: 'PostgreSQL',
+		role: 'Primary datastore',
+		description:
+			'Relational data with real constraints, transactions and mature backup tooling. The default choice unless a workload clearly argues otherwise.',
+	},
+	{
+		name: 'AWS',
+		role: 'Hosting and infrastructure',
+		description:
+			'Managed compute, storage and databases, with infrastructure defined as code so an environment can be recreated and audited rather than reverse-engineered.',
+	},
+	{
+		name: 'GraphQL',
+		role: 'API layer where it earns its keep',
+		description:
+			'Used for read-heavy, deeply related data where a single round trip beats several REST calls. Not a default — REST is simpler and cheaper to maintain in most projects.',
+	},
+];
 ---
 
-<Layout>
-  <Container>
-    <section class="page-shell">
-      <div class="title-block">
-        <p class="eyebrow">Our stack</p>
-        <h1>Modern Web Stack</h1>
-      </div>
+<Layout
+	seo={{
+		title: 'Technology Stack',
+		description:
+			'The technologies Linkly LLC builds with: Astro, React, TypeScript, Node.js, Next.js, PostgreSQL, AWS and GraphQL.',
+	}}
+>
+	<div class="container page-shell">
+		<header class="page-header">
+			<p class="eyebrow">Our stack</p>
+			<h1>Modern Web Stack</h1>
+			<p class="page-header__lede">
+				These are the tools we reach for, and roughly when. We pick boring,
+				well-documented technology that your next maintainer — which may be you,
+				or may be us in three years — can pick up without a rewrite.
+			</p>
+		</header>
 
-      <div class="tech-grid">
-        <article class="tech-card">
-          <h3>React</h3>
-          <p>
-            Frontend Interface — Component-driven architecture, reactive UI states,
-            rich ecosystem, and high performance.
-          </p>
-        </article>
+		<div class="card-grid">
+			{
+				layers.map(layer => (
+					<article class="card card-content">
+						<p class="stack-card__role">{layer.role}</p>
+						<h2 class="card-content__title">{layer.name}</h2>
+						<p class="card-content__text">{layer.description}</p>
+					</article>
+				))
+			}
+		</div>
 
-        <article class="tech-card">
-          <h3>Next.js</h3>
-          <p>
-            Full-Stack Framework — Server-Side Rendering (SSR), Static Site
-            Generation (SSG), built-in SEO optimizations, and minimal load times.
-          </p>
-        </article>
-
-        <article class="tech-card">
-          <h3>Node.js</h3>
-          <p>
-            Backend Runtime — Non-blocking, event-driven architecture designed for
-            high-concurrency API services and fast execution.
-          </p>
-        </article>
-      </div>
-    </section>
-  </Container>
+		<div class="stack-note prose">
+			<h2>Choosing a stack for your project</h2>
+			<p>
+				The list above is a menu, not a mandate. We will recommend something
+				different when the constraints justify it — for example a static build
+				with no server at all for a brochure site, or a different database when
+				your access patterns call for it. What we will not do is introduce a
+				framework because it is fashionable and leave you maintaining it.
+			</p>
+		</div>
+	</div>
 </Layout>
 
 <style>
-  .page-shell {
-    margin: var(--section-margin) auto;
-    max-width: 1100px;
-  }
+	.stack-card__role {
+		order: -1;
+		margin: 0 0 0.35rem;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-brand-ink);
+	}
 
-  .title-block {
-    margin-bottom: 2rem;
-  }
+	.stack-card__role + :global(.card-content__title) {
+		margin-bottom: 0;
+	}
 
-  .eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--theme-accent);
-  }
-
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 1.5rem;
-  }
-
-  .tech-card {
-    background: var(--theme-surface-2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--theme-shape-radius);
-    padding: 28px;
-    min-width: 0;
-  }
-
-  .tech-card h3 {
-    margin-top: 0;
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-  }
-
-  .tech-card p {
-    font-size: 0.98rem;
-    line-height: 1.65;
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
-    .tech-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+	.stack-note {
+		margin-top: clamp(2rem, 4vw, 3rem);
+	}
 </style>

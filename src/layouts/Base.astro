@@ -16,8 +16,9 @@ const { seo } = Astro.props;
 	</head>
 	<body>
 		<SkipLink />
-    <slot name="announcement-bar" />
+		<slot name="announcement-bar" />
 		<slot name="header" />
+		<!-- Single <main> landmark for the document. Pages must not nest one. -->
 		<main id="content">
 			<slot />
 		</main>

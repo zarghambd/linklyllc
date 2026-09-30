@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Page.astro';
+import Button from '../components/Button.astro';
+import Section from '../components/Section.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { caseStudies } from '../data/case-studies';
+---
+
+<Layout
+	seo={{
+		title: 'Our Work — Selected Web, AI and Mobile Projects',
+		description:
+			'A selection of web platform, AI automation and mobile app projects delivered by Linkly LLC.',
+	}}
+>
+	<div class="container page-shell">
+		<header class="page-header">
+			<p class="eyebrow">Our work</p>
+			<h1>Selected projects</h1>
+			<p class="page-header__lede">
+				A sample of the kind of engagements we take on: web platforms, AI
+				automation, and mobile apps. Each case study covers the problem, the
+				scope we delivered, and the technology behind it.
+			</p>
+		</header>
+	</div>
+
+	<Section
+		id="case-studies"
+		class="work"
+		eyebrow="Case studies"
+		title="Recent engagements"
+	>
+		<div class="card-grid">
+			{caseStudies.map(study => <CaseStudyCard {study} />)}
+		</div>
+	</Section>
+
+	<section class="container cta-wrap">
+		<div class="cta-band">
+			<div>
+				<p class="eyebrow eyebrow--light">Your project next</p>
+				<h2>Tell us what you are building</h2>
+			</div>
+			<Button href="/contact" variant="light">Start a project</Button>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.cta-wrap {
+		padding-block: clamp(2rem, 4vw, 3rem);
+	}
+
+	.cta-band {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		border-radius: 24px;
+		background: linear-gradient(
+			135deg,
+			var(--color-gradient-from),
+			var(--color-gradient-to)
+		);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.eyebrow--light {
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.cta-band h2 {
+		margin-bottom: 0;
+		color: #fff;
+	}
+
+	@media (max-width: 640px) {
+		.cta-band {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

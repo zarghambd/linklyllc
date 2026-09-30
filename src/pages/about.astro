@@ -1,65 +1,144 @@
 ---
-import { Container } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { site } from '../config/site';
+
+const principles = [
+	{
+		title: 'Written scope before any invoice',
+		description:
+			'Every engagement starts with a scope of work that names the deliverables, the milestones and the price. Work does not begin until it is signed, and the scope is the same document that governs the refund terms.',
+	},
+	{
+		title: 'Fixed price or transparent time, your choice',
+		description:
+			'Where the scope is stable we quote a fixed price. Where it genuinely is not — discovery, audits, open-ended integration work — we bill against an agreed hourly rate and show you the hours as they are spent.',
+	},
+	{
+		title: 'We hand over the whole thing',
+		description:
+			'Source code, infrastructure configuration and documentation belong to you. You keep the accounts, the repositories and the domain. We do not hold your build hostage to a retainer.',
+	},
+	{
+		title: 'We say when we are the wrong fit',
+		description:
+			'If your project is a better match for a specialist — a regulated niche, a heavy native-app requirement, a brand identity engagement — we will tell you and point you somewhere better rather than take the work and underdeliver.',
+	},
+];
 ---
 
-<Layout>
-  <Container>
-    <section class="page-shell">
-      <div class="title-block">
-        <p class="eyebrow">About us</p>
-        <h1>Linkly LLC</h1>
-      </div>
+<Layout
+	seo={{
+		title: 'About Linkly LLC',
+		description:
+			'Linkly LLC is a US-based custom web development studio building web platforms, AI automation and mobile apps under a written scope and a fixed price.',
+	}}
+>
+	<div class="container page-shell">
+		<header class="page-header">
+			<p class="eyebrow">About us</p>
+			<h1>Linkly LLC</h1>
+			<p class="page-header__lede">
+				We build modern, fast, and scalable web applications engineered to solve
+				complex business challenges and drive measurable growth. From system
+				design to full-stack implementation, we combine proven technology with
+				clear architecture and clean execution.
+			</p>
+		</header>
 
-      <div class="content-card">
-        <p>
-          At Linkly LLC, we build modern, fast, and scalable web applications
-          engineered to solve complex business challenges and drive measurable
-          growth. From system design to full-stack implementation, we combine
-          cutting-edge tech stacks with clear architecture and clean execution.
-        </p>
-        <p>
-          We help businesses turn ideas into secure, responsive, high-performing
-          digital experiences that are built to scale and designed for long-term
-          reliability.
-        </p>
-      </div>
-    </section>
-  </Container>
+		<div class="about-prose prose">
+			<p>
+				We help businesses turn ideas into secure, responsive, high-performing
+				digital experiences that are built to scale and designed for long-term
+				reliability. The work spans three areas: the web platform itself, the
+				APIs and infrastructure behind it, and the automation that removes the
+				manual work around it.
+			</p>
+			<p>
+				{site.name} is a <span class="about-prose__entity"
+					>[PLACEHOLDER: STATE OF FORMATION]</span
+				>
+				company. We work with clients across the United States remotely, and every
+				engagement is covered by a written agreement rather than a verbal arrangement.
+			</p>
+			<h2>How we work</h2>
+			<p>
+				The four commitments below are the ones we are willing to put in
+				writing. They are also the ones we would hold any other agency to.
+			</p>
+		</div>
+	</div>
+
+	<Section
+		class="principles"
+		eyebrow="How we work"
+		title="What you can hold us to"
+	>
+		<div class="card-grid">
+			{
+				principles.map(principle => (
+					<article class="card card-content">
+						<h3 class="card-content__title">{principle.title}</h3>
+						<p class="card-content__text">{principle.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</Section>
+
+	<section class="container cta-wrap">
+		<div class="cta-band">
+			<div>
+				<p class="eyebrow eyebrow--light">Next step</p>
+				<h2>Tell us what you are building</h2>
+			</div>
+			<Button href="/contact" variant="light">Start a conversation</Button>
+		</div>
+	</section>
 </Layout>
 
 <style>
-  .page-shell {
-    margin: var(--section-margin) auto;
-    max-width: 900px;
-  }
+	.about-prose {
+		padding-bottom: 0.5rem;
+	}
 
-  .title-block {
-    margin-bottom: 2rem;
-  }
+	.about-prose__entity {
+		font-weight: 600;
+	}
 
-  .eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--theme-accent);
-  }
+	.cta-wrap {
+		padding-block: clamp(2rem, 4vw, 3rem);
+	}
 
-  .content-card {
-    background: var(--theme-surface-2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--theme-shape-radius);
-    padding: 2rem;
-  }
+	.cta-band {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		border-radius: 24px;
+		background: linear-gradient(
+			135deg,
+			var(--color-gradient-from),
+			var(--color-gradient-to)
+		);
+		box-shadow: var(--shadow-soft);
+	}
 
-  .content-card p {
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
+	.eyebrow--light {
+		color: rgba(255, 255, 255, 0.9);
+	}
 
-  .content-card p:last-child {
-    margin-bottom: 0;
-  }
+	.cta-band h2 {
+		margin-bottom: 0;
+		color: #fff;
+	}
+
+	@media (max-width: 640px) {
+		.cta-band {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
 </style>

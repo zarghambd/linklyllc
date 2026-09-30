@@ -1,0 +1,14 @@
+---
+/**
+ * Emits a JSON-LD block. Pass a single object, or an array for @graph.
+ * Rendered as a plain script tag so it is indexable and needs no JS.
+ */
+export type Props = {
+	schema: Record<string, unknown> | Record<string, unknown>[];
+};
+
+const { schema } = Astro.props;
+const data = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={data} />

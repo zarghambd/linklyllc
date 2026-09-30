@@ -1,0 +1,541 @@
+---
+import { site } from '../config/site';
+import { projectTypes, budgetRanges } from '../data/form-options';
+
+export type Props = {
+	/** Heading shown above the form. */
+	heading?: string;
+	/** Id prefix so the form can be rendered more than once per page. */
+	idPrefix?: string;
+};
+
+const { heading = 'Tell us about your project', idPrefix = 'contact' } =
+	Astro.props;
+const uid = (name: string) => `${idPrefix}-${name}`;
+---
+
+<form
+	class="contact-form"
+	id={uid('form')}
+	name="project-inquiry"
+	method="POST"
+	action="/api/contact"
+	data-contact-form
+	novalidate
+>
+	<fieldset class="contact-form__fieldset">
+		<legend class="contact-form__legend">{heading}</legend>
+
+		<div class="contact-form__row">
+			<div class="contact-form__field">
+				<label for={uid('name')}>
+					Name <span class="contact-form__required" aria-hidden="true">*</span>
+				</label>
+				<input
+					type="text"
+					id={uid('name')}
+					name="name"
+					autocomplete="name"
+					required
+					maxlength="120"
+					aria-describedby={`${uid('name')}-error`}
+				/>
+				<p
+					class="contact-form__error"
+					id={`${uid('name')}-error`}
+					data-error-for="name"
+				>
+				</p>
+			</div>
+
+			<div class="contact-form__field">
+				<label for={uid('email')}>
+					Email <span class="contact-form__required" aria-hidden="true">*</span>
+				</label>
+				<input
+					type="email"
+					id={uid('email')}
+					name="email"
+					autocomplete="email"
+					inputmode="email"
+					required
+					maxlength="200"
+					aria-describedby={`${uid('email')}-error`}
+				/>
+				<p
+					class="contact-form__error"
+					id={`${uid('email')}-error`}
+					data-error-for="email"
+				>
+				</p>
+			</div>
+		</div>
+
+		<div class="contact-form__row">
+			<div class="contact-form__field">
+				<label for={uid('project-type')}>
+					Project type <span class="contact-form__required" aria-hidden="true"
+						>*</span
+					>
+				</label>
+				<select
+					id={uid('project-type')}
+					name="projectType"
+					required
+					aria-describedby={`${uid('projectType')}-error`}
+				>
+					<option value="">Please choose…</option>
+					{projectTypes.map(option => <option value={option}>{option}</option>)}
+				</select>
+				<p
+					class="contact-form__error"
+					id={`${uid('projectType')}-error`}
+					data-error-for="projectType"
+				>
+				</p>
+			</div>
+
+			<div class="contact-form__field">
+				<label for={uid('budget')}>
+					Budget range <span class="contact-form__required" aria-hidden="true"
+						>*</span
+					>
+				</label>
+				<select
+					id={uid('budget')}
+					name="budget"
+					required
+					aria-describedby={`${uid('budget')}-error`}
+				>
+					<option value="">Please choose…</option>
+					{budgetRanges.map(option => <option value={option}>{option}</option>)}
+				</select>
+				<p
+					class="contact-form__error"
+					id={`${uid('budget')}-error`}
+					data-error-for="budget"
+				>
+				</p>
+			</div>
+		</div>
+
+		<div class="contact-form__field">
+			<label for={uid('message')}>
+				Project details <span class="contact-form__required" aria-hidden="true"
+					>*</span
+				>
+			</label>
+			<textarea
+				id={uid('message')}
+				name="message"
+				rows="6"
+				required
+				minlength="20"
+				maxlength="5000"
+				aria-describedby={`${uid('message')}-hint ${uid('message')}-error`}
+			></textarea>
+			<p class="contact-form__hint" id={`${uid('message')}-hint`}>
+				What you are building, who it is for, and any deadlines you are working
+				to.
+			</p>
+			<p
+				class="contact-form__error"
+				id={`${uid('message')}-error`}
+				data-error-for="message"
+			>
+			</p>
+		</div>
+
+		{
+			/*
+			Honeypot. Real people never see it (it is moved off-screen and hidden
+			from assistive tech), so a value here means an automated submission.
+			The server treats any filled value as spam and discards it silently
+			so the sender is not told the form was rejected.
+		*/
+		}
+		<div class="contact-form__honeypot" aria-hidden="true">
+			<label for={uid('company-website')}>Company website</label>
+			<input
+				type="text"
+				id={uid('company-website')}
+				name="company_website"
+				tabindex="-1"
+				autocomplete="off"
+			/>
+		</div>
+
+		{
+			/* Time trap: a form completed faster than this was submitted by a bot.
+		    Filled in on load by the script below, so a static build cannot ship
+		    a stale build timestamp. Empty when JS is off, and the server then
+		    skips the check rather than rejecting the submission. */
+		}
+		<input type="hidden" name="rendered_at" value="" data-rendered-at />
+
+		<div class="contact-form__consent">
+			<label for={uid('consent')}>
+				<input
+					type="checkbox"
+					id={uid('consent')}
+					name="consent"
+					value="yes"
+					required
+					aria-describedby={`${uid('consent')}-error`}
+				/>
+				<span>
+					I agree that {site.name} may store the details above in order to respond
+					to my inquiry, as described in the
+					<a href="/privacy-policy">Privacy Policy</a>. Required fields are
+					marked with <span class="contact-form__required" aria-hidden="true"
+						>*</span
+					>.
+				</span>
+			</label>
+			<p
+				class="contact-form__error"
+				id={`${uid('consent')}-error`}
+				data-error-for="consent"
+			>
+			</p>
+		</div>
+
+		<div class="contact-form__actions">
+			<button type="submit" class="btn btn--primary" data-submit>
+				<span data-submit-label>Send message</span>
+			</button>
+			<p
+				class="contact-form__status"
+				role="status"
+				aria-live="polite"
+				data-status
+			>
+			</p>
+		</div>
+	</fieldset>
+</form>
+
+<style>
+	.contact-form {
+		width: 100%;
+	}
+
+	.contact-form__fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1.5rem;
+		min-width: 0;
+	}
+
+	.contact-form__legend {
+		padding: 0;
+		margin-bottom: 0.25rem;
+		font-family: var(--heading-font);
+		font-size: clamp(1.35rem, 2vw, 1.7rem);
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.contact-form__row {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+		gap: 1.25rem;
+	}
+
+	.contact-form__field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		min-width: 0;
+	}
+
+	.contact-form__field label {
+		font-size: 0.92rem;
+		font-weight: 600;
+	}
+
+	.contact-form__required {
+		color: #b42318;
+	}
+
+	:global([data-theme='dark']) .contact-form__required {
+		color: #ff9a8f;
+	}
+
+	.contact-form__field input,
+	.contact-form__field select,
+	.contact-form__field textarea {
+		width: 100%;
+		padding: 0.75rem 0.9rem;
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius-sm);
+		background: var(--theme-bg);
+		color: var(--theme-on-bg);
+		font: inherit;
+		font-size: 1rem;
+	}
+
+	.contact-form__field textarea {
+		resize: vertical;
+		min-height: 8rem;
+	}
+
+	.contact-form__field input:hover,
+	.contact-form__field select:hover,
+	.contact-form__field textarea:hover {
+		border-color: var(--color-brand-ink);
+	}
+
+	/* Focus is handled by the global :focus-visible ring; drop the default
+	   outline here so the two do not double up. */
+	.contact-form__field input:focus,
+	.contact-form__field select:focus,
+	.contact-form__field textarea:focus {
+		outline: 3px solid var(--color-brand-ink);
+		outline-offset: 1px;
+		border-color: var(--color-brand-ink);
+	}
+
+	.contact-form__field [aria-invalid='true'] {
+		border-color: #b42318;
+	}
+
+	.contact-form__hint {
+		margin: 0;
+		font-size: 0.85rem;
+		color: var(--theme-muted);
+	}
+
+	.contact-form__error {
+		margin: 0;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #b42318;
+		min-height: 0;
+	}
+
+	.contact-form__error:empty {
+		display: none;
+	}
+
+	:global([data-theme='dark']) .contact-form__error {
+		color: #ff9a8f;
+	}
+
+	/* Off-screen but still in the accessibility tree is the wrong tradeoff for
+	   a honeypot: it must be unreachable by both people and bots. */
+	.contact-form__honeypot {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.contact-form__consent label {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.7rem;
+		align-items: start;
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: var(--theme-muted);
+		cursor: pointer;
+	}
+
+	.contact-form__consent input {
+		width: 1.1rem;
+		height: 1.1rem;
+		margin-top: 0.2rem;
+		accent-color: var(--color-brand);
+		flex-shrink: 0;
+	}
+
+	.contact-form__consent a {
+		color: var(--color-brand-ink);
+		text-decoration: underline;
+		text-underline-offset: 0.18em;
+	}
+
+	.contact-form__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.contact-form__status {
+		margin: 0;
+		font-weight: 600;
+	}
+
+	.contact-form__status[data-state='success'] {
+		color: #067647;
+	}
+
+	.contact-form__status[data-state='error'] {
+		color: #b42318;
+	}
+
+	:global([data-theme='dark']) .contact-form__status[data-state='success'] {
+		color: #47cd89;
+	}
+
+	:global([data-theme='dark']) .contact-form__status[data-state='error'] {
+		color: #ff9a8f;
+	}
+
+	.contact-form[data-state='submitting'] [data-submit] {
+		opacity: 0.65;
+		cursor: progress;
+	}
+</style>
+
+<script>
+	const forms = document.querySelectorAll<HTMLFormElement>(
+		'[data-contact-form]',
+	);
+
+	const MESSAGES: Record<string, string> = {
+		name: 'Please tell us your name.',
+		email: 'Please enter a valid email address so we can reply.',
+		projectType: 'Please choose a project type.',
+		budget: 'Please choose a budget range.',
+		message: 'Please add a little more detail (at least 20 characters).',
+		consent: 'Please accept the privacy notice so we can respond.',
+	};
+
+	function showError(form: HTMLFormElement, field: string, message?: string) {
+		const target = form.querySelector<HTMLElement>(
+			`[data-error-for="${field}"]`,
+		);
+		const control = form.elements.namedItem(field);
+		if (!target || !(control instanceof HTMLElement)) return;
+		target.textContent =
+			message ?? MESSAGES[field] ?? 'Please check this field.';
+		control.setAttribute('aria-invalid', 'true');
+	}
+
+	function clearError(form: HTMLFormElement, field: string) {
+		const target = form.querySelector<HTMLElement>(
+			`[data-error-for="${field}"]`,
+		);
+		const control = form.elements.namedItem(field);
+		if (target) target.textContent = '';
+		if (control instanceof HTMLElement) control.removeAttribute('aria-invalid');
+	}
+
+	// Progressive enhancement: validate in the browser for fast feedback, but
+	// the API route re-validates everything server-side. This is a
+	// convenience, never the control.
+	function validate(form: HTMLFormElement): string[] {
+		const invalid: string[] = [];
+		const data = new FormData(form);
+
+		const name = String(data.get('name') ?? '').trim();
+		if (name.length < 2) invalid.push('name');
+
+		const email = String(data.get('email') ?? '').trim();
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) invalid.push('email');
+
+		if (!String(data.get('projectType') ?? '').trim())
+			invalid.push('projectType');
+		if (!String(data.get('budget') ?? '').trim()) invalid.push('budget');
+
+		const message = String(data.get('message') ?? '').trim();
+		if (message.length < 20) invalid.push('message');
+
+		if (data.get('consent') !== 'yes') invalid.push('consent');
+
+		return invalid;
+	}
+
+	forms.forEach(form => {
+		const status = form.querySelector<HTMLElement>('[data-status]');
+		const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+		const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]');
+		const renderedAt =
+			form.querySelector<HTMLInputElement>('[data-rendered-at]');
+
+		// Stamp the render time for the server-side minimum-fill-time check.
+		if (renderedAt) renderedAt.value = String(Date.now());
+
+		form.addEventListener('input', event => {
+			const target = event.target;
+			if (
+				target instanceof HTMLElement &&
+				target.getAttribute('aria-invalid') === 'true'
+			) {
+				const name = target.getAttribute('name');
+				if (name) clearError(form, name);
+			}
+		});
+
+		form.addEventListener('submit', async event => {
+			event.preventDefault();
+			if (!status || !submit || !submitLabel) return;
+
+			['name', 'email', 'projectType', 'budget', 'message', 'consent'].forEach(
+				field => clearError(form, field),
+			);
+
+			const invalid = validate(form);
+			if (invalid.length > 0) {
+				invalid.forEach(field => showError(form, field));
+				const first = form.querySelector<HTMLElement>(`[name="${invalid[0]}"]`);
+				first?.focus();
+				status.dataset.state = 'error';
+				status.textContent = 'Please fix the highlighted fields and try again.';
+				return;
+			}
+
+			form.dataset.state = 'submitting';
+			submit.disabled = true;
+			submitLabel.textContent = 'Sending…';
+			status.dataset.state = '';
+			status.textContent = '';
+
+			try {
+				const response = await fetch(form.action, {
+					method: 'POST',
+					body: new FormData(form),
+					headers: { Accept: 'application/json' },
+				});
+				const result = await response.json().catch(() => ({}));
+
+				if (response.ok) {
+					form.reset();
+					form.dataset.state = 'success';
+					status.dataset.state = 'success';
+					status.textContent =
+						result.message ??
+						'Thanks — your message is on its way. We reply to every inquiry within one business day.';
+				} else {
+					if (result.errors && typeof result.errors === 'object') {
+						for (const [field, message] of Object.entries(
+							result.errors as Record<string, string>,
+						)) {
+							showError(form, field, message);
+						}
+					}
+					form.dataset.state = 'error';
+					status.dataset.state = 'error';
+					status.textContent =
+						result.message ??
+						'Something went wrong and your message was not sent. Please email us directly.';
+				}
+			} catch {
+				form.dataset.state = 'error';
+				status.dataset.state = 'error';
+				status.textContent =
+					'We could not reach the server. Check your connection, or email us directly.';
+			} finally {
+				form.dataset.state = '';
+				submit.disabled = false;
+				submitLabel.textContent = 'Send message';
+			}
+		});
+	});
+</script>

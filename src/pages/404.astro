@@ -1,41 +1,142 @@
 ---
-import { Button, Container, TextCardSection } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
+import Button from '../components/Button.astro';
 
-const seo = {
-	title: 'Get Started using the Astro Odyssey Theme',
-	description: 'Get started on how to setup and use this Astro theme.',
-};
+const destinations = [
+	{
+		title: 'Services',
+		href: '/services',
+		detail: 'What we build, and how each engagement is scoped and priced.',
+	},
+	{
+		title: 'Our work',
+		href: '/work',
+		detail: 'Selected web, AI and mobile projects.',
+	},
+	{
+		title: 'Technology stack',
+		href: '/stack',
+		detail: 'The tools we build with, and when we use each one.',
+	},
+	{ title: 'Contact', href: '/contact', detail: 'Tell us about your project.' },
+];
 ---
 
-<Layout {seo}>
-	<Container>
-		<TextCardSection>
-			<h1>404</h1>
-			<h2>Page Not Found 👀</h2>
-			<div class="cta-buttons__container">
-				<Button href="/">Return Home</Button>
+<Layout
+	seo={{
+		title: 'Page Not Found (404)',
+		description:
+			'That page does not exist on linklyllc.com. Here are the pages you were probably looking for.',
+		index: false,
+	}}
+>
+	<div class="container page-shell">
+		<header class="notfound">
+			<p class="notfound__code" aria-hidden="true">404</p>
+			<h1 class="notfound__title">We could not find that page</h1>
+			<p class="page-header__lede">
+				The link may be out of date, or the address may have a typo. Nothing is
+				broken on your end. Try one of the links below, or search from the home
+				page.
+			</p>
+			<div class="notfound__actions">
+				<Button href="/" variant="primary">Go to the home page</Button>
+				<Button href="/contact" variant="secondary">Report a broken link</Button
+				>
 			</div>
-		</TextCardSection>
-	</Container>
+		</header>
+
+		<nav class="notfound__nav" aria-labelledby="notfound-nav-heading">
+			<h2 class="notfound__nav-title" id="notfound-nav-heading">
+				Pages you might be looking for
+			</h2>
+			<ul class="notfound__list">
+				{
+					destinations.map(item => (
+						<li class="card card-content notfound__item">
+							<h3 class="card-content__title">
+								<a class="notfound__link" href={item.href}>
+									{item.title}
+								</a>
+							</h3>
+							<p class="card-content__text">{item.detail}</p>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
 </Layout>
 
 <style>
-	.cta-buttons__container {
+	.notfound {
+		max-width: 44rem;
+		margin-bottom: clamp(2.5rem, 5vw, 4rem);
+	}
+
+	.notfound__code {
+		margin: 0 0 0.5rem;
+		font-family: var(--heading-font);
+		font-size: clamp(4rem, 14vw, 8rem);
+		font-weight: 800;
+		line-height: 0.9;
+		letter-spacing: -0.04em;
+		background: linear-gradient(
+			135deg,
+			var(--color-brand-ink),
+			var(--color-brand-2)
+		);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.notfound__title {
+		margin-bottom: 0.85rem;
+	}
+
+	.notfound__actions {
 		display: flex;
 		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2rem;
 	}
-	.cta-buttons__container :global(a) {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
+
+	.notfound__nav-title {
+		font-size: 1.1rem;
+		margin-bottom: 1.5rem;
 	}
-	.code-buttons__container {
-		margin: 1rem auto;
-		display: flex;
-		flex-wrap: wrap;
+
+	.notfound__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 	}
-	.code-buttons__container > a {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
+
+	.notfound__item {
+		gap: 0.5rem;
+	}
+
+	.notfound__link {
+		color: inherit;
+	}
+
+	.notfound__link:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	@media (max-width: 520px) {
+		.notfound__actions {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.notfound__actions :global(.btn) {
+			width: 100%;
+		}
 	}
 </style>

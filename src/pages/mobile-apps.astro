@@ -1,208 +1,249 @@
 ---
-import { Container } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+
+const capabilities = [
+	{
+		title: 'Cross-platform mobile applications',
+		description:
+			'Single-codebase apps engineered to run on both iOS and Android. One product, one codebase to maintain, and the platform look and feel preserved where it matters.',
+	},
+	{
+		title: 'Consumer apps and digital products',
+		description:
+			'Interfaces designed with retention in mind: real-time messaging, push notifications, offline storage, biometrics and secure payment integration.',
+	},
+	{
+		title: 'Enterprise mobile solutions',
+		description:
+			'Secure tools for field staff, remote teams and operational management — custom dashboards, field data collection and productivity suites connected to your core backend.',
+	},
+	{
+		title: 'App modernization and refactoring',
+		description:
+			'Updating legacy applications to a current architecture: interface responsiveness, memory management, and outdated third-party dependencies that now block store submission.',
+	},
+];
+
+const technologies = [
+	{
+		name: 'React Native',
+		role: 'JavaScript and TypeScript',
+		description:
+			'Native UI components with fast iteration, a large ecosystem, and the option to share logic with an existing web codebase. Our default choice when you already have a React team.',
+	},
+	{
+		name: 'Flutter',
+		role: 'Dart',
+		description:
+			'Consistent rendering across screen sizes and platforms, with strong custom widget support. Worth the Dart learning curve when visual consistency matters more than sharing code with the web.',
+	},
+];
+
+const process = [
+	{
+		title: 'Touch-first prototyping',
+		description:
+			'Wireframes and interactive prototypes built to the Apple Human Interface Guidelines and Material Design, tested on real devices before a line of app code is written.',
+	},
+	{
+		title: 'Cross-platform engineering',
+		description:
+			'Modular React Native or Flutter code with offline-first synchronisation and predictable state management.',
+	},
+	{
+		title: 'Device feature integration',
+		description:
+			'Camera, GPS, Bluetooth, biometric authentication, push notifications and local storage, integrated against the native platform APIs.',
+	},
+	{
+		title: 'Quality assurance',
+		description:
+			'Tested across physical devices, form factors, screen densities, OS versions and degraded network conditions — not just emulators.',
+	},
+	{
+		title: 'Store submission and support',
+		description:
+			'We handle signing, compliance review and submission to the App Store and Google Play, and stay on for post-launch updates.',
+	},
+];
 ---
 
-<Layout>
-  <Container>
-    <section class="page-shell">
-      <div class="title-block">
-        <p class="eyebrow">Mobile App Development Services</p>
-        <h1>Mobile App Development Services</h1>
-      </div>
+<Layout
+	seo={{
+		title: 'Mobile App Development for iOS and Android',
+		description:
+			'Linkly LLC builds cross-platform iOS and Android apps with React Native and Flutter, from prototype through store submission and post-launch support.',
+	}}
+>
+	<div class="container page-shell">
+		<header class="page-header">
+			<p class="eyebrow">Mobile services</p>
+			<h1>Mobile App Development Services</h1>
+			<p class="page-header__lede">
+				We craft high-performing, cross-platform mobile applications for iOS and
+				Android that deliver a native-grade experience. Using modern
+				cross-platform frameworks, we help you launch feature-rich mobile
+				products faster without sacrificing performance or design quality.
+			</p>
+		</header>
+	</div>
 
-      <p class="lead">
-        At <strong>Linkly LLC</strong>, we craft high-performing, cross-platform
-        mobile applications for iOS and Android that deliver native-grade
-        experiences. By leveraging modern cross-platform frameworks, we help you
-        launch feature-rich mobile products faster, reducing time-to-market and
-        development costs without sacrificing performance or design.
-      </p>
+	<Section
+		id="what-we-build"
+		class="capabilities"
+		eyebrow="What we build"
+		title="Mobile work we take on"
+	>
+		<div class="card-grid">
+			{
+				capabilities.map(item => (
+					<article class="card card-content">
+						<h2 class="card-content__title">{item.title}</h2>
+						<p class="card-content__text">{item.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</Section>
 
-      <div class="section-block">
-        <h2>What We Build</h2>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>1. Cross-Platform Mobile Applications</h3>
-            <p>
-              Single-codebase mobile apps engineered to run seamlessly across both
-              iOS and Android platforms. Enjoy full native device functionality,
-              identical performance, and streamlined long-term codebase
-              maintenance.
-            </p>
-          </article>
+	<Section
+		id="core-technologies"
+		class="technologies"
+		eyebrow="Core technologies"
+		title="How it is built"
+	>
+		<div class="card-grid">
+			{
+				technologies.map(item => (
+					<article class="card card-content">
+						<p class="tech-card__role">{item.role}</p>
+						<h2 class="card-content__title">{item.name}</h2>
+						<p class="card-content__text">{item.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</Section>
 
-          <article class="service-card">
-            <h3>2. Consumer Apps &amp; Digital Products</h3>
-            <p>
-              Engaging, intuitive mobile experiences designed with consumer
-              retention in mind. We build feature-packed mobile solutions
-              incorporating real-time messaging, push notifications, offline
-              storage, biometrics, and secure payment integrations.
-            </p>
-          </article>
+	<Section
+		id="process"
+		class="process"
+		eyebrow="How we deliver"
+		title="Our mobile engineering process"
+	>
+		<ol class="process-list">
+			{
+				process.map((step, index) => (
+					<li class="card card-content">
+						<span class="process-list__step" aria-hidden="true">
+							{index + 1}
+						</span>
+						<div class="process-list__body">
+							<h3 class="card-content__title">{step.title}</h3>
+							<p class="card-content__text">{step.description}</p>
+						</div>
+					</li>
+				))
+			}
+		</ol>
+	</Section>
 
-          <article class="service-card">
-            <h3>3. Enterprise Mobile Solutions</h3>
-            <p>
-              Secure mobile tools built for field staff, remote teams, and
-              enterprise operational management. We build custom dashboards, field
-              data collection applications, and employee productivity suites linked
-              directly to your core backend.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <h3>4. App Modernization &amp; Refactoring</h3>
-            <p>
-              Update outdated legacy mobile applications to contemporary cross-platform
-              architectures. We improve UI responsiveness, fix underlying memory leaks,
-              and upgrade third-party API dependencies for seamless app store compliance.
-            </p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-block">
-        <h2>Core Technologies</h2>
-        <div class="tech-grid">
-          <article class="tech-card">
-            <h3>React Native</h3>
-            <p>
-              JavaScript Mobile Framework — Native UI components, fast feature
-              iteration, massive community ecosystem, and shared web/mobile logic.
-            </p>
-          </article>
-
-          <article class="tech-card">
-            <h3>Flutter</h3>
-            <p>
-              Dart Multi-Platform Engine — High-performance graphics rendering,
-              flexible custom UI widgets, consistent visual fidelity across all
-              screen sizes, and native execution speed.
-            </p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-block">
-        <h2>How We Deliver: Our Mobile Engineering Process</h2>
-        <ol class="process-list">
-          <li>
-            <strong>UX/UI Mobile Prototyping</strong>
-            <p>
-              We design touch-first wireframes and interactive prototypes aligned
-              with Apple Human Interface Guidelines and Google Material Design
-              standardizations.
-            </p>
-          </li>
-          <li>
-            <strong>Cross-Platform Engineering</strong>
-            <p>
-              We write clean, modular React Native or Flutter codebases backed by
-              offline-first data synchronization and robust state management.
-            </p>
-          </li>
-          <li>
-            <strong>Device Feature Integration</strong>
-            <p>
-              We tap into native hardware APIs including camera modules, GPS,
-              Bluetooth, biometric authentication, push notification engines, and
-              local storage.
-            </p>
-          </li>
-          <li>
-            <strong>Quality Assurance &amp; Device Testing</strong>
-            <p>
-              Comprehensive testing across physical smartphones, tablets, screen
-              resolutions, OS versions, and varying network speeds.
-            </p>
-          </li>
-          <li>
-            <strong>App Store Deployment &amp; Support</strong>
-            <p>
-              We manage the entire submission process for the Apple App Store and
-              Google Play Store, handling compliance reviews, signing
-              certificates, and post-launch updates.
-            </p>
-          </li>
-        </ol>
-      </div>
-    </section>
-  </Container>
+	<section class="container cta-wrap">
+		<div class="cta-band">
+			<div>
+				<p class="eyebrow eyebrow--light">Next step</p>
+				<h2>Scope your app before you commit</h2>
+			</div>
+			<Button href="/contact" variant="light">Start a project</Button>
+		</div>
+	</section>
 </Layout>
 
 <style>
-  .page-shell {
-    margin: var(--section-margin) auto;
-    max-width: 1100px;
-  }
+	.tech-card__role {
+		order: -1;
+		margin: 0 0 0.35rem;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-brand-ink);
+	}
 
-  .title-block {
-    margin-bottom: 2rem;
-  }
+	.tech-card__role + :global(.card-content__title) {
+		margin-bottom: 0;
+	}
 
-  .eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--theme-accent);
-  }
+	.process-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
 
-  .lead {
-    font-size: 1.08rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
+	.process-list__body {
+		min-width: 0;
+	}
 
-  .section-block {
-    margin-top: 2.5rem;
-  }
+	.process-list__step {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 999px;
+		background: linear-gradient(
+			135deg,
+			var(--color-gradient-from),
+			var(--color-gradient-to)
+		);
+		color: #fff;
+		font-family: var(--heading-font);
+		font-weight: 800;
+		font-size: 0.95rem;
+	}
 
-  .service-grid,
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 1.5rem;
-  }
+	.process-list li {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 1rem;
+	}
 
-  .service-card,
-  .tech-card {
-    background: var(--theme-surface-2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--theme-shape-radius);
-    padding: 28px;
-    min-width: 0;
-  }
+	.cta-wrap {
+		padding-block: clamp(2rem, 4vw, 3rem);
+	}
 
-  .service-card h3,
-  .tech-card h3 {
-    margin-top: 0;
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-  }
+	.cta-band {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		border-radius: 24px;
+		background: linear-gradient(
+			135deg,
+			var(--color-gradient-from),
+			var(--color-gradient-to)
+		);
+		box-shadow: var(--shadow-soft);
+	}
 
-  .service-card p,
-  .tech-card p,
-  .process-list p {
-    font-size: 0.98rem;
-    line-height: 1.65;
-  }
+	.eyebrow--light {
+		color: rgba(255, 255, 255, 0.9);
+	}
 
-  .process-list {
-    padding-left: 1.25rem;
-    margin: 1rem 0 0;
-  }
+	.cta-band h2 {
+		margin-bottom: 0;
+		color: #fff;
+	}
 
-  .process-list li + li {
-    margin-top: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .service-grid,
-    .tech-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+	@media (max-width: 640px) {
+		.cta-band {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
 </style>

@@ -1,0 +1,66 @@
+---
+import settings from '../../config/settings.js';
+import { site } from '../../config/site';
+
+export interface Props {
+	title?: string;
+	description?: string;
+	/** Overrides the canonical URL. Defaults to the current path on `site.url`. */
+	canonicalURL?: string;
+	/** Path or absolute URL of the social sharing image. */
+	image?: string;
+	/** `article` for blog posts, `website` for everything else. */
+	type?: 'website' | 'article';
+	/** Set to false on pages that should not be indexed. */
+	index?: boolean;
+	/** Twitter handle for the site, e.g. "@linklyllc". Omitted when unset. */
+	twitterHandle?: string;
+}
+
+const {
+	title,
+	description,
+	canonicalURL,
+	image,
+	type = 'website',
+	index = true,
+	twitterHandle,
+} = Astro.props;
+
+// `title` is the per-page value; the site name is appended unless the page
+// already names the brand, so the SERP line reads "Page | Linkly LLC".
+const pageTitle = title ?? settings.title;
+const fullTitle = pageTitle.includes(site.name)
+	? pageTitle
+	: `${pageTitle} | ${site.name}`;
+
+const metaDescription = description ?? settings.description;
+
+const origin = Astro.site ?? new URL(site.url);
+const canonical = canonicalURL ?? new URL(Astro.url.pathname, origin).href;
+const socialImage = new URL(image ?? '/og-image.png', origin).href;
+---
+
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={metaDescription} />
+<link rel="canonical" href={canonical} />
+{!index && <meta name="robots" content="noindex, nofollow" />}
+{index && <meta name="robots" content="index, follow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={metaDescription} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${site.name} — ${site.tagline}`} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={metaDescription} />
+<meta name="twitter:image" content={socialImage} />
+{twitterHandle && <meta name="twitter:site" content={twitterHandle} />}

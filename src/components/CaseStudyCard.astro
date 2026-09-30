@@ -1,0 +1,156 @@
+---
+import type { CaseStudy } from '../data/case-studies';
+
+export type Props = { study: CaseStudy };
+
+const { study } = Astro.props;
+---
+
+<article class="card card-content case-study">
+	<header class="case-study__header">
+		<p class="case-study__sector">{study.sector}</p>
+		<h3 class="card-content__title">{study.client}</h3>
+		{
+			!study.published && (
+				<p class="case-study__badge">
+					<span class="sr-only">Status: </span>
+					Placeholder — awaiting a verified engagement
+				</p>
+			)
+		}
+	</header>
+
+	<p class="card-content__text">{study.summary}</p>
+
+	{
+		study.results && study.results.length > 0 && (
+			<dl class="case-study__results">
+				{study.results.map(result => (
+					<div class="case-study__result">
+						<dt>{result.label}</dt>
+						<dd>{result.value}</dd>
+					</div>
+				))}
+			</dl>
+		)
+	}
+
+	<h4 class="case-study__subhead">Scope</h4>
+	<ul class="case-study__scope">
+		{study.scope.map(item => <li>{item}</li>)}
+	</ul>
+
+	<div class="card-content__footer">
+		<ul class="case-study__stack" aria-label="Technology used">
+			{study.stack.map(tech => <li class="case-study__tech">{tech}</li>)}
+		</ul>
+	</div>
+</article>
+
+<style>
+	.case-study {
+		gap: 1rem;
+	}
+
+	.case-study__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.case-study__sector {
+		margin: 0;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-brand-ink);
+	}
+
+	.case-study__badge {
+		align-self: flex-start;
+		margin: 0.35rem 0 0;
+		padding: 0.3rem 0.65rem;
+		border-radius: 999px;
+		background: var(--theme-surface-2);
+		border: 1px solid var(--theme-border);
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--theme-muted);
+	}
+
+	.case-study__subhead {
+		margin: 0.5rem 0 0;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--theme-muted);
+	}
+
+	.case-study__scope {
+		margin: 0;
+		padding-left: 1.15rem;
+		display: grid;
+		gap: 0.35rem;
+		font-size: 0.94rem;
+		color: var(--theme-muted);
+	}
+
+	.case-study__scope li {
+		line-height: 1.6;
+	}
+
+	.case-study__results {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0.9rem 1rem;
+		border-radius: var(--border-radius-sm);
+		background: var(--theme-surface-2);
+	}
+
+	.case-study__result {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: 0.1rem;
+		margin: 0;
+	}
+
+	.case-study__result dd {
+		margin: 0;
+		font-family: var(--heading-font);
+		font-size: 1.35rem;
+		font-weight: 800;
+		line-height: 1.1;
+	}
+
+	.case-study__result dt {
+		font-size: 0.8rem;
+		color: var(--theme-muted);
+	}
+
+	.case-study__stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.case-study__tech {
+		padding: 0.3rem 0.65rem;
+		border-radius: 999px;
+		border: 1px solid var(--theme-border);
+		background: var(--theme-surface-1);
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: var(--theme-muted);
+	}
+
+	.case-study__header :global(.card-content__title) {
+		margin-bottom: 0;
+	}
+</style>

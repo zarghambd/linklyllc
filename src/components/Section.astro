@@ -1,15 +1,69 @@
 ---
-const { eyebrow, title, class: className = '' } = Astro.props;
+export type Props = {
+	eyebrow?: string;
+	title?: string;
+	/** Supporting sentence rendered under the title. */
+	lead?: string;
+	id?: string;
+	/** Heading level for the section title, to keep the document outline valid. */
+	level?: 1 | 2 | 3;
+	class?: string;
+};
+
+const {
+	eyebrow,
+	title,
+	lead,
+	id,
+	level = 2,
+	class: className = '',
+} = Astro.props;
+const titleId = `${id ?? className}-heading`;
 ---
 
-<section class:list={['section-shell', className]}>
-  <div class="container">
-    {(eyebrow || title) && (
-      <header class="section-header">
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {title && <h2>{title}</h2>}
-      </header>
-    )}
-    <slot />
-  </div>
+<section
+	class:list={['section-shell', className]}
+	id={id}
+	aria-labelledby={title ? titleId : undefined}
+>
+	<div class="container">
+		{
+			(eyebrow || title) && (
+				<header class="section-header">
+					{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+					{level === 1 && title && (
+						<h1 class="section-header__title" id={titleId}>
+							{title}
+						</h1>
+					)}
+					{level === 2 && title && (
+						<h2 class="section-header__title" id={titleId}>
+							{title}
+						</h2>
+					)}
+					{level === 3 && title && (
+						<h3 class="section-header__title" id={titleId}>
+							{title}
+						</h3>
+					)}
+					{lead && <p class="section-header__lead">{lead}</p>}
+				</header>
+			)
+		}
+		<slot />
+	</div>
 </section>
+
+<style>
+	.section-header__title {
+		margin-bottom: 0;
+	}
+
+	.section-header__lead {
+		max-width: 62ch;
+		margin-top: 1rem;
+		color: var(--theme-muted);
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+</style>

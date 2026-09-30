@@ -1,0 +1,113 @@
+---
+import type { Service, Reason } from '../data/services';
+
+export type Props = {
+	/** Renders a service card that links through to its detailed page. */
+	service?: Service;
+	/** Renders a plain reason card with no outbound link. */
+	reason?: Reason;
+	/** Hides the icon slot when there is nothing meaningful to show. */
+	showIcon?: boolean;
+};
+
+const { service, reason, showIcon = true } = Astro.props;
+const icon = service?.icon ?? reason?.icon;
+const title = service?.title ?? reason?.title;
+const description = service?.description ?? reason?.description;
+
+/** In-page anchor target, e.g. "/services#headless-cms" -> "headless-cms". */
+const anchorId = service?.slug.includes('#')
+	? service.slug.split('#')[1]
+	: undefined;
+---
+
+<article class="card card-content" id={anchorId}>
+	{showIcon && icon && <div class="card-content__icon" set:html={icon} />}
+	<h3 class="card-content__title">
+		{
+			service?.slug ? (
+				<a class="card-content__link" href={service.slug}>
+					{title}
+				</a>
+			) : (
+				title
+			)
+		}
+	</h3>
+	<p class="card-content__text">{description}</p>
+	{
+		service?.slug && (
+			<p class="card-content__footer">
+				<span class="card-content__cta" aria-hidden="true">
+					Learn more
+				</span>
+			</p>
+		)
+	}
+</article>
+
+<style>
+	.card {
+		transition:
+			transform var(--transition),
+			border-color var(--transition),
+			box-shadow var(--transition);
+	}
+
+	.card:hover {
+		transform: translateY(-4px);
+		border-color: var(--color-brand-ink);
+		box-shadow: var(--shadow-soft);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.card:hover {
+			transform: none;
+		}
+	}
+
+	/* The whole card is not clickable, so only the title is a link. The ::after
+	   overlay extends that hit area over the card while keeping one tab stop
+	   and one accessible name. */
+	.card-content__link {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.card:has(.card-content__link) {
+		position: relative;
+	}
+
+	.card:has(.card-content__link) .card-content__link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+	}
+
+	.card-content__link:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	/* :focus-visible lands on the inner <a>; move the ring onto the card. */
+	.card:has(.card-content__link) :focus-visible {
+		outline: none;
+	}
+
+	.card:has(.card-content__link) .card-content__link:focus-visible::after {
+		outline: 3px solid var(--color-brand-ink);
+		outline-offset: 3px;
+	}
+
+	.card-content__cta {
+		display: inline-block;
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: var(--color-brand-ink);
+	}
+
+	.card-content__footer {
+		margin: 0;
+	}
+</style>

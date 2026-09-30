@@ -24,5 +24,5 @@ export type Testimonial = {
  * Do not add an entry you have not verified with the client.
  */
 export const testimonials: Testimonial[] = [
-	// [PLACEHOLDER: no verified client testimonials yet — section is hidden until this array is populated]
+	// [PLACEHOLDER: no verified client testimonials yet — the section is hidden until this array is populated]
 ];

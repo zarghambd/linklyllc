@@ -1,0 +1,77 @@
+---
+import { testimonials } from '../data/testimonials';
+---
+
+{
+	/* The whole section is skipped when there is nothing verified to show, so
+	   a placeholder quote can never render. See src/data/testimonials.ts. */
+	testimonials.length > 0 && (
+		<section
+			class="container testimonial-wrap"
+			aria-labelledby="testimonials-heading"
+		>
+			<div class="testimonial-grid">
+				{testimonials.map(item => (
+					<figure class="testimonial-card card">
+						<div class="card-content">
+							<blockquote class="testimonial-card__quote">
+								<p>{item.quote}</p>
+							</blockquote>
+							<figcaption class="testimonial-card__meta">
+								<span class="testimonial-card__name">{item.name}</span>
+								<span class="testimonial-card__role">{item.role}</span>
+							</figcaption>
+						</div>
+					</figure>
+				))}
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.testimonial-wrap {
+		padding-block: clamp(1rem, 3vw, 2rem);
+	}
+
+	.testimonial-grid {
+		display: grid;
+		gap: clamp(1.25rem, 2.5vw, 1.75rem);
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+	}
+
+	.testimonial-card {
+		margin: 0;
+	}
+
+	.testimonial-card__quote {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-family: var(--heading-font);
+		font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+		font-weight: 600;
+		line-height: 1.55;
+		font-style: normal;
+		color: var(--theme-on-bg);
+		text-wrap: pretty;
+	}
+
+	.testimonial-card__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		margin-top: auto;
+		padding-top: 0.25rem;
+		font-size: 0.92rem;
+	}
+
+	.testimonial-card__name {
+		font-weight: 700;
+		color: var(--theme-on-bg);
+	}
+
+	.testimonial-card__role {
+		color: var(--theme-muted);
+	}
+</style>

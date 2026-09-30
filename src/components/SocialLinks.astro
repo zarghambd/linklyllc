@@ -1,0 +1,76 @@
+---
+import { Icon } from 'astro-icon/components';
+import { socialsWithUrls } from '../config/site';
+
+export type Props = {
+	/** Rendered as the list's accessible name, e.g. "Social media". */
+	label?: string;
+	/** Extra class on the <ul>, for layout hooks. */
+	class?: string;
+};
+
+const { label = 'Social media', class: className } = Astro.props;
+---
+
+{
+	socialsWithUrls.length > 0 && (
+		<ul class:list={['social-list', className]} aria-label={label}>
+			{socialsWithUrls.map(social => (
+				<li>
+					<a
+						href={social.url}
+						target="_blank"
+						rel="noopener noreferrer me"
+						aria-label={social.label}
+						title={social.label}
+					>
+						<Icon
+							name={social.icon}
+							width={20}
+							height={20}
+							aria-hidden="true"
+						/>
+					</a>
+				</li>
+			))}
+		</ul>
+	)
+}
+
+<style>
+	.social-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+		margin: 1.5rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.social-list a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 999px;
+		background: rgba(109, 40, 217, 0.08);
+		border: 1px solid var(--theme-border);
+		color: var(--theme-on-bg);
+		transition:
+			color var(--transition),
+			border-color var(--transition),
+			background var(--transition);
+	}
+
+	.social-list a:hover {
+		color: var(--color-brand-ink);
+		border-color: var(--color-brand-ink);
+		background: rgba(109, 40, 217, 0.14);
+	}
+
+	.social-list :global(svg) {
+		width: 20px;
+		height: 20px;
+	}
+</style>

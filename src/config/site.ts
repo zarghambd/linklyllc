@@ -22,7 +22,8 @@ export const site = {
 	/** [PLACEHOLDER: confirm the production domain this will launch on] */
 	url: 'https://www.linklyllc.com',
 
-	tagline: 'Custom web development and product engineering for ambitious businesses.',
+	tagline:
+		'Custom web development and product engineering for ambitious businesses.',
 
 	email: 'hello@linklyllc.com',
 
@@ -69,7 +70,9 @@ export const site = {
 } as const;
 
 /** Social profiles that actually have a URL. Drives the footer icon row. */
-export const socialsWithUrls = site.socials.filter((social) => social.url.length > 0);
+export const socialsWithUrls = site.socials.filter(
+	social => social.url.length > 0,
+);
 
 /** True when a real phone number has been configured. */
 export const hasPhone = site.phone.length > 0;
@@ -80,4 +83,4 @@ export const addressLines = [
 	site.address.city,
 	[site.address.region, site.address.postalCode].filter(Boolean).join(' '),
 	site.address.country,
-].filter((line) => line.length > 0);
+].filter(line => line.length > 0);

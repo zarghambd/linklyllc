@@ -1,8 +1,21 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../public/linkly-logo.png';
 ---
 
 <div class="brand-mark">
-	<img src="/linkly%20logo.png" alt="Linkly LLC Logo" />
+	<Image
+		src={logo}
+		alt="Linkly LLC"
+		width={408}
+		height={153}
+		widths={[204, 306, 408]}
+		sizes="(min-width: 921px) 220px, 180px"
+		loading="eager"
+		fetchpriority="high"
+		decoding="async"
+		class="brand-mark__image"
+	/>
 </div>
 
 <style>
@@ -14,13 +27,14 @@
 		padding: 0.2rem 0;
 	}
 
-	img {
+	.brand-mark__image {
 		display: block;
-		width: clamp(220px, 20vw, 320px);
+		width: clamp(140px, 16vw, 220px);
 		height: auto;
-		max-height: 110px;
+		max-height: 56px;
 		flex-shrink: 0;
 		object-fit: contain;
-		border-radius: 12px;
+		object-position: left center;
+		border-radius: 8px;
 	}
 </style>

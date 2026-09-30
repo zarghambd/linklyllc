@@ -1,62 +1,201 @@
 ---
-import { Container } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Section from '../components/Section.astro';
+import { site, hasPhone } from '../config/site';
+
+const contactPoints = [
+	{
+		title: 'Email',
+		detail: site.email,
+		href: `mailto:${site.email}`,
+		note: 'We reply to every inquiry within one business day.',
+	},
+	...(hasPhone
+		? [
+				{
+					title: 'Phone',
+					detail: site.phone,
+					href: `tel:${site.phone}`,
+					note: 'Monday to Friday, US Eastern Time.',
+				},
+			]
+		: []),
+	{
+		title: 'Response time',
+		detail: 'Within one business day',
+		note: 'If your project is time-sensitive, say so in the message and we will prioritise it.',
+	},
+];
 ---
 
-<Layout>
-  <Container>
-    <section class="page-shell">
-      <div class="title-block">
-        <p class="eyebrow">Contact</p>
-        <h1>Contact Us</h1>
-      </div>
+<Layout
+	seo={{
+		title: 'Contact — Start a Project',
+		description:
+			'Tell Linkly LLC about your web, AI automation or mobile project. Share your scope, timeline and budget range and we will reply within one business day.',
+	}}
+>
+	<div class="container page-shell">
+		<header class="page-header">
+			<p class="eyebrow">Contact</p>
+			<h1>Start a project</h1>
+			<p class="page-header__lede">
+				Tell us what you are building, who it is for, and where you are in the
+				process. We read every inquiry ourselves and reply within one business
+				day — no sales sequence, no automated call centre.
+			</p>
+		</header>
 
-      <div class="contact-card">
-        <p>
-          Looking for a custom web solution? We’d love to hear about your project.
-        </p>
-        <ul>
-          <li>Email: hello@linklyllc.com</li>
-          <li>Phone: (800) 555-0199</li>
-        </ul>
-      </div>
-    </section>
-  </Container>
+		<div class="contact-layout">
+			<div class="contact-layout__form card">
+				<ContactForm />
+			</div>
+
+			<aside
+				class="contact-layout__aside"
+				aria-labelledby="contact-details-heading"
+			>
+				<h2 class="contact-aside__title" id="contact-details-heading">
+					Other ways to reach us
+				</h2>
+				<ul class="contact-aside__list">
+					{
+						contactPoints.map(point => (
+							<li class="contact-aside__item">
+								<p class="contact-aside__label">{point.title}</p>
+								{point.href ? (
+									<a class="contact-aside__value" href={point.href}>
+										{point.detail}
+									</a>
+								) : (
+									<p class="contact-aside__value">{point.detail}</p>
+								)}
+								<p class="contact-aside__note">{point.note}</p>
+							</li>
+						))
+					}
+				</ul>
+				<p class="contact-aside__note">
+					For anything involving payment details, contract terms or access to
+					your accounts, email us rather than using the form.
+				</p>
+			</aside>
+		</div>
+	</div>
+
+	<Section class="faq" eyebrow="Before you write" title="What happens next">
+		<ol class="faq-list">
+			<li class="card card-content">
+				<h3 class="card-content__title">1. We read the details</h3>
+				<p class="card-content__text">
+					Your scope, timeline and budget range go straight to the people who
+					would do the work. Nothing is forwarded to a third party or added to a
+					mailing list.
+				</p>
+			</li>
+			<li class="card card-content">
+				<h3 class="card-content__title">2. A short reply</h3>
+				<p class="card-content__text">
+					Within one business day you will hear back with either questions worth
+					answering or a clear view on whether we are the right fit. If we are
+					not, we will say so and point you somewhere better.
+				</p>
+			</li>
+			<li class="card card-content">
+				<h3 class="card-content__title">3. A written proposal</h3>
+				<p class="card-content__text">
+					If it looks like a fit, you get a written scope of work with
+					milestones, costs and a payment schedule. Nothing is billed until that
+					proposal is signed. See the <a class="link" href="/refund-policy"
+						>Refund Policy</a
+					> for how deposits and cancellations work.
+				</p>
+			</li>
+		</ol>
+	</Section>
 </Layout>
 
 <style>
-  .page-shell {
-    margin: var(--section-margin) auto;
-    max-width: 900px;
-  }
+	.contact-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+		gap: clamp(1.5rem, 3vw, 2.5rem);
+		align-items: start;
+	}
 
-  .title-block {
-    margin-bottom: 2rem;
-  }
+	.contact-layout__form {
+		padding: clamp(1.5rem, 3vw, 2.25rem);
+		min-width: 0;
+	}
 
-  .eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--theme-accent);
-  }
+	.contact-aside__title {
+		font-size: 1.15rem;
+		margin-bottom: 1.25rem;
+	}
 
-  .contact-card {
-    background: var(--theme-surface-2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--theme-shape-radius);
-    padding: 2rem;
-  }
+	.contact-aside__list {
+		list-style: none;
+		margin: 0 0 1.5rem;
+		padding: 0;
+		display: grid;
+		gap: 1.25rem;
+	}
 
-  .contact-card p,
-  .contact-card li {
-    line-height: 1.8;
-  }
+	.contact-aside__item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		padding-bottom: 1.25rem;
+		border-bottom: 1px solid var(--theme-border);
+	}
 
-  .contact-card ul {
-    margin: 1rem 0 0;
-    padding-left: 1.25rem;
-  }
+	.contact-aside__item:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.contact-aside__label {
+		margin: 0;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-brand-ink);
+	}
+
+	.contact-aside__value {
+		font-family: var(--heading-font);
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: var(--theme-on-bg);
+		overflow-wrap: anywhere;
+	}
+
+	a.contact-aside__value:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.contact-aside__note {
+		margin: 0;
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: var(--theme-muted);
+	}
+
+	.faq-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: clamp(1.25rem, 2.5vw, 1.75rem);
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+	}
+
+	@media (max-width: 900px) {
+		.contact-layout {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

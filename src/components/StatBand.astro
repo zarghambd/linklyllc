@@ -1,0 +1,78 @@
+---
+import type { Stat } from '../data/stats';
+
+export type Props = {
+	heading: string;
+	items: Stat[];
+};
+
+const { heading, items } = Astro.props;
+---
+
+<section class="container stat-band" aria-labelledby="stat-band-heading">
+	<h2 class="sr-only" id="stat-band-heading">{heading}</h2>
+	<dl class="stat-band__inner">
+		{
+			items.map(stat => (
+				<div class="stat-item">
+					<dt class="stat-item__label">{stat.label}</dt>
+					<dd class="stat-item__value">{stat.value}</dd>
+					{stat.note && <p class="stat-item__note">{stat.note}</p>}
+				</div>
+			))
+		}
+	</dl>
+</section>
+
+<style>
+	.stat-band {
+		padding-block: clamp(1rem, 3vw, 2rem);
+	}
+
+	.stat-band__inner {
+		display: grid;
+		/* auto-fit keeps the row correct whether the client publishes two
+		   figures today or adds a third later. */
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+		gap: 1rem;
+		margin: 0;
+		background: var(--theme-surface-1);
+		border: 1px solid var(--theme-border);
+		border-radius: var(--border-radius);
+		padding: clamp(1.25rem, 2.5vw, 2rem);
+		box-shadow: var(--shadow-card);
+	}
+
+	.stat-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: 0.35rem;
+		padding: 0.75rem 0.5rem;
+	}
+
+	.stat-item__value {
+		order: -1;
+		margin: 0;
+		font-family: var(--heading-font);
+		font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
+		color: var(--theme-on-bg);
+	}
+
+	.stat-item__label {
+		color: var(--theme-muted);
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.stat-item__note {
+		margin: 0;
+		color: var(--theme-muted);
+		font-size: 0.82rem;
+	}
+</style>

@@ -4,14 +4,14 @@ export function generateSlug(string) {
 		.trim()
 		.toLowerCase()
 		.replace(/\s+/g, '-')
-		.replace(/[^\w\-]+/g, '')
-		.replace(/\-\-+/g, '-')
+		.replace(/[^\w-]+/g, '')
+		.replace(/--+/g, '-')
 		.replace(/^-+/, '')
 		.replace(/-+$/, '');
 }
 
 export function generateTagData(categories) {
-	let categoryData = [];
+	const categoryData = [];
 	categories.forEach(category => {
 		categoryData.push({
 			title: category,
