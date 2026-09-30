@@ -1,42 +1,68 @@
 name: Deploy
+
 on:
   push:
     branches: main
   pull_request:
     branches: main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  deploy:
-    name: Deploy
+  verify:
+    name: Verify
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
-
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          deno-version: v1.x
+          node-version: '22.x'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # check + lint + format:check + build + link check
+      - name: Verify
+        run: npm run verify
+
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    # Vercel's own git integration is the primary deploy path; this job is the
+    # fallback for anyone who pushes without it. Preview deploys are skipped so
+    # a PR never needs production credentials.
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: production
+    permissions:
+      contents: read
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: '22.x'
+          cache: npm
 
-      - name: Install step
-        run: "npm install"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build step
-        run: "npm run build"
+      - name: Pull Vercel project settings
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: "odyssey-theme"
-          entrypoint: "https://jsr.io/@std/http/1.0.7/file_server.ts"
-          root: "dist"
+      - name: Build with the pulled settings
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Publish
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
