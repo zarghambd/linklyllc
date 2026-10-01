@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!--
+    Mask shape for the `polygon-gradient` theme transition
+    (src/styles/view-transitions.css).
+
+    Used as a CSS mask-image, so only the alpha channel matters: a white-to-
+    transparent gradient produces the soft trailing edge. The polygon points
+    mirror the reveal shape used by the `polygon` effect, so the two variants
+    share an origin.
+  -->
+  <defs>
+    <linearGradient id="trail" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="1" />
+      <stop offset="1" stop-color="#fff" stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+  <polygon points="34,20 20,34 20,34 34,20" fill="url(#trail)" />
+</svg>

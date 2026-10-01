@@ -3,8 +3,12 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import lit from '@astrojs/lit';
+import netlify from '@astrojs/netlify';
 import vercel from '@astrojs/vercel/serverless';
-import { site } from './src/config/site';
+import { site } from './src/config/site.ts';
+
+const isNetlify = Boolean(process.env.NETLIFY);
+const adapter = isNetlify ? netlify() : vercel();
 
 export default defineConfig({
 	// Canonical origin for canonical tags, the sitemap and robots.txt.
@@ -16,7 +20,7 @@ export default defineConfig({
 	// just src/pages/api/contact.ts, so the contact form runs as a serverless
 	// function while the rest of the site is served straight from the CDN.
 	output: 'hybrid',
-	adapter: vercel(),
+	adapter,
 
 	// `security.checkOrigin` is deliberately left off. It is Astro's built-in
 	// CSRF check, but in Astro 4 it reads request headers for *every* prerendered

@@ -177,6 +177,11 @@ const year = new Date().getFullYear();
 		const navToggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
 		const siteHeader = document.querySelector('.site-header');
 
+		// A transition in flight owns the screen; further clicks are ignored
+		// rather than queued, so the toggle never ends up out of sync with
+		// localStorage.
+		let transitionActive = false;
+
 		function syncThemeToggle() {
 			if (!themeToggle) return;
 			const isDark = root.dataset.theme === 'dark';
@@ -196,8 +201,17 @@ const year = new Date().getFullYear();
 		}
 
 		if (themeToggle) {
-			themeToggle.addEventListener('click', () => {
-				const nextTheme = root.dataset.theme === 'dark' ? 'default' : 'dark';
+			// The ::view-transition-* CSS only runs if something actually starts a
+			// transition, so the theme change has to be wrapped in one. Feature
+			// detected: without it (or under reduced motion) the swap is instant
+			// and nothing else about the toggle changes.
+			const motionOk = window.matchMedia(
+				'(prefers-reduced-motion: no-preference)',
+			).matches;
+			const canTransition =
+				motionOk && typeof document.startViewTransition === 'function';
+
+			function applyTheme(nextTheme: 'dark' | 'default') {
 				root.dataset.theme = nextTheme;
 				try {
 					localStorage.setItem('theme', nextTheme);
@@ -205,6 +219,27 @@ const year = new Date().getFullYear();
 					// Storage can be blocked; the theme still applies for this page view.
 				}
 				syncThemeToggle();
+			}
+
+			// startViewTransition() snapshots the page when called, so a theme
+			// applied afterwards animates from the old colours. Doing it inside
+			// the callback would skip the animation entirely.
+			themeToggle.addEventListener('click', () => {
+				const nextTheme = root.dataset.theme === 'dark' ? 'default' : 'dark';
+
+				if (!canTransition) {
+					applyTheme(nextTheme);
+					return;
+				}
+
+				if (transitionActive) return;
+				transitionActive = true;
+
+				document
+					.startViewTransition(() => applyTheme(nextTheme))
+					.finished.finally(() => {
+						transitionActive = false;
+					});
 			});
 		}
 

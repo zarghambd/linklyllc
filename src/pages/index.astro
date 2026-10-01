@@ -5,7 +5,7 @@ import Section from '../components/Section.astro';
 import StatBand from '../components/StatBand.astro';
 import TestimonialSection from '../components/TestimonialSection.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { services, reasons, techStack } from '../data/services';
+import { services, reasons, techStackGroups } from '../data/services';
 import { stats } from '../data/stats';
 import heroImage from '../../public/landing-hero.png';
 import { Image } from 'astro:assets';
@@ -69,9 +69,16 @@ import { Image } from 'astro:assets';
 		eyebrow="Technology"
 		title="Built with the modern web stack"
 	>
-		<ul class="tech-pills">
-			{techStack.map(item => <li class="tech-pill">{item}</li>)}
-		</ul>
+		<div class="stack-group-list">
+			{techStackGroups.map(group => (
+				<div class="stack-group">
+					<h3>{group.title}</h3>
+					<ul class="tech-pills">
+						{group.items.map(item => <li class="tech-pill">{item}</li>)}
+					</ul>
+				</div>
+			))}
+		</div>
 	</Section>
 
 	<Section
@@ -143,6 +150,24 @@ import { Image } from 'astro:assets';
 		border: 1px solid var(--theme-border);
 		border-radius: 20px;
 		box-shadow: var(--shadow-soft);
+	}
+
+	.stack-group-list {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.stack-group {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.stack-group h3 {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--theme-on-bg);
 	}
 
 	.tech-pills {

@@ -66,15 +66,49 @@ export const serviceGroups = {
 } as const;
 
 export const techStack = [
-	'Astro',
 	'React',
+	'Next.js',
+	'Vue',
 	'TypeScript',
 	'Node.js',
-	'Next.js',
+	'Python',
+	'Django',
+	'FastAPI',
 	'PostgreSQL',
+	'MongoDB',
 	'AWS',
-	'GraphQL',
+	'React Native',
+	'Flutter',
+	'Swift',
+	'Kotlin',
+	'Firebase',
+	'Supabase',
+	'OpenAI',
+	'Claude',
+	'Gemini',
+	'Llama',
+	'LangChain',
+	'LangGraph',
+	'RAG',
+	'AI Agents',
+	'Vector Databases',
+	'AI Automation',
 ];
+
+export const techStackGroups = [
+	{
+		title: 'Web',
+		items: ['React', 'Next.js', 'Vue', 'TypeScript', 'Node.js', 'Python', 'Django', 'FastAPI', 'PostgreSQL', 'MongoDB', 'AWS'],
+	},
+	{
+		title: 'Mobile',
+		items: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'Supabase'],
+	},
+	{
+		title: 'AI',
+		items: ['OpenAI', 'Claude', 'Gemini', 'Llama', 'LangChain', 'LangGraph', 'RAG', 'AI Agents', 'Vector Databases', 'AI Automation'],
+	},
+] as const;
 
 export type Reason = {
 	title: string;
