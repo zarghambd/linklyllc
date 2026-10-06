@@ -1,261 +1,351 @@
 ---
-/* DRAFT - must be reviewed by a licensed US attorney before publishing. */
 import LegalLayout from '../layouts/LegalLayout.astro';
 import { site, addressLines } from '../config/site';
 
 const { legal } = site;
-
 const company = legal.entityName;
 
-// Client-supplied policy text. Structure and wording are the client's; the only
-// editorial changes are that the identity placeholders are read from
-// src/config/site.ts, and "the Company" is defined once rather than left to
-// the reader to infer.
 const toc = [
 	{ id: 'commitment', title: 'Our commitment to client satisfaction' },
-	{ id: 'requesting-a-refund', title: 'Requesting a refund' },
+	{ id: 'when-a-refund-may-be-requested', title: 'When you may request a refund' },
+	{ id: 'how-to-request-a-refund', title: 'How to request a refund' },
 	{ id: 'opportunity-to-resolve', title: 'Opportunity to resolve the issue' },
-	{
-		id: 'when-a-refund-may-be-provided',
-		title: 'When a refund may be provided',
-	},
-	{ id: 'work-already-completed', title: 'Refund for work already completed' },
+	{ id: 'full-or-partial-refunds', title: 'Full or partial refunds' },
+	{ id: 'refunds-for-completed-work', title: 'Refunds for completed work' },
 	{ id: 'client-requested-changes', title: 'Client-requested changes' },
-	{ id: 'client-related-delays', title: 'Client-related delays' },
-	{ id: 'third-party-services', title: 'Third-party services' },
+	{ id: 'client-responsibilities', title: 'Client responsibilities and delays' },
+	{ id: 'third-party-services', title: 'Third-party services and costs' },
+	{ id: 'subscription-services', title: 'Subscription and recurring services' },
+	{ id: 'deposits-and-payments', title: 'Deposits and project payments' },
+	{ id: 'refund-processing', title: 'Refund processing' },
+	{ id: 'chargebacks', title: 'Chargebacks and payment disputes' },
+	{ id: 'no-waiver', title: 'No waiver of legal rights' },
 	{ id: 'final-determination', title: 'Final refund determination' },
-	{ id: 'no-retaliation', title: 'No retaliation for good-faith requests' },
-	{ id: 'chargebacks', title: 'Chargebacks' },
-	{ id: 'applicable-agreement', title: 'Applicable agreement and law' },
-	{ id: 'our-promise', title: 'Our promise' },
+	{ id: 'good-faith-requests', title: 'Good-faith refund requests' },
+	{ id: 'contact-us', title: 'Contact us' },
 ];
 ---
 
 <LegalLayout
-	title="Refund & Client Satisfaction Policy"
-	intro="Our goal is to deliver software solutions that meet the requirements and expectations agreed upon with our clients. We value long-term client relationships and believe clients should feel confident when working with us."
-	lastUpdated={legal.effectiveDate}
+	title="Refund & Satisfaction Policy"
+	intro="At Linkly LLC, we are committed to delivering high-quality software development, web applications, mobile applications, AI solutions, automation systems, and related technology services. Our goal is to build long-term relationships with our clients through transparency, accountability, and reliable delivery."
+	lastUpdated="October 6, 2026"
 	toc={toc}
 	seo={{
-		title: 'Refund & Client Satisfaction Policy',
+		title: 'Refund & Satisfaction Policy',
 		description:
-			'How Linkly LLC handles a client who is not satisfied with delivered work: when a refund may be considered, how to request one, and how third-party costs are treated.',
+			'Linkly LLC refund and satisfaction policy for custom software, AI, web, and mobile projects.',
 	}}
 >
 	<p>
-		For this reason, we offer a <strong
-			>Client Satisfaction Refund Policy</strong
-		>
-		subject to the terms below.
-	</p>
-	<p>
-		In this Policy, <strong>“the Company”, “we”, “us” and “our”</strong> mean
-		{company}, and <strong>“Client”, “you” and “your”</strong> mean the person or
-		business engaging us under an Agreement.
+		We understand that software projects can evolve and that issues may occasionally
+		arise. If you are not satisfied with our services, we encourage you to contact
+		us so that we have an opportunity to understand the concern and work toward a
+		fair resolution.
 	</p>
 
-	<h2 id="commitment">1. Our commitment to client satisfaction</h2>
+	<h2 id="commitment">1. Our Commitment to Client Satisfaction</h2>
 	<p>
-		If a client is genuinely dissatisfied with the services provided, we
-		encourage them to contact us as soon as possible.
+		Linkly LLC stands behind the work we deliver.
 	</p>
 	<p>
-		We will first work with the client to understand the concern and, where
-		reasonably possible, correct, revise, or improve the delivered work in
-		accordance with the agreed project scope.
+		If our delivered services materially fail to meet the requirements expressly
+		agreed upon in the applicable proposal, Statement of Work ("SOW"), contract,
+		or project agreement, we will make reasonable efforts to correct the issue at
+		no additional cost when the issue falls within the original agreed scope.
 	</p>
 	<p>
-		If the issue cannot reasonably be resolved and the client remains
-		dissatisfied, we may provide a <strong>partial or full refund</strong>,
-		depending on the circumstances and the amount of work completed.
+		If the issue cannot reasonably be resolved and the client remains dissatisfied,
+		Linkly LLC may provide a <strong>partial or full refund</strong>, depending on
+		the circumstances, work completed, payments received, and applicable agreement.
 	</p>
 
-	<h2 id="requesting-a-refund">2. Requesting a refund</h2>
-	<p>Clients must submit a refund request in writing through:</p>
+	<h2 id="when-a-refund-may-be-requested">2. When You May Request a Refund</h2>
+	<p>A client may request a refund if:</p>
+	<ul>
+		<li>The delivered work materially fails to match the agreed project requirements.</li>
+		<li>A significant portion of the agreed services has not been delivered.</li>
+		<li>Linkly LLC is unable to complete a material portion of the agreed scope.</li>
+		<li>A material defect or issue cannot reasonably be corrected within the agreed scope.</li>
+		<li>Linkly LLC and the client mutually agree to terminate the project.</li>
+		<li>Other circumstances justify a refund under the applicable agreement or applicable law.</li>
+	</ul>
+	<p>
+		Refund requests must be made in good faith and should identify the specific
+		deliverables, functionality, or services that are the basis for the request.
+	</p>
+
+	<h2 id="how-to-request-a-refund">3. How to Request a Refund</h2>
+	<p>Refund requests must be submitted in writing to:</p>
 	<p>
 		<strong>Email:</strong>
-		<a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>
+		<a href="mailto:hello@linklyllc.com">hello@linklyllc.com</a>
 	</p>
+	<p>The request should include:</p>
+	<ul>
+		<li>Client or company name</li>
+		<li>Project name</li>
+		<li>Relevant invoice, proposal, or SOW, if available</li>
+		<li>Description of the issue</li>
+		<li>Specific deliverables or functionality involved</li>
+		<li>Reason the delivered work does not meet the agreed requirements</li>
+		<li>Any relevant supporting information</li>
+	</ul>
 	<p>
-		The request should explain the reason for dissatisfaction and identify the
-		specific services, deliverables, or functionality that are not meeting the
-		agreed requirements.
-	</p>
-	<p>
-		We may request additional information or arrange a meeting with the client
-		to understand and resolve the concern.
+		We may request additional information or schedule a discussion with the client
+		before making a final determination.
 	</p>
 
-	<h2 id="opportunity-to-resolve">3. Opportunity to resolve the issue</h2>
+	<h2 id="opportunity-to-resolve">4. Opportunity to Resolve the Issue</h2>
 	<p>
-		Before processing a refund, we will generally provide {company} with a reasonable
-		opportunity to address legitimate concerns.
+		Before issuing a refund, Linkly LLC will generally be given a reasonable
+		opportunity to resolve the issue.
 	</p>
 	<p>Depending on the circumstances, we may:</p>
 	<ul>
 		<li>Correct bugs or defects;</li>
 		<li>Make reasonable revisions;</li>
 		<li>Adjust functionality to match the agreed requirements;</li>
-		<li>Provide additional clarification or support; or</li>
-		<li>Propose another reasonable solution.</li>
+		<li>Rework affected deliverables;</li>
+		<li>Provide additional clarification or technical support; or</li>
+		<li>Propose another mutually reasonable solution.</li>
 	</ul>
 	<p>
-		Our objective is to resolve the issue rather than simply terminate the
-		project.
+		Our preferred approach is to resolve legitimate concerns and complete the
+		project successfully rather than immediately terminate the engagement.
 	</p>
 
-	<h2 id="when-a-refund-may-be-provided">4. When a refund may be provided</h2>
-	<p>A refund may be considered where:</p>
+	<h2 id="full-or-partial-refunds">5. Full or Partial Refunds</h2>
+	<p>
+		If a refund is approved, the refund may be <strong>partial or full</strong>,
+		depending on the circumstances.
+	</p>
+	<p>When determining the appropriate refund amount, Linkly LLC may consider:</p>
 	<ul>
-		<li>
-			The delivered work materially differs from the agreed project
-			requirements;
-		</li>
-		<li>A significant portion of the agreed service has not been delivered;</li>
-		<li>{company} is unable to complete the agreed scope;</li>
-		<li>A legitimate project issue cannot reasonably be resolved;</li>
-		<li>{company} and Client mutually agree to terminate the project; or</li>
-		<li>
-			Other circumstances justify a refund under the applicable Agreement or
-			law.
-		</li>
-	</ul>
-	<p>
-		The refund amount may be <strong>partial or full</strong>, depending on the
-		circumstances.
-	</p>
-
-	<h2 id="work-already-completed">5. Refund for work already completed</h2>
-	<p>
-		Where development work has already been completed and delivered, {company} may
-		consider the value of the completed work when determining the appropriate refund.
-	</p>
-	<p>
-		A full refund is not automatically guaranteed solely because the Client is
-		dissatisfied.
-	</p>
-	<p>{company} will consider factors including:</p>
-	<ul>
-		<li>Work completed;</li>
-		<li>Deliverables provided;</li>
-		<li>Milestones completed;</li>
-		<li>Project requirements;</li>
-		<li>Client feedback and approvals;</li>
-		<li>Outstanding issues;</li>
-		<li>Third-party costs; and</li>
+		<li>Work already completed;</li>
+		<li>Deliverables already provided;</li>
+		<li>Project milestones completed;</li>
+		<li>Hours or resources already dedicated to the project;</li>
+		<li>Client approvals or acceptance of previous work;</li>
+		<li>The original project requirements;</li>
+		<li>Outstanding defects or issues;</li>
+		<li>Amount of work remaining;</li>
+		<li>Third-party costs;</li>
+		<li>Client-requested changes;</li>
+		<li>Client-caused delays; and</li>
 		<li>The reason for cancellation or dissatisfaction.</li>
 	</ul>
-
-	<h2 id="client-requested-changes">6. Client-requested changes</h2>
 	<p>
-		A refund will not ordinarily be required where dissatisfaction results
-		solely from requirements or preferences that were not included in the
-		original scope.
-	</p>
-	<p>
-		If the Client requests new functionality, substantial changes, or additional
-		features outside the agreed scope, those requests may be treated as
-		additional work and may require a separate estimate or change order.
+		A full refund is not automatically guaranteed simply because a client is
+		dissatisfied with a project or because the client changes their business
+		requirements.
 	</p>
 
-	<h2 id="client-related-delays">7. Client-related delays</h2>
+	<h2 id="refunds-for-completed-work">6. Refunds for Completed Work</h2>
 	<p>
-		The Client is responsible for providing timely feedback, approvals, content,
-		credentials, access, and other information required for the project.
+		Where Linkly LLC has already completed and delivered work in accordance with
+		the agreed scope, payment for that completed work is generally non-refundable.
 	</p>
 	<p>
-		Where dissatisfaction or project delays result primarily from Client-caused
-		delays, changes, lack of cooperation, or failure to provide required
-		information, the refund amount may be adjusted accordingly.
+		However, if the delivered work materially fails to meet the agreed
+		requirements and the issue cannot reasonably be resolved, Linkly LLC may, at
+		its discretion, provide an appropriate partial or full refund.
 	</p>
 
-	<h2 id="third-party-services">8. Third-party services</h2>
+	<h2 id="client-requested-changes">7. Client-Requested Changes</h2>
 	<p>
-		Payments made to third-party providers on behalf of the Client may be
-		excluded from a refund where those amounts have already been paid and are
-		non-refundable.
+		A refund will generally not be provided when dissatisfaction results from
+		requirements, preferences, functionality, designs, or features that were not
+		included in the original agreed scope.
+	</p>
+	<p>Requests for:</p>
+	<ul>
+		<li>New features;</li>
+		<li>Additional functionality;</li>
+		<li>Major design changes;</li>
+		<li>Changes to previously approved requirements;</li>
+		<li>New integrations;</li>
+		<li>Additional platforms; or</li>
+		<li>Other work outside the agreed scope</li>
+	</ul>
+	<p>
+		may be treated as additional work and may require a new estimate, change
+		order, or additional payment.
+	</p>
+
+	<h2 id="client-responsibilities">8. Client Responsibilities and Delays</h2>
+	<p>
+		Clients are responsible for providing the information and cooperation
+		reasonably required to complete a project, including:
+	</p>
+	<ul>
+		<li>Timely feedback;</li>
+		<li>Approvals;</li>
+		<li>Content and assets;</li>
+		<li>Credentials and access;</li>
+		<li>API keys;</li>
+		<li>Technical information;</li>
+		<li>Business requirements; and</li>
+		<li>Other materials reasonably necessary for delivery.</li>
+	</ul>
+	<p>
+		If project delays, missed deadlines, incomplete functionality, or
+		dissatisfaction are primarily caused by client delays, changes, lack of
+		cooperation, failure to provide required information, or failure to provide
+		timely approvals, Linkly LLC may adjust or deny a refund request to the extent
+		permitted by the applicable agreement and law.
+	</p>
+
+	<h2 id="third-party-services">9. Third-Party Services and Costs</h2>
+	<p>
+		Certain project expenses may be paid to third-party providers on behalf of the
+		client.
 	</p>
 	<p>Examples include:</p>
 	<ul>
 		<li>Cloud hosting;</li>
 		<li>Domain registration;</li>
-		<li>API services;</li>
+		<li>API usage;</li>
 		<li>Software licenses;</li>
-		<li>Plugins;</li>
 		<li>SaaS subscriptions;</li>
-		<li>App-store fees; and</li>
-		<li>Other third-party services.</li>
+		<li>Plugins;</li>
+		<li>App-store fees;</li>
+		<li>Payment-processing fees;</li>
+		<li>Third-party development tools; and</li>
+		<li>Other external services.</li>
 	</ul>
 	<p>
-		Where a third party provides a refund, {company} may pass the applicable refund
-		to the Client.
+		Third-party fees that have already been paid and are non-refundable by the
+		relevant provider may not be refundable by Linkly LLC.
+	</p>
+	<p>
+		Where a third-party provider issues a refund to Linkly LLC for a client-related
+		expense, Linkly LLC may pass the applicable refundable amount to the client.
 	</p>
 
-	<h2 id="final-determination">9. Final refund determination</h2>
-	<p>Each refund request will be reviewed individually.</p>
+	<h2 id="subscription-services">10. Subscription and Recurring Services</h2>
 	<p>
-		Where a refund is approved, {company} will confirm the approved amount and refund
+		For recurring services, maintenance agreements, support plans, retainers, or
+		subscriptions, cancellation and refund terms may be governed by the applicable
+		service agreement or order.
+	</p>
+	<p>
+		Unless otherwise agreed in writing, fees for services already provided during
+		a billing period are generally non-refundable.
+	</p>
+	<p>
+		Any prepaid unused services may be reviewed for a potential refund depending
+		on the applicable agreement and circumstances.
+	</p>
+
+	<h2 id="deposits-and-payments">11. Deposits and Project Payments</h2>
+	<p>
+		Project deposits or advance payments may be used to reserve development
+		resources, begin project planning, conduct discovery, create architecture,
+		design systems, purchase third-party services, or commence development.
+	</p>
+	<p>
+		Accordingly, deposits are not automatically refundable after work has begun.
+	</p>
+	<p>
+		However, if Linkly LLC is unable to deliver a material portion of the agreed
+		services, or where circumstances otherwise justify a refund, we will review the
+		matter fairly and may issue a partial or full refund.
+	</p>
+
+	<h2 id="refund-processing">12. Refund Processing</h2>
+	<p>
+		If a refund is approved, Linkly LLC will confirm the approved amount and refund
 		method in writing.
 	</p>
 	<p>
 		Unless otherwise required by applicable law or agreed in writing, approved
-		refunds will be processed through the original payment method.
+		refunds will generally be issued using the original payment method.
+	</p>
+	<p>
+		Processing times may vary depending on the payment provider, bank, card issuer,
+		or other financial institution.
 	</p>
 
-	<h2 id="no-retaliation">10. No retaliation for good-faith refund requests</h2>
+	<h2 id="chargebacks">13. Chargebacks and Payment Disputes</h2>
 	<p>
-		Clients will not be penalized for submitting a legitimate refund request in
-		good faith.
+		If you have a concern regarding a payment, we encourage you to contact Linkly
+		LLC before initiating a chargeback or payment dispute.
 	</p>
 	<p>
-		We encourage clients to communicate concerns directly with us so that we
-		have an opportunity to resolve them professionally.
-	</p>
-
-	<h2 id="chargebacks">11. Chargebacks</h2>
-	<p>
-		Clients are requested to contact <strong>{company}</strong> before initiating
-		a payment dispute or chargeback.
+		We will make reasonable efforts to investigate and resolve legitimate payment
+		concerns directly.
 	</p>
 	<p>
-		We will make reasonable efforts to resolve legitimate disputes directly with
-		the Client.
-	</p>
-	<p>
-		Nothing in this section limits any rights available to the Client under
-		applicable law or the applicable payment provider's rules.
+		Nothing in this policy limits any rights available to a client under applicable
+		law or the rules of the applicable payment provider.
 	</p>
 
-	<h2 id="applicable-agreement">12. Applicable agreement and law</h2>
-	<p>This Policy forms part of the Company's applicable service terms.</p>
+	<h2 id="no-waiver">14. No Waiver of Legal Rights</h2>
 	<p>
-		If a signed Agreement, Statement of Work, or Master Services Agreement
-		contains specific refund or termination provisions, those provisions will
-		apply.
+		Nothing in this Refund & Satisfaction Policy is intended to waive, limit, or
+		eliminate any rights or remedies that cannot legally be waived under
+		applicable federal, state, or local law.
 	</p>
 	<p>
-		Nothing in this Policy is intended to waive or restrict any rights that
-		cannot legally be waived under applicable federal or state law.
+		If a signed contract, Master Services Agreement, Statement of Work, proposal,
+		or other written agreement contains specific refund, cancellation, termination,
+		or payment provisions, those provisions will control to the extent of any
+		conflict with this policy.
 	</p>
 
-	<h2 id="our-promise">13. Our promise</h2>
+	<h2 id="final-determination">15. Final Refund Determination</h2>
 	<p>
-		We believe that successful software development is based on <strong
-			>trust, transparency, and long-term relationships</strong
-		>.
+		Each refund request will be evaluated individually and in good faith.
 	</p>
 	<p>
-		If we have not delivered what we agreed to deliver and the issue cannot
-		reasonably be resolved, we are prepared to work with the Client toward a
-		fair refund or other appropriate resolution.
+		Linkly LLC will consider the facts and circumstances of the specific engagement,
+		including the applicable contract, project scope, work completed, client
+		communications, approvals, outstanding issues, and applicable law.
 	</p>
+	<p>
+		Where a refund is approved, Linkly LLC will provide the client with written
+		confirmation of the approved amount and applicable processing details.
+	</p>
+
+	<h2 id="good-faith-requests">16. Good-Faith Refund Requests</h2>
+	<p>
+		Clients will not be penalized merely for submitting a legitimate refund request
+		in good faith.
+	</p>
+	<p>
+		We encourage clients to communicate concerns as soon as they arise so that
+		Linkly LLC has a reasonable opportunity to investigate and resolve the matter.
+	</p>
+
+	<h2 id="contact-us">17. Contact Us</h2>
+	<p>
+		If you have questions about this Refund & Satisfaction Policy or wish to submit
+		a refund request, please contact:
+	</p>
+	<p>
+		<strong>Linkly LLC</strong><br />
+		<strong>Email:</strong>
+		<a href="mailto:hello@linklyllc.com">hello@linklyllc.com</a><br />
+		<strong>Phone:</strong> +1 224-202-7114<br />
+		<strong>Website:</strong>
+		<a href="https://linkly-llc.com/">https://linkly-llc.com/</a>
+	</p>
+	<p>
+		By engaging Linkly LLC for services, clients acknowledge that the applicable
+		project agreement, Statement of Work, proposal, or service terms may contain
+		additional provisions governing payments, cancellations, refunds, and
+		termination.
+	</p>
+	<p><strong>Last Updated:</strong> October 6, 2026</p>
 </LegalLayout>
 
 <footer class="legal-signature">
 	<p>
 		<strong>{company}</strong><br />
 		<strong>Email:</strong>
-		<a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a><br />
+		<a href="mailto:hello@linklyllc.com">hello@linklyllc.com</a><br />
+		<strong>Phone:</strong> +1 224-202-7114<br />
 		<strong>Website:</strong>
 		<a href={site.url}>{site.url.replace(/^https?:\/\//, '')}</a><br />
 		<strong>Address:</strong>
