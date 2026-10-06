@@ -28,11 +28,9 @@ export const site = {
 	email: 'hello@linklyllc.com',
 
 	/**
-	 * [PLACEHOLDER: real US phone number in E.164 format, e.g. "+15555550123"]
-	 * Left empty on purpose: the phone line is hidden sitewide until a real
-	 * number is supplied, rather than showing a placeholder to visitors.
+	 * Published phone number used in the footer and contact details.
 	 */
-	phone: '',
+	phone: '+1 224-202-7114',
 
 	/** Registered business address. Required for CAN-SPAM notices and the legal pages. */
 	address: {
