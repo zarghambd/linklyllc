@@ -8,10 +8,6 @@ export const nav = [
 		slug: '/services',
 	},
 	{
-		title: 'Work',
-		slug: '/work',
-	},
-	{
 		title: 'Stack',
 		slug: '/stack',
 	},
@@ -28,7 +24,6 @@ export const nav = [
 export const footerNav = {
 	company: [
 		{ title: 'About', slug: '/about' },
-		{ title: 'Work', slug: '/work' },
 		{ title: 'Services', slug: '/services' },
 		{ title: 'Technology stack', slug: '/stack' },
 		{ title: 'Contact', slug: '/contact' },
