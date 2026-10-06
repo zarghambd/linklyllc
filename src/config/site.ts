@@ -25,7 +25,7 @@ export const site = {
 	tagline:
 		'Custom web development and product engineering for ambitious businesses.',
 
-	email: 'hello@linklyllc.com',
+	email: 'payment@linklyLLC.com',
 
 	/**
 	 * Published phone number used in the footer and contact details.
@@ -63,7 +63,7 @@ export const site = {
 		entityName: '[PLACEHOLDER: LEGAL ENTITY NAME]',
 		stateOfFormation: '[PLACEHOLDER: STATE OF FORMATION]',
 		effectiveDate: '[PLACEHOLDER: EFFECTIVE DATE]',
-		contactEmail: '[PLACEHOLDER: CONTACT EMAIL for privacy and legal requests]',
+		contactEmail: 'payment@linklyLLC.com',
 	},
 } as const;
 
